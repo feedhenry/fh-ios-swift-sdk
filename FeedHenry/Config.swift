@@ -24,8 +24,9 @@ public class Config {
     public init(propertiesFile: String = "fhconfig") {
         self.propertiesFile = propertiesFile
         let path = NSBundle(forClass: Config.self).pathForResource(propertiesFile, ofType: "plist")
-        if path != nil {
-            self.properties = [:]
+        
+        if let path = path, properties = NSDictionary(contentsOfFile: path) {
+            self.properties = properties as! [String : String]
         } else {
             self.properties = [:]
         }
