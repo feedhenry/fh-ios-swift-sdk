@@ -24,7 +24,6 @@ public class Config {
     public init(propertiesFile: String = "fhconfig") {
         self.propertiesFile = propertiesFile
         let path = NSBundle(forClass: Config.self).pathForResource(propertiesFile, ofType: "plist")
-        
         if let path = path, properties = NSDictionary(contentsOfFile: path) {
             self.properties = properties as! [String : String]
         } else {
@@ -39,5 +38,48 @@ public class Config {
         set {
             self.properties[key] = newValue
         }
+    }
+    
+    public var params: [String: AnyObject] {
+        var params: [String: AnyObject] = [:]
+        params["appid"] = self["appid"]
+        params["appkey"] = self["appkey"]
+        params["projectid"] = self["projectid"]
+        params["connectiontag"] = self["connectiontag"]
+        params["sdk_version"] = self["FH_IOS_SDK/\(FH_SDK_VERSION)"]
+        params["destination"] = "ios"
+        let uuidGenerated = uuid
+        params["cuid"] = uuidGenerated
+        
+        var cuidArray: [[String: String]] = [["name": "CFUUID",
+                                                "cuid": uuidGenerated]]
+        var vendorMap = ["name": "vendorIdentifier"]
+        if let vendorId = vendorId {
+            vendorMap["cuid"] = vendorId
+        }
+        cuidArray.append(vendorMap)
+        
+        params["cuidMap"] = cuidArray
+
+        // Read "FH_INIT stored param for other request than init
+        // Read read:SESSION_TOKEN_KEY
+        return params
+    }
+    
+    public var uuid: String {
+        //let UUID_KEY = "FHUUID"
+        var appUuid: String? = nil // read from storage [FHDataManager read:UUID_KEY];
+        if appUuid == nil {
+            appUuid = NSUUID().UUIDString
+            // save uuid
+        }
+        return appUuid!
+    }
+    
+    public var vendorId: String? {
+        if let vendorId = UIDevice.currentDevice().identifierForVendor {
+            return vendorId.UUIDString
+        }
+        return nil
     }
 }

@@ -18,12 +18,22 @@
 import Foundation
 import AeroGearHttp
 
+let FH_ACT = "act"
+let FH_CLOUD = "cloud"
+let FH_AUTH = "auth"
+let FH_INIT = "init"
+let FH_SDK_VERSION = "2.2.9"
+let SESSION_TOKEN_KEY = "sessionToken"
+let VERIFY_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/verifysession"
+let REVOKE_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/revokesession"
+
 public func setup(completionHandler: CompletionBlock) -> Void {
     // TODO register for Reachability
     // TODO check if online otherwise send error
     // TODO read properties file, get  host
     let http = Http(baseURL: "https://redhat-demos-t.sandbox.feedhenry.com")
-    var config = Config()
-    let defaultParameters: [String: AnyObject]? = [:]
+    let config = Config()
+    let defaultParameters: [String: AnyObject]? = config.params
+    //TODo set headers with appkey
     http.POST("/box/srv/1.1/app/init", parameters: defaultParameters, credential: nil, completionHandler: completionHandler)
 }
