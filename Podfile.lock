@@ -1,0 +1,29 @@
+PODS:
+  - AeroGearHttp (0.3.0)
+  - SwiftyJSON (2.2.0)
+
+DEPENDENCIES:
+  - AeroGearHttp (from `https://github.com/aerogear/aerogear-ios-http`, branch `swift-2.0`)
+  - SwiftyJSON (from `https://github.com/corinnekrych/SwiftyJSON`, branch `xcode7.ios7`)
+
+EXTERNAL SOURCES:
+  AeroGearHttp:
+    :branch: swift-2.0
+    :git: https://github.com/aerogear/aerogear-ios-http
+  SwiftyJSON:
+    :branch: xcode7.ios7
+    :git: https://github.com/corinnekrych/SwiftyJSON
+
+CHECKOUT OPTIONS:
+  AeroGearHttp:
+    :commit: a668c8b17c57753f1c97d54181323f2b92cbcd73
+    :git: https://github.com/aerogear/aerogear-ios-http
+  SwiftyJSON:
+    :commit: d1a38f66916d7be7b305396ace21250e01fffc23
+    :git: https://github.com/corinnekrych/SwiftyJSON
+
+SPEC CHECKSUMS:
+  AeroGearHttp: ae536f81e52f808101edacf34a161dea99cb72e3
+  SwiftyJSON: 7ffe893700002e5f5fe5ade06e697bab25519b65
+
+COCOAPODS: 0.37.2
