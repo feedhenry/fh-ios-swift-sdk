@@ -23,7 +23,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let completionHandler: CompletionBlock = 
+        let completionHandler: CompletionBlock = {(reps:AnyObject?, error:NSError?) -> Void in
+            if let _ = error {
+                print("Error!")
+                return
+            }
+            print("Success!")
+        }
         FeedHenry.setup(completionHandler)
     }
 

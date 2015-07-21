@@ -27,6 +27,8 @@ let SESSION_TOKEN_KEY = "sessionToken"
 let VERIFY_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/verifysession"
 let REVOKE_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/revokesession"
 
+public typealias CompletionBlock = (AnyObject?, NSError?) -> Void
+
 public func setup(completionHandler: CompletionBlock) -> Void {
     // TODO register for Reachability
     // TODO check if online otherwise send error
@@ -34,6 +36,6 @@ public func setup(completionHandler: CompletionBlock) -> Void {
     let http = Http(baseURL: "https://redhat-demos-t.sandbox.feedhenry.com")
     let config = Config()
     let defaultParameters: [String: AnyObject]? = config.params
-    //TODo set headers with appkey
+    //TODO set headers with appkey: is it needed??
     http.POST("/box/srv/1.1/app/init", parameters: defaultParameters, credential: nil, completionHandler: completionHandler)
 }
