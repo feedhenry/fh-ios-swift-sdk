@@ -15,27 +15,12 @@
 * limitations under the License.
 */
 
-import Foundation
-import AeroGearHttp
 
-let FH_ACT = "act"
-let FH_CLOUD = "cloud"
-let FH_AUTH = "auth"
-let FH_INIT = "init"
-let FH_SDK_VERSION = "2.2.9"
-let SESSION_TOKEN_KEY = "sessionToken"
-let VERIFY_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/verifysession"
-let REVOKE_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/revokesession"
-
-public typealias CompletionBlock = (AnyObject?, NSError?) -> Void
-
-public func setup(completionHandler: CompletionBlock) -> Void {
-    // TODO register for Reachability
-    // TODO check if online otherwise send error
-    // TODO read properties file, get  host
-    let http = Http(baseURL: "https://redhat-demos-t.sandbox.feedhenry.com")
-    let config = Config()
-    let defaultParameters: [String: AnyObject]? = config.params
-    //TODO set headers with appkey: is it needed??
-    http.POST("/box/srv/1.1/app/init", parameters: defaultParameters, credential: nil, completionHandler: completionHandler)
-}
+//let FH_ACT = "act"
+//let FH_CLOUD = "cloud"
+//let FH_AUTH = "auth"
+//let FH_INIT = "init"
+let FH_SDK_VERSION = "4.0.0"
+//let SESSION_TOKEN_KEY = "sessionToken"
+//let VERIFY_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/verifysession"
+//let REVOKE_SESSION_PATH = "/box/srv/1.1/admin/authpolicy/revokesession"

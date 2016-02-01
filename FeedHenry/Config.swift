@@ -17,7 +17,7 @@
 
 import Foundation
 
-public class Config {
+public class FeedHenryConfig {
     private var properties: [String: String]
     private let propertiesFile: String
     

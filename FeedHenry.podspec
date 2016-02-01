@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.source_files = 'FeedHenry/*.{swift}'
   s.requires_arc = true
   s.dependency 'AeroGearHttp'
-  s.dependency 'SwiftyJSON'
+  #s.dependency 'SwiftyJSON'
 end

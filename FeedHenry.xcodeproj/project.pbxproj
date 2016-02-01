@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		483E820E1C5F8D0B00E7F198 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483E820D1C5F8D0B00E7F198 /* Cloud.swift */; };
+		483E82101C5F8D3200E7F198 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483E820F1C5F8D3200E7F198 /* Config.swift */; };
 		4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4878D5DD1B579965004518C4 /* FeedHenry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
 		4878D5EA1B579965004518C4 /* FeedHenryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4878D5E91B579965004518C4 /* FeedHenryTests.swift */; };
 		4878D5F51B579B25004518C4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4878D5F41B579B25004518C4 /* FH.swift */; };
-		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		2CCDEB4630586564531FFBB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		483E820D1C5F8D0B00E7F198 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
+		483E820F1C5F8D3200E7F198 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4878D5DA1B579965004518C4 /* FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4878D5DD1B579965004518C4 /* FeedHenry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHenry.h; sourceTree = "<group>"; };
 		4878D5DF1B579965004518C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +61,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		483E82111C5FB9BE00E7F198 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				483E820D1C5F8D0B00E7F198 /* Cloud.swift */,
+			);
+			name = Cloud;
+			sourceTree = "<group>";
+		};
+		483E82121C5FB9D500E7F198 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				483E820F1C5F8D3200E7F198 /* Config.swift */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 		4878D5D01B579965004518C4 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +100,8 @@
 		4878D5DC1B579965004518C4 /* FeedHenry */ = {
 			isa = PBXGroup;
 			children = (
+				483E82111C5FB9BE00E7F198 /* Cloud */,
+				483E82121C5FB9D500E7F198 /* Config */,
 				4878D5DD1B579965004518C4 /* FeedHenry.h */,
 				4878D5DF1B579965004518C4 /* Info.plist */,
 				4878D5F41B579B25004518C4 /* FH.swift */,
@@ -257,6 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4878D5F51B579B25004518C4 /* FH.swift in Sources */,
+				483E820E1C5F8D0B00E7F198 /* Cloud.swift in Sources */,
+				483E82101C5F8D3200E7F198 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
