@@ -7,12 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		483E820E1C5F8D0B00E7F198 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483E820D1C5F8D0B00E7F198 /* Cloud.swift */; };
 		483E82101C5F8D3200E7F198 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483E820F1C5F8D3200E7F198 /* Config.swift */; };
+		483E82251C610CED00E7F198 /* FHSyncClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82161C610CED00E7F198 /* FHSyncClient.h */; };
+		483E82261C610CED00E7F198 /* FHSyncClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82171C610CED00E7F198 /* FHSyncClient.m */; };
+		483E82271C610CED00E7F198 /* FHSyncConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82181C610CED00E7F198 /* FHSyncConfig.h */; };
+		483E82281C610CED00E7F198 /* FHSyncConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82191C610CED00E7F198 /* FHSyncConfig.m */; };
+		483E82291C610CED00E7F198 /* FHSyncDataRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E821A1C610CED00E7F198 /* FHSyncDataRecord.h */; };
+		483E822A1C610CED00E7F198 /* FHSyncDataRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E821B1C610CED00E7F198 /* FHSyncDataRecord.m */; };
+		483E822B1C610CED00E7F198 /* FHSyncDataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E821C1C610CED00E7F198 /* FHSyncDataset.h */; };
+		483E822C1C610CED00E7F198 /* FHSyncDataset.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E821D1C610CED00E7F198 /* FHSyncDataset.m */; };
+		483E822D1C610CED00E7F198 /* FHSyncDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E821E1C610CED00E7F198 /* FHSyncDelegate.h */; };
+		483E822E1C610CED00E7F198 /* FHSyncNotificationMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E821F1C610CED00E7F198 /* FHSyncNotificationMessage.h */; };
+		483E822F1C610CED00E7F198 /* FHSyncNotificationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82201C610CED00E7F198 /* FHSyncNotificationMessage.m */; };
+		483E82301C610CED00E7F198 /* FHSyncPendingDataRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82211C610CED00E7F198 /* FHSyncPendingDataRecord.h */; };
+		483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */; };
+		483E82321C610CED00E7F198 /* FHSyncUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82231C610CED00E7F198 /* FHSyncUtils.h */; };
+		483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82241C610CED00E7F198 /* FHSyncUtils.m */; };
 		4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4878D5DD1B579965004518C4 /* FeedHenry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
 		4878D5EA1B579965004518C4 /* FeedHenryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4878D5E91B579965004518C4 /* FeedHenryTests.swift */; };
 		4878D5F51B579B25004518C4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4878D5F41B579B25004518C4 /* FH.swift */; };
+		48A126E41C61FE0A00F2C4A6 /* FHJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126E21C61FE0A00F2C4A6 /* FHJSON.h */; };
+		48A126E51C61FE0A00F2C4A6 /* FHJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E31C61FE0A00F2C4A6 /* FHJSON.m */; };
+		48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E61C61FFBF00F2C4A6 /* Response.swift */; };
+		48A126E91C61FFD600F2C4A6 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E81C61FFD600F2C4A6 /* Cloud.swift */; };
+		48A126EC1C62195C00F2C4A6 /* FHDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126EB1C62195C00F2C4A6 /* FHDefines.h */; };
 		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +47,22 @@
 
 /* Begin PBXFileReference section */
 		2CCDEB4630586564531FFBB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		483E820D1C5F8D0B00E7F198 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		483E820F1C5F8D3200E7F198 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		483E82161C610CED00E7F198 /* FHSyncClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncClient.h; path = Sync/FHSyncClient.h; sourceTree = "<group>"; };
+		483E82171C610CED00E7F198 /* FHSyncClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncClient.m; path = Sync/FHSyncClient.m; sourceTree = "<group>"; };
+		483E82181C610CED00E7F198 /* FHSyncConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncConfig.h; path = Sync/FHSyncConfig.h; sourceTree = "<group>"; };
+		483E82191C610CED00E7F198 /* FHSyncConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncConfig.m; path = Sync/FHSyncConfig.m; sourceTree = "<group>"; };
+		483E821A1C610CED00E7F198 /* FHSyncDataRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncDataRecord.h; path = Sync/FHSyncDataRecord.h; sourceTree = "<group>"; };
+		483E821B1C610CED00E7F198 /* FHSyncDataRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncDataRecord.m; path = Sync/FHSyncDataRecord.m; sourceTree = "<group>"; };
+		483E821C1C610CED00E7F198 /* FHSyncDataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncDataset.h; path = Sync/FHSyncDataset.h; sourceTree = "<group>"; };
+		483E821D1C610CED00E7F198 /* FHSyncDataset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncDataset.m; path = Sync/FHSyncDataset.m; sourceTree = "<group>"; };
+		483E821E1C610CED00E7F198 /* FHSyncDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncDelegate.h; path = Sync/FHSyncDelegate.h; sourceTree = "<group>"; };
+		483E821F1C610CED00E7F198 /* FHSyncNotificationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncNotificationMessage.h; path = Sync/FHSyncNotificationMessage.h; sourceTree = "<group>"; };
+		483E82201C610CED00E7F198 /* FHSyncNotificationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncNotificationMessage.m; path = Sync/FHSyncNotificationMessage.m; sourceTree = "<group>"; };
+		483E82211C610CED00E7F198 /* FHSyncPendingDataRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncPendingDataRecord.h; path = Sync/FHSyncPendingDataRecord.h; sourceTree = "<group>"; };
+		483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncPendingDataRecord.m; path = Sync/FHSyncPendingDataRecord.m; sourceTree = "<group>"; };
+		483E82231C610CED00E7F198 /* FHSyncUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncUtils.h; path = Sync/FHSyncUtils.h; sourceTree = "<group>"; };
+		483E82241C610CED00E7F198 /* FHSyncUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncUtils.m; path = Sync/FHSyncUtils.m; sourceTree = "<group>"; };
 		4878D5DA1B579965004518C4 /* FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4878D5DD1B579965004518C4 /* FeedHenry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHenry.h; sourceTree = "<group>"; };
 		4878D5DF1B579965004518C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +70,12 @@
 		4878D5E91B579965004518C4 /* FeedHenryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHenryTests.swift; sourceTree = "<group>"; };
 		4878D5EB1B579965004518C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4878D5F41B579B25004518C4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
+		48A126E21C61FE0A00F2C4A6 /* FHJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHJSON.h; path = Sync/FHJSON.h; sourceTree = "<group>"; };
+		48A126E31C61FE0A00F2C4A6 /* FHJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHJSON.m; path = Sync/FHJSON.m; sourceTree = "<group>"; };
+		48A126E61C61FFBF00F2C4A6 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Cloud/Response.swift; sourceTree = "<group>"; };
+		48A126E81C61FFD600F2C4A6 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cloud.swift; path = Cloud/Cloud.swift; sourceTree = "<group>"; };
+		48A126EA1C62033B00F2C4A6 /* FeedHenry-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FeedHenry-Swift.h"; sourceTree = "<group>"; };
+		48A126EB1C62195C00F2C4A6 /* FHDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHDefines.h; path = Sync/FHDefines.h; sourceTree = "<group>"; };
 		E139FE8EB3B6F4E70E5433A6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DC7BF1EAECF488557B91F8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,7 +103,8 @@
 		483E82111C5FB9BE00E7F198 /* Cloud */ = {
 			isa = PBXGroup;
 			children = (
-				483E820D1C5F8D0B00E7F198 /* Cloud.swift */,
+				48A126E81C61FFD600F2C4A6 /* Cloud.swift */,
+				48A126E61C61FFBF00F2C4A6 /* Response.swift */,
 			);
 			name = Cloud;
 			sourceTree = "<group>";
@@ -75,6 +115,31 @@
 				483E820F1C5F8D3200E7F198 /* Config.swift */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		483E82151C610CDD00E7F198 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				48A126EB1C62195C00F2C4A6 /* FHDefines.h */,
+				48A126E21C61FE0A00F2C4A6 /* FHJSON.h */,
+				48A126E31C61FE0A00F2C4A6 /* FHJSON.m */,
+				483E82161C610CED00E7F198 /* FHSyncClient.h */,
+				483E82171C610CED00E7F198 /* FHSyncClient.m */,
+				483E82181C610CED00E7F198 /* FHSyncConfig.h */,
+				483E82191C610CED00E7F198 /* FHSyncConfig.m */,
+				483E821A1C610CED00E7F198 /* FHSyncDataRecord.h */,
+				483E821B1C610CED00E7F198 /* FHSyncDataRecord.m */,
+				483E821C1C610CED00E7F198 /* FHSyncDataset.h */,
+				483E821D1C610CED00E7F198 /* FHSyncDataset.m */,
+				483E821E1C610CED00E7F198 /* FHSyncDelegate.h */,
+				483E821F1C610CED00E7F198 /* FHSyncNotificationMessage.h */,
+				483E82201C610CED00E7F198 /* FHSyncNotificationMessage.m */,
+				483E82211C610CED00E7F198 /* FHSyncPendingDataRecord.h */,
+				483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */,
+				483E82231C610CED00E7F198 /* FHSyncUtils.h */,
+				483E82241C610CED00E7F198 /* FHSyncUtils.m */,
+			);
+			name = Sync;
 			sourceTree = "<group>";
 		};
 		4878D5D01B579965004518C4 = {
@@ -100,6 +165,8 @@
 		4878D5DC1B579965004518C4 /* FeedHenry */ = {
 			isa = PBXGroup;
 			children = (
+				48A126EA1C62033B00F2C4A6 /* FeedHenry-Swift.h */,
+				483E82151C610CDD00E7F198 /* Sync */,
 				483E82111C5FB9BE00E7F198 /* Cloud */,
 				483E82121C5FB9D500E7F198 /* Config */,
 				4878D5DD1B579965004518C4 /* FeedHenry.h */,
@@ -142,7 +209,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483E82301C610CED00E7F198 /* FHSyncPendingDataRecord.h in Headers */,
+				48A126EC1C62195C00F2C4A6 /* FHDefines.h in Headers */,
+				483E822B1C610CED00E7F198 /* FHSyncDataset.h in Headers */,
+				483E82321C610CED00E7F198 /* FHSyncUtils.h in Headers */,
+				483E82291C610CED00E7F198 /* FHSyncDataRecord.h in Headers */,
+				48A126E41C61FE0A00F2C4A6 /* FHJSON.h in Headers */,
+				483E82251C610CED00E7F198 /* FHSyncClient.h in Headers */,
 				4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */,
+				483E822E1C610CED00E7F198 /* FHSyncNotificationMessage.h in Headers */,
+				483E822D1C610CED00E7F198 /* FHSyncDelegate.h in Headers */,
+				483E82271C610CED00E7F198 /* FHSyncConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +270,7 @@
 		4878D5D11B579965004518C4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = FeedHenry;
 				TargetAttributes = {
@@ -278,9 +355,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */,
+				48A126E91C61FFD600F2C4A6 /* Cloud.swift in Sources */,
 				4878D5F51B579B25004518C4 /* FH.swift in Sources */,
-				483E820E1C5F8D0B00E7F198 /* Cloud.swift in Sources */,
+				483E82281C610CED00E7F198 /* FHSyncConfig.m in Sources */,
+				48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */,
+				483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */,
+				483E822C1C610CED00E7F198 /* FHSyncDataset.m in Sources */,
+				48A126E51C61FE0A00F2C4A6 /* FHJSON.m in Sources */,
 				483E82101C5F8D3200E7F198 /* Config.swift in Sources */,
+				483E822F1C610CED00E7F198 /* FHSyncNotificationMessage.m in Sources */,
+				483E82261C610CED00E7F198 /* FHSyncClient.m in Sources */,
+				483E822A1C610CED00E7F198 /* FHSyncDataRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +494,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.feedhenry.FeedHenry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -428,6 +515,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.feedhenry.FeedHenry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
