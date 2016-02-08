@@ -17,25 +17,8 @@
 
 import XCTest
 import FeedHenry
-/**
- {
- apptitle = Native;
- domain = aerogear;
- firstTime = 0;
- hosts =     {
- debugCloudType = node;
- debugCloudUrl = "https://aerogear-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net";
- releaseCloudType = node;
- releaseCloudUrl = "https://aerogear-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net";
- type = "cloud_nodejs";
- url = "https://aerogear-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net";
- };
- init =     {
- trackId = eVtZFmW5NAbyEIJ8aecE2jJJ;
- };
- status = ok;
- }
-*/
+
+
 class CloudPropsTest: XCTestCase {
     var cloudProps: CloudProps?
     var dict: [String: AnyObject]!
@@ -81,6 +64,28 @@ class CloudPropsTest: XCTestCase {
         XCTAssertTrue(cloudProps?.cloudProps.count == 6)
         XCTAssertTrue(cloudProps?.trackId == "eVtZFmW5NAbyEIJ8aecE2jJJ", "TrackId stored in NSUserDefaults.")
     }
+    
+    func testSucceedInitWithMockedStorage() {
+        class NSUserDefaultsMock: NSUserDefaults {
+            override class func standardUserDefaults() -> NSUserDefaults {
+                return NSUserDefaultsMock()
+            }
+            override func stringForKey(defaultName: String) -> String? {
+                return "TRACK"
+            }
+            
+            override func setObject(value: AnyObject?, forKey defaultName: String) {
+            }
+        }
+        
+        cloudProps = CloudProps(props: dict, storage: NSUserDefaultsMock())
+        XCTAssertNotNil(cloudProps, "CloudProps should not be nil")
+        XCTAssertEqual(cloudProps?.cloudHost, "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
+        XCTAssertEqual(cloudProps?.env, "ENV")
+        XCTAssertTrue(cloudProps?.cloudProps.count == 6)
+        XCTAssertTrue(cloudProps?.trackId == "TRACK", "TrackId stored in NSUserDefaults.")
+    }
+
     
     func testSuccedInitWithURL() {
         var hosts = dict["hosts"] as! [String: AnyObject]

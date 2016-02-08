@@ -35,20 +35,22 @@ public class FH {
      thread.
      
      You need to make sure it is successful before calling any other API methods. The
-     best way to do it is using the success block.
+     best way to do is by catching the error that is thrown in case of failure to initialize.
      
-     void (^success)(FHResponse *)=^(FHResponse * res){
-     //init succeeded, do stuff here
-     };
+     ```swift
+     FH.setup {(inner: () throws -> [String: AnyObject]?) -> Void in
+        do {
+            let result = try inner()
+            print("initialized OK \(result)")
+        } catch let error {
+            print("FH init failed. Error = \(error)")
+        }
+     }
+     ```
      
-     void (^failure)(id)=^(FHResponse * res){
-     NSLog(@"FH init failed. Response = %@", res.rawResponse);
-     };
-     
-     [FH initWithSuccess:success AndFailure:failure];
-     
-     @param sucornil Block to be called if init is successful. It could be nil.
-     @param failornil Block to be called if init is failed. It could be nil.
+     - Param completionHandler: InnerCompletionBlock is a closure wrap-up that throws errors in case of init failure. If no error, the inner closure returns a JSON Object containing all the details from the init call.
+     - Throws NSError: Networking issue details.
+     - Returns: Void
      */
     public class func setup(completionHandler: (InnerCompletionBlock)) -> Void {
         // TODO register for Reachability

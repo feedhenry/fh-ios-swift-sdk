@@ -22,6 +22,7 @@ Struct used to stored cloud properties after an initial setup.
 Before any call to the cloud is ma
 */
 public struct CloudProps {
+    let dataManager: NSUserDefaults
     
     /// String that represents the Cloud URL to teraget for REST call.
     public let cloudHost: String
@@ -38,21 +39,24 @@ public struct CloudProps {
     // TODO? replace by DataManager
     public var trackId: String? {
         get {
-            return NSUserDefaults.standardUserDefaults().stringForKey("init")
+            return dataManager.stringForKey("init")
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "init")
+            dataManager.setObject(newValue, forKey: "init")
         }
     }
     
     /// Failable initializer for CloudProps. If the Cloud call returns a JSON missing hosts, environment or init (trackId), the init will fail. 
     /// For a successful init, the CloudProps conains all properties required for subsequent call to cloud.
-    public init?(props: [String: AnyObject]) {
+    /// - Param props: List of properties returned from cloud app
+    /// - Param dataManager: Identifies where to store the trackId returned by the cloud app. This parameter is used for dependency injection for unit testing. Its default value is NSUserDefaults storage.
+    public init?(props: [String: AnyObject], storage: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
         guard let host = props["hosts"], url = host["url"] as? String else {return nil}
         guard let initProp = props["init"], let track = initProp["trackId"] as? String else {return nil}
         env = host["environment"] as? String
         cloudHost = url.hasSuffix("/") ? url : "\(url)/"
         cloudProps = props
+        dataManager = storage
         trackId = track
     }
 }
