@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		483E82101C5F8D3200E7F198 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483E820F1C5F8D3200E7F198 /* Config.swift */; };
 		483E82251C610CED00E7F198 /* FHSyncClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82161C610CED00E7F198 /* FHSyncClient.h */; };
 		483E82261C610CED00E7F198 /* FHSyncClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82171C610CED00E7F198 /* FHSyncClient.m */; };
 		483E82271C610CED00E7F198 /* FHSyncConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82181C610CED00E7F198 /* FHSyncConfig.h */; };
@@ -32,6 +31,9 @@
 		48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E61C61FFBF00F2C4A6 /* Response.swift */; };
 		48A126E91C61FFD600F2C4A6 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E81C61FFD600F2C4A6 /* Cloud.swift */; };
 		48A126EC1C62195C00F2C4A6 /* FHDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126EB1C62195C00F2C4A6 /* FHDefines.h */; };
+		48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857571C68940700EC00D4 /* CloudPropsTests.swift */; };
+		48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857591C689F0100EC00D4 /* CloudProps.swift */; };
+		48A8575C1C68A35700EC00D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8575B1C68A35700EC00D4 /* Config.swift */; };
 		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +49,6 @@
 
 /* Begin PBXFileReference section */
 		2CCDEB4630586564531FFBB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		483E820F1C5F8D3200E7F198 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		483E82161C610CED00E7F198 /* FHSyncClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncClient.h; path = Sync/FHSyncClient.h; sourceTree = "<group>"; };
 		483E82171C610CED00E7F198 /* FHSyncClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncClient.m; path = Sync/FHSyncClient.m; sourceTree = "<group>"; };
 		483E82181C610CED00E7F198 /* FHSyncConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncConfig.h; path = Sync/FHSyncConfig.h; sourceTree = "<group>"; };
@@ -76,6 +77,9 @@
 		48A126E81C61FFD600F2C4A6 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cloud.swift; path = Cloud/Cloud.swift; sourceTree = "<group>"; };
 		48A126EA1C62033B00F2C4A6 /* FeedHenry-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FeedHenry-Swift.h"; sourceTree = "<group>"; };
 		48A126EB1C62195C00F2C4A6 /* FHDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHDefines.h; path = Sync/FHDefines.h; sourceTree = "<group>"; };
+		48A857571C68940700EC00D4 /* CloudPropsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudPropsTests.swift; sourceTree = "<group>"; };
+		48A857591C689F0100EC00D4 /* CloudProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudProps.swift; path = Config/CloudProps.swift; sourceTree = "<group>"; };
+		48A8575B1C68A35700EC00D4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Config/Config.swift; sourceTree = "<group>"; };
 		E139FE8EB3B6F4E70E5433A6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DC7BF1EAECF488557B91F8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +116,8 @@
 		483E82121C5FB9D500E7F198 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				483E820F1C5F8D3200E7F198 /* Config.swift */,
+				48A8575B1C68A35700EC00D4 /* Config.swift */,
+				48A857591C689F0100EC00D4 /* CloudProps.swift */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 			children = (
 				4878D5E91B579965004518C4 /* FeedHenryTests.swift */,
 				4878D5EB1B579965004518C4 /* Info.plist */,
+				48A857571C68940700EC00D4 /* CloudPropsTests.swift */,
 			);
 			path = FeedHenryTests;
 			sourceTree = "<group>";
@@ -359,11 +365,12 @@
 				48A126E91C61FFD600F2C4A6 /* Cloud.swift in Sources */,
 				4878D5F51B579B25004518C4 /* FH.swift in Sources */,
 				483E82281C610CED00E7F198 /* FHSyncConfig.m in Sources */,
+				48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */,
 				48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */,
+				48A8575C1C68A35700EC00D4 /* Config.swift in Sources */,
 				483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */,
 				483E822C1C610CED00E7F198 /* FHSyncDataset.m in Sources */,
 				48A126E51C61FE0A00F2C4A6 /* FHJSON.m in Sources */,
-				483E82101C5F8D3200E7F198 /* Config.swift in Sources */,
 				483E822F1C610CED00E7F198 /* FHSyncNotificationMessage.m in Sources */,
 				483E82261C610CED00E7F198 /* FHSyncClient.m in Sources */,
 				483E822A1C610CED00E7F198 /* FHSyncDataRecord.m in Sources */,
@@ -374,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */,
 				4878D5EA1B579965004518C4 /* FeedHenryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
