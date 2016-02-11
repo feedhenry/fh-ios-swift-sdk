@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author       = 'Red Hat, Inc.'
   s.source       = { :git => 'https://github.com/corinnekrych/fh-ios-swift-sdk.git', :tag => s.version }
   s.platform     = :ios, 7.0
-  s.source_files = 'FeedHenry/*.{swift}'
+  s.source_files = 'FeedHenry/**/*.{swift}'
   s.requires_arc = true
   s.dependency 'AeroGearHttp'
   #s.dependency 'SwiftyJSON'

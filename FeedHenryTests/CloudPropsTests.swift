@@ -16,8 +16,7 @@
 */
 
 import XCTest
-import FeedHenry
-
+@testable import FeedHenry
 
 class CloudPropsTest: XCTestCase {
     var cloudProps: CloudProps?

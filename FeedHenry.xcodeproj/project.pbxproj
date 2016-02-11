@@ -24,8 +24,6 @@
 		483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82241C610CED00E7F198 /* FHSyncUtils.m */; };
 		4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4878D5DD1B579965004518C4 /* FeedHenry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
-		4878D5EA1B579965004518C4 /* FeedHenryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4878D5E91B579965004518C4 /* FeedHenryTests.swift */; };
-		4878D5F51B579B25004518C4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4878D5F41B579B25004518C4 /* FH.swift */; };
 		48A126E41C61FE0A00F2C4A6 /* FHJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126E21C61FE0A00F2C4A6 /* FHJSON.h */; };
 		48A126E51C61FE0A00F2C4A6 /* FHJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E31C61FE0A00F2C4A6 /* FHJSON.m */; };
 		48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E61C61FFBF00F2C4A6 /* Response.swift */; };
@@ -34,6 +32,9 @@
 		48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857571C68940700EC00D4 /* CloudPropsTests.swift */; };
 		48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857591C689F0100EC00D4 /* CloudProps.swift */; };
 		48A8575C1C68A35700EC00D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8575B1C68A35700EC00D4 /* Config.swift */; };
+		48A8575E1C68E00D00EC00D4 /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8575D1C68E00D00EC00D4 /* CloudTests.swift */; };
+		48A857601C69271300EC00D4 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48A8575F1C69271300EC00D4 /* fhconfig.plist */; };
+		48A857621C69296A00EC00D4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857611C69296A00EC00D4 /* FH.swift */; };
 		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,9 +69,7 @@
 		4878D5DD1B579965004518C4 /* FeedHenry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHenry.h; sourceTree = "<group>"; };
 		4878D5DF1B579965004518C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4878D5E41B579965004518C4 /* FeedHenryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedHenryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4878D5E91B579965004518C4 /* FeedHenryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHenryTests.swift; sourceTree = "<group>"; };
 		4878D5EB1B579965004518C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4878D5F41B579B25004518C4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
 		48A126E21C61FE0A00F2C4A6 /* FHJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHJSON.h; path = Sync/FHJSON.h; sourceTree = "<group>"; };
 		48A126E31C61FE0A00F2C4A6 /* FHJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHJSON.m; path = Sync/FHJSON.m; sourceTree = "<group>"; };
 		48A126E61C61FFBF00F2C4A6 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Cloud/Response.swift; sourceTree = "<group>"; };
@@ -80,6 +79,9 @@
 		48A857571C68940700EC00D4 /* CloudPropsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudPropsTests.swift; sourceTree = "<group>"; };
 		48A857591C689F0100EC00D4 /* CloudProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudProps.swift; path = Config/CloudProps.swift; sourceTree = "<group>"; };
 		48A8575B1C68A35700EC00D4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Config/Config.swift; sourceTree = "<group>"; };
+		48A8575D1C68E00D00EC00D4 /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
+		48A8575F1C69271300EC00D4 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
+		48A857611C69296A00EC00D4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
 		E139FE8EB3B6F4E70E5433A6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DC7BF1EAECF488557B91F8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,8 +177,8 @@
 				483E82111C5FB9BE00E7F198 /* Cloud */,
 				483E82121C5FB9D500E7F198 /* Config */,
 				4878D5DD1B579965004518C4 /* FeedHenry.h */,
+				48A857611C69296A00EC00D4 /* FH.swift */,
 				4878D5DF1B579965004518C4 /* Info.plist */,
-				4878D5F41B579B25004518C4 /* FH.swift */,
 			);
 			path = FeedHenry;
 			sourceTree = "<group>";
@@ -184,9 +186,10 @@
 		4878D5E81B579965004518C4 /* FeedHenryTests */ = {
 			isa = PBXGroup;
 			children = (
-				4878D5E91B579965004518C4 /* FeedHenryTests.swift */,
 				4878D5EB1B579965004518C4 /* Info.plist */,
 				48A857571C68940700EC00D4 /* CloudPropsTests.swift */,
+				48A8575D1C68E00D00EC00D4 /* CloudTests.swift */,
+				48A8575F1C69271300EC00D4 /* fhconfig.plist */,
 			);
 			path = FeedHenryTests;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A857601C69271300EC00D4 /* fhconfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,9 +365,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A857621C69296A00EC00D4 /* FH.swift in Sources */,
 				483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */,
 				48A126E91C61FFD600F2C4A6 /* Cloud.swift in Sources */,
-				4878D5F51B579B25004518C4 /* FH.swift in Sources */,
 				483E82281C610CED00E7F198 /* FHSyncConfig.m in Sources */,
 				48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */,
 				48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */,
@@ -382,7 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */,
-				4878D5EA1B579965004518C4 /* FeedHenryTests.swift in Sources */,
+				48A8575E1C68E00D00EC00D4 /* CloudTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

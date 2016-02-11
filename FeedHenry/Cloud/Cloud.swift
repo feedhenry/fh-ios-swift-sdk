@@ -19,14 +19,15 @@ import Foundation
 import AeroGearHttp
 
 //public typealias CompletionBlock = (AnyObject?, NSError?) -> Void
-public typealias InnerCompletionBlock = (() throws -> [String: AnyObject]?) -> Void
+public typealias InnerCompletionBlock = (() throws -> Response) -> Void
 
 /*
 This class provides static methods to initialize the library and create new
 instances of all the API request objects.
 */
 public class FH {
-    var props: CloudProps?
+    static var props: CloudProps?
+    
     /** 
      Initialize the library.
      
@@ -38,7 +39,7 @@ public class FH {
      best way to do is by catching the error that is thrown in case of failure to initialize.
      
      ```swift
-     FH.setup {(inner: () throws -> [String: AnyObject]?) -> Void in
+     FH.init {(inner: () throws -> [String: AnyObject]?) -> Void in
         do {
             let result = try inner()
             print("initialized OK \(result)")
@@ -52,23 +53,76 @@ public class FH {
      - Throws NSError: Networking issue details.
      - Returns: Void
      */
-    public class func setup(completionHandler: (InnerCompletionBlock)) -> Void {
+    public class func `init`(completionHandler: (InnerCompletionBlock)) -> Void {
+        setup(Config(), completionHandler: completionHandler)
+    }
+    
+    class func setup(config: Config, completionHandler: (InnerCompletionBlock)) -> Void {
         // TODO register for Reachability
         // TODO check if online otherwise send error
-        // TODO read properties file, get  host
-        let http = Http(baseURL: "https://aerogear.feedhenry.com")//"https://redhat-demos-t.sandbox.feedhenry.com")
-        let config = FeedHenryConfig()
+        assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
+        let http = Http(baseURL: config["host"]!)
         let defaultParameters: [String: AnyObject]? = config.params
         // TODO set headers with appkey: is it needed??
-        http.POST("/box/srv/1.1/app/init", parameters: defaultParameters, credential: nil, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
-            if let error = error {
-                completionHandler({throw error})
-            } else {
-                // using JsonResponseSerializer
-                let resp = response as? [String: AnyObject]
-                // TODO save cloudProps
-                completionHandler({return resp})
+        // FHHttpClient l52
+        // [mutableHeaders setValue:apiKeyVal forKeyPath:@"x-fh-auth-app"];
+        
+        // customize jsonSerializer
+        let responseSerializer = JsonResponseSerializer(validateResponse: { (response: NSURLResponse!, data: NSData) -> Void in
+            var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
+            let httpResponse = response as! NSHTTPURLResponse
+            let dataAsJson: [String: AnyObject]?
+            
+            // validate JSON
+            do {
+                dataAsJson = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject]
+            } catch  _  {
+                let userInfo = [NSLocalizedDescriptionKey: "Invalid response received, can't parse JSON" as NSString,
+                    NetworkingOperationFailingURLResponseErrorKey: response]
+                let customError = NSError(domain: HttpResponseSerializationErrorDomain, code: NSURLErrorBadServerResponse, userInfo: userInfo)
+                throw customError;
             }
+            
+            if !(httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                var userInfo = [NSLocalizedDescriptionKey: NSHTTPURLResponse.localizedStringForStatusCode(httpResponse.statusCode),
+                    NetworkingOperationFailingURLResponseErrorKey: response]
+                if let dataAsJson = dataAsJson {
+                    userInfo["CustomData"] = dataAsJson
+                }
+                error = NSError(domain: HttpResponseSerializationErrorDomain, code: httpResponse.statusCode, userInfo: userInfo)
+                throw error
+            }
+            
+        })
+        
+        http.POST("/box/srv/1.1/app/init", parameters: defaultParameters, credential: nil, responseSerializer: responseSerializer, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
+            let fhResponse = Response()
+            if let resp = response as? [String: AnyObject] {
+                fhResponse.responseStatusCode = 200 //TODO
+                let data = try! NSJSONSerialization.dataWithJSONObject(resp, options: .PrettyPrinted)
+                fhResponse.rawResponseAsString = String(data: data, encoding: NSUTF8StringEncoding)
+                fhResponse.rawResponse = data
+                fhResponse.parsedResponse = resp
+            }
+            dispatch_async(dispatch_get_main_queue(), {
+                if let error = error {
+                    let customData = error.userInfo["CustomData"] as? [String: AnyObject]
+                    if let errorData = customData { // Add more info in the error
+                        let errorMessage = errorData["msg"] != nil ? errorData["msg"] : errorData["message"]
+                        let errorToRethrow = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: error.code, userInfo: [NSLocalizedDescriptionKey : errorMessage!])
+                        fhResponse.error = errorToRethrow;
+                        fhResponse.responseStatusCode = error.code
+                        completionHandler({throw errorToRethrow})
+                    } else { // Send only http eror code/msg
+                        completionHandler({throw error})
+                    }
+                } else {
+                    if let resp = response as? [String: AnyObject] {
+                        props = CloudProps(props: resp)
+                    }
+                    completionHandler({return fhResponse})
+                }
+            })
         })
     }
     

@@ -17,20 +17,25 @@
 
 import Foundation
 
-public class FeedHenryConfig {
-    private var properties: [String: String]
-    private let propertiesFile: String
+public class Config {
+    var properties: [String: String]
+    let propertiesFile: String
+    var bundle: NSBundle
     
-    public init(propertiesFile: String = "fhconfig") {
+    init(propertiesFile: String = "fhconfig", bundle:NSBundle) {
         self.propertiesFile = propertiesFile
-        let path = NSBundle.mainBundle().pathForResource(propertiesFile, ofType: "plist")
+        self.bundle = bundle
+        let pathBundle = bundle.pathForResource(propertiesFile, ofType: "plist")
         
-        if let path = path, properties = NSDictionary(contentsOfFile: path) {
+        if let path = pathBundle, properties = NSDictionary(contentsOfFile: path) {
             self.properties = properties as! [String : String]
         } else {
             self.properties = [:]
         }
-
+    }
+    
+    public convenience init(propertiesFile: String = "fhconfig") {
+        self.init(propertiesFile: propertiesFile, bundle: NSBundle.mainBundle())
     }
     
     public subscript(key: String) -> String? {

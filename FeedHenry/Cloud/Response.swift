@@ -19,24 +19,18 @@ import Foundation
 
 @objc(FHResponse)
 public class Response: NSObject {
-    /** Get the raw response data */
+    /// Get the raw response data
     public var rawResponse: NSData?
     
-    /** Get the raw response data as NSString */
+    /// Get the raw response data as String
     public var rawResponseAsString: String?
     
-    /** Get the response data as NSDictionary */
+    /// Get the response data as NSDictionary
     public var parsedResponse: NSDictionary? //Dictionary<NSString, NSObject>?
     
-    /** Get the response's status code */
+    /// Get the response's status code
     public var responseStatusCode: Int?
     
     /** Get the error of the response */
     public var error: NSError?
-
-    public func parseResponseString(res: String) {
-    }
-    
-    public func parseResponseData(data: NSData) {
-    }
 }
