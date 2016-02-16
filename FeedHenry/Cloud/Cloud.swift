@@ -57,7 +57,17 @@ public class FH {
         setup(Config(), completionHandler: completionHandler)
     }
     
+    public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, config: Config = Config(), completionHandler: (InnerCompletionBlock)) -> Void {
+        // TODO validation of httpmethod
+        guard let httpMethod = HttpMethod(rawValue: method) else {return}
+        request(httpMethod, path: path, config: config, completionHandler: completionHandler)
+    }
+    
     class func setup(config: Config, completionHandler: (InnerCompletionBlock)) -> Void {
+        request(.POST, path: "/box/srv/1.1/app/init", config: config, completionHandler: completionHandler)
+    }
+    
+    class func request(method: HttpMethod, path: String, config: Config, completionHandler: InnerCompletionBlock) {
         // TODO register for Reachability
         // TODO check if online otherwise send error
         assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
@@ -67,6 +77,7 @@ public class FH {
         // FHHttpClient l52
         // [mutableHeaders setValue:apiKeyVal forKeyPath:@"x-fh-auth-app"];
         
+        // TODO make it a default for jsonserializer. 
         // customize jsonSerializer
         let responseSerializer = JsonResponseSerializer(validateResponse: { (response: NSURLResponse!, data: NSData) -> Void in
             var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
@@ -95,7 +106,7 @@ public class FH {
             
         })
         
-        http.POST("/box/srv/1.1/app/init", parameters: defaultParameters, credential: nil, responseSerializer: responseSerializer, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
+        http.request(.POST, path: path, parameters: defaultParameters, credential: nil, responseSerializer: responseSerializer, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
             let fhResponse = Response()
             if let resp = response as? [String: AnyObject] {
                 fhResponse.responseStatusCode = 200 //TODO
@@ -120,13 +131,10 @@ public class FH {
                     if let resp = response as? [String: AnyObject] {
                         props = CloudProps(props: resp)
                     }
+                    // TODO set init/ready or use cloudProps being filled as an indicator the init happen
                     completionHandler({return fhResponse})
                 }
             })
         })
-    }
-    
-    public class func performCloud(path: String, completionHandler: InnerCompletionBlock) {
-        
     }
 }

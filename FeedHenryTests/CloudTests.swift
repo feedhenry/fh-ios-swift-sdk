@@ -19,73 +19,73 @@ import XCTest
 @testable import FeedHenry
 
 class CloudTests: XCTestCase {
-
+    var config: Config?
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        // given a test config file
+        let getExpectation = expectationWithDescription("FH successful")
+        config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        
+        // when
+        FH.setup(config!, completionHandler: { (inner: () throws -> Response) -> Void in
+            defer { getExpectation.fulfill()}
+            do {
+                let result = try inner()
+                print("initialized OK \(result)")
+            } catch _ {}
+        })
+        waitForExpectationsWithTimeout(10, handler: nil)
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
-    // TODO mock this test
-    // atm we really hit FH domain
-    func testFHInitFailedWithCustomDataError() {
-        // given no config file specified
-        let getExpectation = expectationWithDescription("FH init should fail due to lack of appId")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
-        config.properties.removeValueForKey("appid")
-        // when
-        FH.setup(config, completionHandler: {(inner: () throws -> Response) -> Void in
-            defer {
-                getExpectation.fulfill()
-            }
-            do {
-                let _ = try inner()
-            } catch let error {
-                // then
-                XCTAssertNotNil((error as NSError).userInfo.description)
-                XCTAssertTrue(((error as NSError).userInfo["NSLocalizedDescription"] as! String).hasPrefix("The field 'appid' is not defined in"))
-                return
-            }
-            XCTAssertTrue(false, "This test sgould failed because no valid fhconfig file was provided")
-        })
-        waitForExpectationsWithTimeout(10, handler: nil)
-    }
-
-    // TODO mock this test
-    // atm we really hit FH domain
-    func testFHInitSucceed() {
+    
+    /*
+    NSDictionary *args = [NSDictionary dictionaryWithObject:name.text forKey:@"hello"];
+    FHCloudRequest *req = (FHCloudRequest *) [FH buildCloudRequest:@"/hello" WithMethod:@"POST" AndHeaders:nil AndArgs:args];
+    
+    [req execAsyncWithSuccess:^(FHResponse * res) {
+    // Response
+    NSLog(@"Response: %@", res.rawResponseAsString);
+    result.text = [res.parsedResponse objectForKey:@"msg"];
+    } AndFailure:^(FHResponse * res){
+    // Errors
+    NSLog(@"Failed to call. Response = %@", res.rawResponseAsString);
+    result.text = res.rawResponseAsString;
+    }];
+    */
+    
+    /*
+    + (void)performCloudRequest:(NSString *)path
+    WithMethod:(NSString *)requestMethod
+    AndHeaders:(NSDictionary *)headers
+    AndArgs:(NSDictionary *)arguments
+    AndSuccess:(void (^)(FHResponse *success))sucornil
+    AndFailure:(void (^)(FHResponse *failed))failornil
+    
+    */
+    func testFHPerformCloudRequestSucceed() {
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
-        XCTAssertNotNil(config.properties.count == 5)
-        XCTAssertNil(FH.props)
-        // when
-        FH.setup(config, completionHandler: { (inner: () throws -> Response) -> Void in
+        
+        FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, config: config!, completionHandler: { (inner: () throws -> Response) -> Void in
             defer {
                 getExpectation.fulfill()
             }
             do {
                 let result = try inner()
-                print("initialized OK \(result)")
-                XCTAssertNotNil(FH.props)
-                XCTAssertTrue(FH.props?.cloudProps.count == 6)
-                XCTAssertTrue(FH.props?.cloudProps["apptitle"] as! String == "Native")
-                ////let customData = (error as NSError).userInfo["CustomData"] as? [String: AnyObject]
-                //XCTAssertNotNil(customData)
-                // XCTAssertNotEqual(customData!, [:])
-                //let msg = customData!["msg"] as! String
-                //XCTAssertTrue(msg.hasPrefix("The field 'appid' is not defined in"))
-            } catch let _ {
-
+            } catch let error {
+                print("error::::\(error)")
+                XCTAssertTrue(false)
             }
-            
         })
+        XCTAssertNotNil(FH.props)
+        XCTAssertTrue(FH.props?.cloudProps.count == 6)
+        XCTAssertTrue(FH.props?.cloudProps["apptitle"] as! String == "Native")
+        
         waitForExpectationsWithTimeout(10, handler: nil)
     }
-
-
+    
 }
