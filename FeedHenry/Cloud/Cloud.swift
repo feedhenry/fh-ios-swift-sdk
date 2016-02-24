@@ -53,60 +53,46 @@ public class FH {
      - Throws NSError: Networking issue details.
      - Returns: Void
      */
-    public class func `init`(completionHandler: (InnerCompletionBlock)) -> Void {
+    public class func `init`(completionHandler: InnerCompletionBlock) -> Void {
         setup(Config(), completionHandler: completionHandler)
     }
     
-    public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, config: Config = Config(), completionHandler: (InnerCompletionBlock)) -> Void {
-        // TODO validation of httpmethod
+    public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, config: Config = Config(), completionHandler: InnerCompletionBlock) -> Void {
         guard let httpMethod = HttpMethod(rawValue: method) else {return}
-        request(httpMethod, path: path, config: config, completionHandler: completionHandler)
+        assert(props != nil, "FH init must be done prior th a Cloud call")
+        let host = props!.cloudHost
+        request(httpMethod, host: host, path: path, config: config, completionHandler: completionHandler)
     }
     
-    class func setup(config: Config, completionHandler: (InnerCompletionBlock)) -> Void {
-        request(.POST, path: "/box/srv/1.1/app/init", config: config, completionHandler: completionHandler)
+    class func setup(config: Config, completionHandler: InnerCompletionBlock) -> Void {
+        assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
+        let host = config["host"]!
+        request(.POST, host: host, path: "/box/srv/1.1/app/init", config: config, completionHandler: { inner in
+            do {
+                let response = try inner()
+                guard let resp = response.parsedResponse as? [String: AnyObject] else {
+                    let error = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "InvalidJ Response format. It must be JSON."])
+                    completionHandler({throw error})
+                    return
+                }
+                self.props = CloudProps(props: resp)
+                completionHandler({return response})
+            } catch let error as NSError {
+                completionHandler({throw error})
+            }
+        })
     }
     
-    class func request(method: HttpMethod, path: String, config: Config, completionHandler: InnerCompletionBlock) {
+    class func request(method: HttpMethod, host: String, path: String, config: Config, completionHandler: InnerCompletionBlock) {
         // TODO register for Reachability
         // TODO check if online otherwise send error
-        assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
-        let http = Http(baseURL: config["host"]!)
+        let http = Http(baseURL: host)
         let defaultParameters: [String: AnyObject]? = config.params
         // TODO set headers with appkey: is it needed??
         // FHHttpClient l52
         // [mutableHeaders setValue:apiKeyVal forKeyPath:@"x-fh-auth-app"];
         
-        // TODO make it a default for jsonserializer. 
-        // customize jsonSerializer
-        let responseSerializer = JsonResponseSerializer(validateResponse: { (response: NSURLResponse!, data: NSData) -> Void in
-            var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
-            let httpResponse = response as! NSHTTPURLResponse
-            let dataAsJson: [String: AnyObject]?
-            
-            // validate JSON
-            do {
-                dataAsJson = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject]
-            } catch  _  {
-                let userInfo = [NSLocalizedDescriptionKey: "Invalid response received, can't parse JSON" as NSString,
-                    NetworkingOperationFailingURLResponseErrorKey: response]
-                let customError = NSError(domain: HttpResponseSerializationErrorDomain, code: NSURLErrorBadServerResponse, userInfo: userInfo)
-                throw customError;
-            }
-            
-            if !(httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                var userInfo = [NSLocalizedDescriptionKey: NSHTTPURLResponse.localizedStringForStatusCode(httpResponse.statusCode),
-                    NetworkingOperationFailingURLResponseErrorKey: response]
-                if let dataAsJson = dataAsJson {
-                    userInfo["CustomData"] = dataAsJson
-                }
-                error = NSError(domain: HttpResponseSerializationErrorDomain, code: httpResponse.statusCode, userInfo: userInfo)
-                throw error
-            }
-            
-        })
-        
-        http.request(.POST, path: path, parameters: defaultParameters, credential: nil, responseSerializer: responseSerializer, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
+        http.request(.POST, path: path, parameters: defaultParameters, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
             let fhResponse = Response()
             if let resp = response as? [String: AnyObject] {
                 fhResponse.responseStatusCode = 200 //TODO
@@ -128,9 +114,6 @@ public class FH {
                         completionHandler({throw error})
                     }
                 } else {
-                    if let resp = response as? [String: AnyObject] {
-                        props = CloudProps(props: resp)
-                    }
                     // TODO set init/ready or use cloudProps being filled as an indicator the init happen
                     completionHandler({return fhResponse})
                 }

@@ -52,7 +52,7 @@ class InitCloudTests: XCTestCase {
             }
             XCTAssertTrue(false, "This test sgould failed because no valid fhconfig file was provided")
         })
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectationsWithTimeout(100, handler: nil)
     }
 
     // TODO mock this test

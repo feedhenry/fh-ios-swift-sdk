@@ -2,18 +2,16 @@ PODS:
   - AeroGearHttp (0.4.1)
 
 DEPENDENCIES:
-  - AeroGearHttp (from `git@github.com:corinnekrych/aerogear-ios-http-1.git`, branch
-    `remove.GET.POST.methods`)
+  - AeroGearHttp (from `git@github.com:aerogear/aerogear-ios-http.git`)
 
 EXTERNAL SOURCES:
   AeroGearHttp:
-    :branch: remove.GET.POST.methods
-    :git: git@github.com:corinnekrych/aerogear-ios-http-1.git
+    :git: git@github.com:aerogear/aerogear-ios-http.git
 
 CHECKOUT OPTIONS:
   AeroGearHttp:
-    :commit: ff0220ac690570f76084008408596b9aa13ac240
-    :git: git@github.com:corinnekrych/aerogear-ios-http-1.git
+    :commit: 58b0769d636cbd7d9c733b337af0c44cbfffea2a
+    :git: git@github.com:aerogear/aerogear-ios-http.git
 
 SPEC CHECKSUMS:
   AeroGearHttp: 36a4a2b6dd0d8a07c82674f8bcb6ed5b0a2d8a14

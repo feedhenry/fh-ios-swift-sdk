@@ -66,6 +66,9 @@ class CloudTests: XCTestCase {
     AndFailure:(void (^)(FHResponse *failed))failornil
     
     */
+    
+    // https://aerogear.feedhenry.com/box/srv/1.1/app/init
+    // https://aerogear-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/hello
     func testFHPerformCloudRequestSucceed() {
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
