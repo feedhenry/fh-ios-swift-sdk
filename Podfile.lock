@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AeroGearHttp:
-    :commit: 58b0769d636cbd7d9c733b337af0c44cbfffea2a
+    :commit: 813f8f6f7bb7fe7f2a809d74ba72660ff802968f
     :git: git@github.com:aerogear/aerogear-ios-http.git
 
 SPEC CHECKSUMS:
