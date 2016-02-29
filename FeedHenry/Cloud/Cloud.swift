@@ -18,8 +18,8 @@
 import Foundation
 import AeroGearHttp
 
-//public typealias CompletionBlock = (AnyObject?, NSError?) -> Void
-public typealias InnerCompletionBlock = (() throws -> Response) -> Void
+public typealias CompletionBlock = (Response, NSError?) -> Void
+//public typealias InnerCompletionBlock = (() throws -> Response) -> Void
 
 /*
 This class provides static methods to initialize the library and create new
@@ -28,7 +28,7 @@ instances of all the API request objects.
 public class FH {
     static var props: CloudProps?
     
-    /** 
+    /**
      Initialize the library.
      
      This must be called before any other API methods can be called. The
@@ -40,12 +40,12 @@ public class FH {
      
      ```swift
      FH.init {(inner: () throws -> [String: AnyObject]?) -> Void in
-        do {
-            let result = try inner()
-            print("initialized OK \(result)")
-        } catch let error {
-            print("FH init failed. Error = \(error)")
-        }
+     do {
+     let result = try inner()
+     print("initialized OK \(result)")
+     } catch let error {
+     print("FH init failed. Error = \(error)")
+     }
      }
      ```
      
@@ -53,37 +53,39 @@ public class FH {
      - Throws NSError: Networking issue details.
      - Returns: Void
      */
-    public class func `init`(completionHandler: InnerCompletionBlock) -> Void {
+    public class func `init`(completionHandler: CompletionBlock) -> Void {
         setup(Config(), completionHandler: completionHandler)
     }
     
-    public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, config: Config = Config(), completionHandler: InnerCompletionBlock) -> Void {
+    public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, config: Config = Config(), completionHandler: CompletionBlock) -> Void {
         guard let httpMethod = HttpMethod(rawValue: method) else {return}
         assert(props != nil, "FH init must be done prior th a Cloud call")
         let host = props!.cloudHost
         request(httpMethod, host: host, path: path, config: config, completionHandler: completionHandler)
     }
     
-    class func setup(config: Config, completionHandler: InnerCompletionBlock) -> Void {
+    class func setup(config: Config, completionHandler: CompletionBlock) -> Void {
         assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
         let host = config["host"]!
-        request(.POST, host: host, path: "/box/srv/1.1/app/init", config: config, completionHandler: { inner in
-            do {
-                let response = try inner()
-                guard let resp = response.parsedResponse as? [String: AnyObject] else {
-                    let error = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "InvalidJ Response format. It must be JSON."])
-                    completionHandler({throw error})
-                    return
-                }
-                self.props = CloudProps(props: resp)
-                completionHandler({return response})
-            } catch let error as NSError {
-                completionHandler({throw error})
+        request(.POST, host: host, path: "/box/srv/1.1/app/init", config: config, completionHandler: { (response: Response, err: NSError?) -> Void in
+            if let error = err {
+                let response = Response()
+                response.error = error
+                completionHandler(response, error)
+                return
             }
+            guard let resp = response.parsedResponse as? [String: AnyObject] else {
+                let error = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Invalid Response format. It must be JSON."])
+                completionHandler(response, error)
+                return
+            }
+            self.props = CloudProps(props: resp)
+            completionHandler(response, err)
+            
         })
     }
     
-    class func request(method: HttpMethod, host: String, path: String, config: Config, completionHandler: InnerCompletionBlock) {
+    class func request(method: HttpMethod, host: String, path: String, config: Config, completionHandler: CompletionBlock) {
         // TODO register for Reachability
         // TODO check if online otherwise send error
         let http = Http(baseURL: host)
@@ -109,13 +111,13 @@ public class FH {
                         let errorToRethrow = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: error.code, userInfo: [NSLocalizedDescriptionKey : errorMessage!])
                         fhResponse.error = errorToRethrow;
                         fhResponse.responseStatusCode = error.code
-                        completionHandler({throw errorToRethrow})
+                        completionHandler(fhResponse, errorToRethrow)
                     } else { // Send only http eror code/msg
-                        completionHandler({throw error})
+                        completionHandler(fhResponse, error)
                     }
                 } else {
                     // TODO set init/ready or use cloudProps being filled as an indicator the init happen
-                    completionHandler({return fhResponse})
+                    completionHandler(fhResponse, nil)
                 }
             })
         })
