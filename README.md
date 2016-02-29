@@ -1,6 +1,8 @@
 # FeedHenry iOS SDK [![Build Status](https://travis-ci.org//feedhenry/fh-ios-sdk.png)](https://travis-ci.org/feedhenry/fh-ios-sdk)
 The iOS Software Development Kit to connect to the [FeedHenry platform.](http://www.feedhenry.com)
 
+**The Swift version of FeedHenry SDK is a Work In Progress. If you want to use full feature SDK go to [fh-ios-sdk](https://github.com/feedhenry/fh-ios-sdk/).**
+
 ## Release Process
 
 The project relies on [Cocoapods](http://cocoapods.org) and it's respective plugins  ['cocoapods-packager'](https://github.com/CocoaPods/cocoapods-packager) and ['cocoapods-appledoc'](https://github.com/CocoaPods/cocoapods-appledoc), so please ensure that are installed in your system. If not, please execute the following:
