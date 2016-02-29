@@ -17,10 +17,24 @@
 
 import XCTest
 @testable import FeedHenry
+import OHHTTPStubs
 
 class InitCloudTests: XCTestCase {
+    var dict: [String: AnyObject]!
     
     override func setUp() {
+        dict = ["apptitle": "Native",
+            "domain": "myDomain",
+            "firstTime": 0,
+            "hosts": ["debugCloudType": "node",
+                "debugCloudUrl": "ttps://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
+                "releaseCloudType": "node",
+                "releaseCloudUrl": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net",
+                "type": "cloud_nodejs",
+                "url": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
+                "environment": "ENV"],
+            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"],
+            "status": "ok"]
         super.setUp()
     }
     
@@ -28,9 +42,15 @@ class InitCloudTests: XCTestCase {
         super.tearDown()
     }
     
-    // TODO mock this test
-    // atm we really hit FH domain
     func testFHInitFailedWithCustomDataError() {
+        // stub http to return error
+        stub(isHost("whatever.com")) { _ in
+            let userInfo = ["CustomData": ["msg": "The field 'appid' is not defined in"], "StatusCode":400]
+            let error = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: 0, userInfo: userInfo)
+            let stubResponse = OHHTTPStubsResponse(error: error)
+            return stubResponse
+        }
+
         // given no config file specified
         let getExpectation = expectationWithDescription("FH init should fail due to lack of appId")
         let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
@@ -51,9 +71,11 @@ class InitCloudTests: XCTestCase {
         waitForExpectationsWithTimeout(10, handler: nil)
     }
     
-    // TODO mock this test
-    // atm we really hit FH domain
     func testFHInitSucceed() {
+        stub(isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dict, statusCode: 200, headers: nil)
+            return stubResponse
+        }
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
         let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
@@ -70,6 +92,14 @@ class InitCloudTests: XCTestCase {
     }
 
     func testFHPerformCloudRequestSucceed() {
+        stub(isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dict, statusCode: 200, headers: nil)
+            return stubResponse
+        }
+        stub(isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
+            let stubResponse = OHHTTPStubsResponse(JSONObject: ["key":"value"], statusCode: 200, headers: nil)
+            return stubResponse
+        }
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
         let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
@@ -85,6 +115,10 @@ class InitCloudTests: XCTestCase {
                     if err == nil {
                         XCTAssertNotNil(FH.props)
                         XCTAssertTrue(FH.props?.cloudProps.count == 6)
+                        XCTAssertNotNil(resp)
+                        XCTAssertTrue(resp.parsedResponse!["key"] as! String == "value")
+                    } else {
+                        XCTAssertTrue(false)
                     }
                 })
             } else {

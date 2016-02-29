@@ -17,11 +17,29 @@
 
 import XCTest
 @testable import FeedHenry
+import OHHTTPStubs
 
 class CloudTests: XCTestCase {
     var config: Config?
+    var dict: [String: AnyObject]!
+    
     override func setUp() {
-        super.setUp()
+        dict = ["apptitle": "Native",
+            "domain": "myDomain",
+            "firstTime": 0,
+            "hosts": ["debugCloudType": "node",
+                "debugCloudUrl": "ttps://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
+                "releaseCloudType": "node",
+                "releaseCloudUrl": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net",
+                "type": "cloud_nodejs",
+                "url": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
+                "environment": "ENV"],
+            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"],
+            "status": "ok"]
+        stub(isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dict, statusCode: 200, headers: nil)
+            return stubResponse
+        }
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
         config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
@@ -37,38 +55,14 @@ class CloudTests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    /*
-    NSDictionary *args = [NSDictionary dictionaryWithObject:name.text forKey:@"hello"];
-    FHCloudRequest *req = (FHCloudRequest *) [FH buildCloudRequest:@"/hello" WithMethod:@"POST" AndHeaders:nil AndArgs:args];
-    
-    [req execAsyncWithSuccess:^(FHResponse * res) {
-    // Response
-    NSLog(@"Response: %@", res.rawResponseAsString);
-    result.text = [res.parsedResponse objectForKey:@"msg"];
-    } AndFailure:^(FHResponse * res){
-    // Errors
-    NSLog(@"Failed to call. Response = %@", res.rawResponseAsString);
-    result.text = res.rawResponseAsString;
-    }];
-    */
-    
-    /*
-    + (void)performCloudRequest:(NSString *)path
-    WithMethod:(NSString *)requestMethod
-    AndHeaders:(NSDictionary *)headers
-    AndArgs:(NSDictionary *)arguments
-    AndSuccess:(void (^)(FHResponse *success))sucornil
-    AndFailure:(void (^)(FHResponse *failed))failornil
-    
-    */
-    
-    // https://aerogear.feedhenry.com/box/srv/1.1/app/init
-    // https://aerogear-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/hello
     func testFHPerformCloudRequestSucceed() {
+        stub(isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
+            let stubResponse = OHHTTPStubsResponse(JSONObject: ["key":"value"], statusCode: 200, headers: nil)
+            return stubResponse
+        }
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
         

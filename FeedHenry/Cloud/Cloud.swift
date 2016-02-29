@@ -76,6 +76,7 @@ public class FH {
                 completionHandler(response, error)
                 return
             }
+            print(":::::RESP \(resp)")
             self.props = CloudProps(props: resp)
             completionHandler(response, err)            
         })
