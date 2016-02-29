@@ -18,7 +18,7 @@
 import XCTest
 @testable import FeedHenry
 
-class InitCloudTests: XCTestCase {
+class CloudTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -28,8 +28,6 @@ class InitCloudTests: XCTestCase {
         super.tearDown()
     }
     
-    // TODO mock this test
-    // atm we really hit FH domain
     func testFHInitFailedWithCustomDataError() {
         // given no config file specified
         let getExpectation = expectationWithDescription("FH init should fail due to lack of appId")
@@ -50,9 +48,7 @@ class InitCloudTests: XCTestCase {
         })
         waitForExpectationsWithTimeout(10, handler: nil)
     }
-    
-    // TODO mock this test
-    // atm we really hit FH domain
+
     func testFHInitSucceed() {
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
@@ -68,7 +64,7 @@ class InitCloudTests: XCTestCase {
         })
         waitForExpectationsWithTimeout(10, handler: nil)
     }
-
+    
     func testFHPerformCloudRequestSucceed() {
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")

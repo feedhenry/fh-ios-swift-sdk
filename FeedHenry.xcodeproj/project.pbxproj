@@ -22,6 +22,10 @@
 		483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */; };
 		483E82321C610CED00E7F198 /* FHSyncUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82231C610CED00E7F198 /* FHSyncUtils.h */; };
 		483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82241C610CED00E7F198 /* FHSyncUtils.m */; };
+		484EC2021C847B630070A9A6 /* FeedHenryAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EC2011C847B630070A9A6 /* FeedHenryAcceptanceTests.swift */; };
+		484EC2041C847B630070A9A6 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
+		484EC20B1C847C5A0070A9A6 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 484EC20A1C847C5A0070A9A6 /* fhconfig.plist */; };
+		484EC20D1C847CA40070A9A6 /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EC20C1C847CA40070A9A6 /* CloudTests.swift */; };
 		487708771C6D294E0009487A /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487708761C6D294E0009487A /* CloudTests.swift */; };
 		4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4878D5DD1B579965004518C4 /* FeedHenry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
@@ -37,9 +41,17 @@
 		48A857601C69271300EC00D4 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48A8575F1C69271300EC00D4 /* fhconfig.plist */; };
 		48A857621C69296A00EC00D4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857611C69296A00EC00D4 /* FH.swift */; };
 		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; };
+		BE9E91ECB1DC8C91D96E9155 /* Pods_FeedHenryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5058C5A4C0CE9C1DE925EAB6 /* Pods_FeedHenryTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		484EC2051C847B630070A9A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4878D5D11B579965004518C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4878D5D91B579965004518C4;
+			remoteInfo = FeedHenry;
+		};
 		4878D5E61B579965004518C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4878D5D11B579965004518C4 /* Project object */;
@@ -66,6 +78,11 @@
 		483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncPendingDataRecord.m; path = Sync/FHSyncPendingDataRecord.m; sourceTree = "<group>"; };
 		483E82231C610CED00E7F198 /* FHSyncUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncUtils.h; path = Sync/FHSyncUtils.h; sourceTree = "<group>"; };
 		483E82241C610CED00E7F198 /* FHSyncUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncUtils.m; path = Sync/FHSyncUtils.m; sourceTree = "<group>"; };
+		484EC1FF1C847B630070A9A6 /* FeedHenryAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedHenryAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		484EC2011C847B630070A9A6 /* FeedHenryAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHenryAcceptanceTests.swift; sourceTree = "<group>"; };
+		484EC2031C847B630070A9A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		484EC20A1C847C5A0070A9A6 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
+		484EC20C1C847CA40070A9A6 /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
 		487708761C6D294E0009487A /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
 		4878D5DA1B579965004518C4 /* FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4878D5DD1B579965004518C4 /* FeedHenry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHenry.h; sourceTree = "<group>"; };
@@ -84,11 +101,22 @@
 		48A8575D1C68E00D00EC00D4 /* InitCloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitCloudTests.swift; sourceTree = "<group>"; };
 		48A8575F1C69271300EC00D4 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
 		48A857611C69296A00EC00D4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
+		5058C5A4C0CE9C1DE925EAB6 /* Pods_FeedHenryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC0BCE690717E5D4E64FCE9A /* Pods-FeedHenryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C51772EB394474A944897FA6 /* Pods-FeedHenryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests.release.xcconfig"; sourceTree = "<group>"; };
 		E139FE8EB3B6F4E70E5433A6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DC7BF1EAECF488557B91F8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		484EC1FC1C847B630070A9A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484EC2041C847B630070A9A6 /* FeedHenry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4878D5D61B579965004518C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */,
+				BE9E91ECB1DC8C91D96E9155 /* Pods_FeedHenryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,11 +180,23 @@
 			name = Sync;
 			sourceTree = "<group>";
 		};
+		484EC2001C847B630070A9A6 /* FeedHenryAcceptanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				484EC2011C847B630070A9A6 /* FeedHenryAcceptanceTests.swift */,
+				484EC2031C847B630070A9A6 /* Info.plist */,
+				484EC20A1C847C5A0070A9A6 /* fhconfig.plist */,
+				484EC20C1C847CA40070A9A6 /* CloudTests.swift */,
+			);
+			path = FeedHenryAcceptanceTests;
+			sourceTree = "<group>";
+		};
 		4878D5D01B579965004518C4 = {
 			isa = PBXGroup;
 			children = (
 				4878D5DC1B579965004518C4 /* FeedHenry */,
 				4878D5E81B579965004518C4 /* FeedHenryTests */,
+				484EC2001C847B630070A9A6 /* FeedHenryAcceptanceTests */,
 				4878D5DB1B579965004518C4 /* Products */,
 				B597F5F9E090082CCB3EEB90 /* Pods */,
 				EEC5BBC3039641F458F3D3A0 /* Frameworks */,
@@ -167,6 +208,7 @@
 			children = (
 				4878D5DA1B579965004518C4 /* FeedHenry.framework */,
 				4878D5E41B579965004518C4 /* FeedHenryTests.xctest */,
+				484EC1FF1C847B630070A9A6 /* FeedHenryAcceptanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,6 +244,8 @@
 			children = (
 				F2DC7BF1EAECF488557B91F8 /* Pods.debug.xcconfig */,
 				2CCDEB4630586564531FFBB5 /* Pods.release.xcconfig */,
+				BC0BCE690717E5D4E64FCE9A /* Pods-FeedHenryTests.debug.xcconfig */,
+				C51772EB394474A944897FA6 /* Pods-FeedHenryTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -210,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				E139FE8EB3B6F4E70E5433A6 /* Pods.framework */,
+				5058C5A4C0CE9C1DE925EAB6 /* Pods_FeedHenryTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +283,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		484EC1FE1C847B630070A9A6 /* FeedHenryAcceptanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 484EC2071C847B630070A9A6 /* Build configuration list for PBXNativeTarget "FeedHenryAcceptanceTests" */;
+			buildPhases = (
+				484EC1FB1C847B630070A9A6 /* Sources */,
+				484EC1FC1C847B630070A9A6 /* Frameworks */,
+				484EC1FD1C847B630070A9A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				484EC2061C847B630070A9A6 /* PBXTargetDependency */,
+			);
+			name = FeedHenryAcceptanceTests;
+			productName = FeedHenryAcceptanceTests;
+			productReference = 484EC1FF1C847B630070A9A6 /* FeedHenryAcceptanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4878D5D91B579965004518C4 /* FeedHenry */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4878D5EE1B579965004518C4 /* Build configuration list for PBXNativeTarget "FeedHenry" */;
@@ -262,9 +325,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4878D5F11B579965004518C4 /* Build configuration list for PBXNativeTarget "FeedHenryTests" */;
 			buildPhases = (
+				F5A5508682DC17207EA91C02 /* Check Pods Manifest.lock */,
 				4878D5E01B579965004518C4 /* Sources */,
 				4878D5E11B579965004518C4 /* Frameworks */,
 				4878D5E21B579965004518C4 /* Resources */,
+				43FC41A72DCCE30C2C396D96 /* Embed Pods Frameworks */,
+				1AFBC7B9CAE3C4529A28D10D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +352,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = FeedHenry;
 				TargetAttributes = {
+					484EC1FE1C847B630070A9A6 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					4878D5D91B579965004518C4 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -308,11 +377,20 @@
 			targets = (
 				4878D5D91B579965004518C4 /* FeedHenry */,
 				4878D5E31B579965004518C4 /* FeedHenryTests */,
+				484EC1FE1C847B630070A9A6 /* FeedHenryAcceptanceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		484EC1FD1C847B630070A9A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484EC20B1C847C5A0070A9A6 /* fhconfig.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4878D5D81B579965004518C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,6 +409,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1AFBC7B9CAE3C4529A28D10D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2FC963718BD852CE68EC88A4 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,6 +437,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		43FC41A72DCCE30C2C396D96 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EF69C127F977187071DAAB75 /* Copy Pods Resources */ = {
@@ -361,9 +469,33 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F5A5508682DC17207EA91C02 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		484EC1FB1C847B630070A9A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484EC2021C847B630070A9A6 /* FeedHenryAcceptanceTests.swift in Sources */,
+				484EC20D1C847CA40070A9A6 /* CloudTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4878D5D51B579965004518C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,6 +529,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		484EC2061C847B630070A9A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4878D5D91B579965004518C4 /* FeedHenry */;
+			targetProxy = 484EC2051C847B630070A9A6 /* PBXContainerItemProxy */;
+		};
 		4878D5E71B579965004518C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4878D5D91B579965004518C4 /* FeedHenry */;
@@ -405,6 +542,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		484EC2081C847B630070A9A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FeedHenryAcceptanceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.feedhenry.FeedHenryAcceptanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		484EC2091C847B630070A9A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FeedHenryAcceptanceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.feedhenry.FeedHenryAcceptanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		4878D5EC1B579965004518C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -442,7 +601,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -484,7 +643,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -505,7 +664,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = FeedHenry/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feedhenry.FeedHenry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -526,7 +685,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = FeedHenry/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feedhenry.FeedHenry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -537,6 +696,7 @@
 		};
 		4878D5F21B579965004518C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC0BCE690717E5D4E64FCE9A /* Pods-FeedHenryTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = FeedHenryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -547,6 +707,7 @@
 		};
 		4878D5F31B579965004518C4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C51772EB394474A944897FA6 /* Pods-FeedHenryTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = FeedHenryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -558,6 +719,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		484EC2071C847B630070A9A6 /* Build configuration list for PBXNativeTarget "FeedHenryAcceptanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				484EC2081C847B630070A9A6 /* Debug */,
+				484EC2091C847B630070A9A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		4878D5D41B579965004518C4 /* Build configuration list for PBXProject "FeedHenry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
