@@ -19,7 +19,6 @@ import Foundation
 import AeroGearHttp
 
 public typealias CompletionBlock = (Response, NSError?) -> Void
-//public typealias InnerCompletionBlock = (() throws -> Response) -> Void
 
 /*
 This class provides static methods to initialize the library and create new
@@ -69,8 +68,6 @@ public class FH {
         let host = config["host"]!
         request(.POST, host: host, path: "/box/srv/1.1/app/init", config: config, completionHandler: { (response: Response, err: NSError?) -> Void in
             if let error = err {
-                let response = Response()
-                response.error = error
                 completionHandler(response, error)
                 return
             }
@@ -80,15 +77,26 @@ public class FH {
                 return
             }
             self.props = CloudProps(props: resp)
-            completionHandler(response, err)
-            
+            completionHandler(response, err)            
         })
     }
     
     class func request(method: HttpMethod, host: String, path: String, config: Config, completionHandler: CompletionBlock) {
         // TODO register for Reachability
         // TODO check if online otherwise send error
-        let http = Http(baseURL: host)
+        let http = Http(baseURL: host, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            requestSerializer: JsonRequestSerializer(),
+            responseSerializer: JsonResponseSerializer(response: { (data: NSData, status: Int) -> AnyObject? in
+                    do {
+                        let jsonResponse = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+                        let finalResponse = ["status": status, "data": jsonResponse]
+                        return finalResponse
+                    } catch _ {
+                        return nil
+                    }
+                    
+            }))
+        
         let defaultParameters: [String: AnyObject]? = config.params
         // TODO set headers with appkey: is it needed??
         // FHHttpClient l52
@@ -97,11 +105,11 @@ public class FH {
         http.request(.POST, path: path, parameters: defaultParameters, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
             let fhResponse = Response()
             if let resp = response as? [String: AnyObject] {
-                fhResponse.responseStatusCode = 200 //TODO
-                let data = try! NSJSONSerialization.dataWithJSONObject(resp, options: .PrettyPrinted)
+                fhResponse.responseStatusCode = resp["status"] as? Int
+                let data = try! NSJSONSerialization.dataWithJSONObject(resp["data"]!, options: .PrettyPrinted)
                 fhResponse.rawResponseAsString = String(data: data, encoding: NSUTF8StringEncoding)
                 fhResponse.rawResponse = data
-                fhResponse.parsedResponse = resp
+                fhResponse.parsedResponse = resp["data"] as? NSDictionary
             }
             dispatch_async(dispatch_get_main_queue(), {
                 if let error = error {
@@ -111,6 +119,9 @@ public class FH {
                         let errorToRethrow = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: error.code, userInfo: [NSLocalizedDescriptionKey : errorMessage!])
                         fhResponse.error = errorToRethrow;
                         fhResponse.responseStatusCode = error.code
+                        if let statusCode = error.userInfo["StatusCode"] as? Int {
+                            fhResponse.responseStatusCode = statusCode
+                        }
                         completionHandler(fhResponse, errorToRethrow)
                     } else { // Send only http eror code/msg
                         completionHandler(fhResponse, error)

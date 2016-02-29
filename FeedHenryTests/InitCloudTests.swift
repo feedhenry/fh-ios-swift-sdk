@@ -45,11 +45,12 @@ class InitCloudTests: XCTestCase {
             if err != nil {
                 XCTAssertNotNil(err!.userInfo.description)
                 XCTAssertTrue((err!.userInfo["NSLocalizedDescription"] as! String).hasPrefix("The field 'appid' is not defined in"))
+                XCTAssertTrue(resp.responseStatusCode! == 400)
             } else {
                 XCTAssertTrue(false, "This test sgould failed because no valid fhconfig file was provided")
             }
         })
-        waitForExpectationsWithTimeout(100, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
     }
     
     // TODO mock this test
