@@ -25,19 +25,26 @@ This class provides the layer to do http request.
 public class InitRequest: Request {
     var config: Config
     public var props: CloudProps?
+    let path: String
+    let args: [String:AnyObject]?
+    let headers: [String:String]?
+    let method: HTTPMethod
     
     public init(config: Config) {
-        self.config = config
+        self.path = "/box/srv/1.1/app/init"
         let defaultParameters: [String: AnyObject]? = config.params
-        super.init(path: "/box/srv/1.1/app/init", method: .POST, args: defaultParameters, headers: nil)
+        self.args = defaultParameters
+        self.headers = nil
+        self.method = .POST
+        self.props = nil
+        self.config = config
     }
     
-    public override func exec(completionHandler: CompletionBlock) -> Void {
+    public func exec(completionHandler: CompletionBlock) -> Void {
         assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
         let host = config["host"]!
-        let method = HttpMethod(rawValue: self.method.rawValue)
-
-        request(method!, host: host, path: path, args: args, completionHandler: { (response: Response, err: NSError?) -> Void in
+        
+        request(method, host: host, path: path, args: args, completionHandler: { (response: Response, err: NSError?) -> Void in
             if let error = err {
                 completionHandler(response, error)
                 return

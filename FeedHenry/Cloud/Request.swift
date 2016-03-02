@@ -19,33 +19,12 @@ import Foundation
 import AeroGearHttp
 
 
-/*
-This class provides the layer to do http request.
-*/
-public class Request {
-    let path: String
-    let args: [String:AnyObject]?
-    let headers: [String:String]?
-    let method: HTTPMethod
-
-    
-    public init(path: String, method: HTTPMethod, args: [String:AnyObject]?, headers: [String:String]?) {
-        self.path = path
-        self.args = args
-        self.headers = headers
-        self.method = method
-    }
-    
-    public func exec(completionHandler: CompletionBlock) -> Void {}
-    
-//    {
-//        guard let httpMethod = HttpMethod(rawValue: self.method.rawValue) else {return}
-//        let host = props.cloudHost
-//        //let cloudRequest
-//        request(httpMethod, host: host, path: path, args: args, completionHandler: completionHandler)
-//    }
-    
-    func request(method: HttpMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
+public protocol Request {
+    func exec(completionHandler: CompletionBlock) -> Void
+}
+extension Request {
+    public func request(method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
+        let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
         // TODO register for Reachability
         // TODO check if online otherwise send error
         let http = Http(baseURL: host, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(),
@@ -65,7 +44,7 @@ public class Request {
         // FHHttpClient l52
         // [mutableHeaders setValue:apiKeyVal forKeyPath:@"x-fh-auth-app"];
         
-        http.request(.POST, path: path, parameters: args, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
+        http.request(aerogearMethod, path: path, parameters: args, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
             let fhResponse = Response()
             if let resp = response as? [String: AnyObject] {
                 fhResponse.responseStatusCode = resp["status"] as? Int

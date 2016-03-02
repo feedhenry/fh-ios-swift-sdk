@@ -19,7 +19,7 @@ import XCTest
 @testable import FeedHenry
 import OHHTTPStubs
 
-class InitCloudTests: XCTestCase {
+class InitRequestTests: XCTestCase {
     var dict: [String: AnyObject]!
     
     override func setUp() {
@@ -128,4 +128,25 @@ class InitCloudTests: XCTestCase {
         waitForExpectationsWithTimeout(10, handler: nil)
     }
     
+    func testInitRequestConstruct() {
+        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let initRequest = InitRequest(config: config)
+        XCTAssertEqual(initRequest.method, HTTPMethod.POST)
+        XCTAssertTrue(initRequest.args!.count == 7)
+        XCTAssertNil(initRequest.headers)
+    }
+
+    
+//    func testInitRequestExec() {
+//        let getExpectation = expectationWithDescription("FH successful")
+//        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+//        let initRequest = InitRequestMock(config: config)
+//        
+//        initRequest.exec { (resp:Response, err:NSError?) -> Void in
+//            defer {
+//                getExpectation.fulfill()
+//            }
+//        }
+//        waitForExpectationsWithTimeout(10, handler: nil)
+//    }
 }

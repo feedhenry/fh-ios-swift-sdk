@@ -23,16 +23,22 @@ import AeroGearHttp
 This class provides the layer to do http request.
 */
 public class CloudRequest: Request {
+    let path: String
+    let args: [String:AnyObject]?
+    let headers: [String:String]?
+    let method: HTTPMethod
     var props: CloudProps
     
-    public init(props: CloudProps, path: String, method: HTTPMethod, args: [String:String]?, headers: [String:String]?) {
+    public init(props: CloudProps, path: String, method: HTTPMethod = .POST, args: [String:AnyObject]? = nil, headers: [String:String]? = nil) {
+        self.path = path
+        self.args = args
+        self.headers = headers
+        self.method = method
         self.props = props
-        super.init(path: path, method: method, args: args, headers: headers)
     }
     
-    public override func exec(completionHandler: CompletionBlock) -> Void {
-        guard let httpMethod = HttpMethod(rawValue: self.method.rawValue) else {return}
+    public func exec(completionHandler: CompletionBlock) -> Void {
         let host = props.cloudHost
-        request(httpMethod, host: host, path: path, args: args, completionHandler: completionHandler)
+        request(method, host: host, path: path, args: args, completionHandler: completionHandler)
     }
 }

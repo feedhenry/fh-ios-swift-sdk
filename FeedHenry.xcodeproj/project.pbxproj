@@ -28,7 +28,8 @@
 		484EC20D1C847CA40070A9A6 /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EC20C1C847CA40070A9A6 /* CloudTests.swift */; };
 		48723C051C86E48B002F8669 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C041C86E48B002F8669 /* Request.swift */; };
 		48723C071C86E6C6002F8669 /* InitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C061C86E6C6002F8669 /* InitRequest.swift */; };
-		487708771C6D294E0009487A /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487708761C6D294E0009487A /* CloudTests.swift */; };
+		48723C0B1C870455002F8669 /* CloudRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C0A1C870455002F8669 /* CloudRequestTests.swift */; };
+		487708771C6D294E0009487A /* FHTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487708761C6D294E0009487A /* FHTests.swift */; };
 		4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4878D5DD1B579965004518C4 /* FeedHenry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
 		48A126E41C61FE0A00F2C4A6 /* FHJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126E21C61FE0A00F2C4A6 /* FHJSON.h */; };
@@ -39,7 +40,7 @@
 		48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857571C68940700EC00D4 /* CloudPropsTests.swift */; };
 		48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857591C689F0100EC00D4 /* CloudProps.swift */; };
 		48A8575C1C68A35700EC00D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8575B1C68A35700EC00D4 /* Config.swift */; };
-		48A8575E1C68E00D00EC00D4 /* InitCloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8575D1C68E00D00EC00D4 /* InitCloudTests.swift */; };
+		48A8575E1C68E00D00EC00D4 /* InitRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8575D1C68E00D00EC00D4 /* InitRequestTests.swift */; };
 		48A857601C69271300EC00D4 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48A8575F1C69271300EC00D4 /* fhconfig.plist */; };
 		48A857621C69296A00EC00D4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857611C69296A00EC00D4 /* FH.swift */; };
 		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; };
@@ -87,7 +88,8 @@
 		484EC20C1C847CA40070A9A6 /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
 		48723C041C86E48B002F8669 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Cloud/Request.swift; sourceTree = "<group>"; };
 		48723C061C86E6C6002F8669 /* InitRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitRequest.swift; path = Cloud/InitRequest.swift; sourceTree = "<group>"; };
-		487708761C6D294E0009487A /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
+		48723C0A1C870455002F8669 /* CloudRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudRequestTests.swift; sourceTree = "<group>"; };
+		487708761C6D294E0009487A /* FHTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHTests.swift; sourceTree = "<group>"; };
 		4878D5DA1B579965004518C4 /* FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4878D5DD1B579965004518C4 /* FeedHenry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHenry.h; sourceTree = "<group>"; };
 		4878D5DF1B579965004518C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 		48A857571C68940700EC00D4 /* CloudPropsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudPropsTests.swift; sourceTree = "<group>"; };
 		48A857591C689F0100EC00D4 /* CloudProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudProps.swift; path = Config/CloudProps.swift; sourceTree = "<group>"; };
 		48A8575B1C68A35700EC00D4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Config/Config.swift; sourceTree = "<group>"; };
-		48A8575D1C68E00D00EC00D4 /* InitCloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitCloudTests.swift; sourceTree = "<group>"; };
+		48A8575D1C68E00D00EC00D4 /* InitRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitRequestTests.swift; sourceTree = "<group>"; };
 		48A8575F1C69271300EC00D4 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
 		48A857611C69296A00EC00D4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
 		5058C5A4C0CE9C1DE925EAB6 /* Pods_FeedHenryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,8 +210,8 @@
 		48723C031C86DEE5002F8669 /* Cloud */ = {
 			isa = PBXGroup;
 			children = (
-				487708761C6D294E0009487A /* CloudTests.swift */,
-				48A8575D1C68E00D00EC00D4 /* InitCloudTests.swift */,
+				48A8575D1C68E00D00EC00D4 /* InitRequestTests.swift */,
+				48723C0A1C870455002F8669 /* CloudRequestTests.swift */,
 			);
 			name = Cloud;
 			sourceTree = "<group>";
@@ -253,6 +255,7 @@
 		4878D5E81B579965004518C4 /* FeedHenryTests */ = {
 			isa = PBXGroup;
 			children = (
+				487708761C6D294E0009487A /* FHTests.swift */,
 				48723C031C86DEE5002F8669 /* Cloud */,
 				48723C021C86DEC7002F8669 /* Config */,
 				4878D5EB1B579965004518C4 /* Info.plist */,
@@ -545,8 +548,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */,
-				487708771C6D294E0009487A /* CloudTests.swift in Sources */,
-				48A8575E1C68E00D00EC00D4 /* InitCloudTests.swift in Sources */,
+				48723C0B1C870455002F8669 /* CloudRequestTests.swift in Sources */,
+				487708771C6D294E0009487A /* FHTests.swift in Sources */,
+				48A8575E1C68E00D00EC00D4 /* InitRequestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

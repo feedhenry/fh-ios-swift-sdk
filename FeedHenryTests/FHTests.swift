@@ -19,7 +19,7 @@ import XCTest
 @testable import FeedHenry
 import OHHTTPStubs
 
-class CloudTests: XCTestCase {
+class FHTests: XCTestCase {
     var config: Config?
     var dict: [String: AnyObject]!
     
@@ -67,6 +67,30 @@ class CloudTests: XCTestCase {
         let getExpectation = expectationWithDescription("FH successful")
         
         FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, completionHandler: { (resp: Response, err: NSError?) -> Void in
+            defer {
+                getExpectation.fulfill()
+            }
+            
+            if (err != nil) {
+                XCTAssertTrue(false)
+            }
+        })
+        XCTAssertNotNil(FH.props)
+        XCTAssertTrue(FH.props?.cloudProps.count == 6)
+        XCTAssertTrue(FH.props?.cloudProps["apptitle"] as! String == "Native")
+        
+        waitForExpectationsWithTimeout(10, handler: nil)
+    }
+    
+    func testFHCloudSucceed() {
+        stub(isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
+            let stubResponse = OHHTTPStubsResponse(JSONObject: ["key":"value"], statusCode: 200, headers: nil)
+            return stubResponse
+        }
+        // given a test config file
+        let getExpectation = expectationWithDescription("FH successful")
+        
+        FH.cloud("/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }

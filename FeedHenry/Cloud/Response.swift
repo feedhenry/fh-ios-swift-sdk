@@ -26,11 +26,11 @@ public class Response: NSObject {
     public var rawResponseAsString: String?
     
     /// Get the response data as NSDictionary
-    public var parsedResponse: NSDictionary? //Dictionary<NSString, NSObject>?
+    public var parsedResponse: NSDictionary? 
     
     /// Get the response's status code
     public var responseStatusCode: Int?
     
-    /** Get the error of the response */
+    /// Get the error of the response
     public var error: NSError?
 }
