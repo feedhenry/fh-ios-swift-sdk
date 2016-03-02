@@ -30,22 +30,21 @@ public class InitRequest: Request {
     let headers: [String:String]?
     let method: HTTPMethod
     
-    public init(config: Config, props: CloudProps? = nil, method: HTTPMethod = .POST, args: [String:AnyObject]? = nil) {
+    public init(config: Config) {
         self.path = "/box/srv/1.1/app/init"
         let defaultParameters: [String: AnyObject]? = config.params
         self.args = defaultParameters
         self.headers = nil
         self.method = .POST
-        self.props = props
+        self.props = nil
         self.config = config
     }
     
     public func exec(completionHandler: CompletionBlock) -> Void {
         assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
         let host = config["host"]!
-        let method = HttpMethod(rawValue: self.method.rawValue)
-
-        request(method!, host: host, path: path, args: args, completionHandler: { (response: Response, err: NSError?) -> Void in
+        
+        request(method, host: host, path: path, args: args, completionHandler: { (response: Response, err: NSError?) -> Void in
             if let error = err {
                 completionHandler(response, error)
                 return

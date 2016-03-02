@@ -23,7 +23,8 @@ public protocol Request {
     func exec(completionHandler: CompletionBlock) -> Void
 }
 extension Request {
-    func request(method: HttpMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
+    public func request(method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
+        let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
         // TODO register for Reachability
         // TODO check if online otherwise send error
         let http = Http(baseURL: host, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(),
@@ -43,7 +44,7 @@ extension Request {
         // FHHttpClient l52
         // [mutableHeaders setValue:apiKeyVal forKeyPath:@"x-fh-auth-app"];
         
-        http.request(.POST, path: path, parameters: args, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
+        http.request(aerogearMethod, path: path, parameters: args, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
             let fhResponse = Response()
             if let resp = response as? [String: AnyObject] {
                 fhResponse.responseStatusCode = resp["status"] as? Int
