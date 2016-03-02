@@ -19,32 +19,10 @@ import Foundation
 import AeroGearHttp
 
 
-/*
-This class provides the layer to do http request.
-*/
-public class Request {
-    let path: String
-    let args: [String:AnyObject]?
-    let headers: [String:String]?
-    let method: HTTPMethod
-
-    
-    public init(path: String, method: HTTPMethod, args: [String:AnyObject]?, headers: [String:String]?) {
-        self.path = path
-        self.args = args
-        self.headers = headers
-        self.method = method
-    }
-    
-    public func exec(completionHandler: CompletionBlock) -> Void {}
-    
-//    {
-//        guard let httpMethod = HttpMethod(rawValue: self.method.rawValue) else {return}
-//        let host = props.cloudHost
-//        //let cloudRequest
-//        request(httpMethod, host: host, path: path, args: args, completionHandler: completionHandler)
-//    }
-    
+public protocol Request {
+    func exec(completionHandler: CompletionBlock) -> Void
+}
+extension Request {
     func request(method: HttpMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
         // TODO register for Reachability
         // TODO check if online otherwise send error
