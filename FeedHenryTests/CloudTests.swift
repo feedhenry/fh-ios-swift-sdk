@@ -66,7 +66,7 @@ class CloudTests: XCTestCase {
         // given a test config file
         let getExpectation = expectationWithDescription("FH successful")
         
-        FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, config: config!, completionHandler: { (resp: Response, err: NSError?) -> Void in
+        FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }

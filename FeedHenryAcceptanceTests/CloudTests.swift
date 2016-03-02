@@ -74,7 +74,7 @@ class CloudTests: XCTestCase {
         // when
         FH.setup(config, completionHandler: { (resp: Response, err: NSError?) -> Void  in
             if (err == nil) {
-                FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, config: config, completionHandler: {(resp: Response, err: NSError?) -> Void  in
+                FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, completionHandler: {(resp: Response, err: NSError?) -> Void  in
                     defer {
                         getExpectation.fulfill()
                     }

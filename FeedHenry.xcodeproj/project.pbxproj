@@ -26,13 +26,15 @@
 		484EC2041C847B630070A9A6 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
 		484EC20B1C847C5A0070A9A6 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 484EC20A1C847C5A0070A9A6 /* fhconfig.plist */; };
 		484EC20D1C847CA40070A9A6 /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EC20C1C847CA40070A9A6 /* CloudTests.swift */; };
+		48723C051C86E48B002F8669 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C041C86E48B002F8669 /* Request.swift */; };
+		48723C071C86E6C6002F8669 /* InitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C061C86E6C6002F8669 /* InitRequest.swift */; };
 		487708771C6D294E0009487A /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487708761C6D294E0009487A /* CloudTests.swift */; };
 		4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4878D5DD1B579965004518C4 /* FeedHenry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
 		48A126E41C61FE0A00F2C4A6 /* FHJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126E21C61FE0A00F2C4A6 /* FHJSON.h */; };
 		48A126E51C61FE0A00F2C4A6 /* FHJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E31C61FE0A00F2C4A6 /* FHJSON.m */; };
 		48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E61C61FFBF00F2C4A6 /* Response.swift */; };
-		48A126E91C61FFD600F2C4A6 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E81C61FFD600F2C4A6 /* Cloud.swift */; };
+		48A126E91C61FFD600F2C4A6 /* CloudRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A126E81C61FFD600F2C4A6 /* CloudRequest.swift */; };
 		48A126EC1C62195C00F2C4A6 /* FHDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126EB1C62195C00F2C4A6 /* FHDefines.h */; };
 		48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857571C68940700EC00D4 /* CloudPropsTests.swift */; };
 		48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857591C689F0100EC00D4 /* CloudProps.swift */; };
@@ -83,6 +85,8 @@
 		484EC2031C847B630070A9A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		484EC20A1C847C5A0070A9A6 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
 		484EC20C1C847CA40070A9A6 /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
+		48723C041C86E48B002F8669 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Cloud/Request.swift; sourceTree = "<group>"; };
+		48723C061C86E6C6002F8669 /* InitRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitRequest.swift; path = Cloud/InitRequest.swift; sourceTree = "<group>"; };
 		487708761C6D294E0009487A /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
 		4878D5DA1B579965004518C4 /* FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4878D5DD1B579965004518C4 /* FeedHenry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHenry.h; sourceTree = "<group>"; };
@@ -92,7 +96,7 @@
 		48A126E21C61FE0A00F2C4A6 /* FHJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHJSON.h; path = Sync/FHJSON.h; sourceTree = "<group>"; };
 		48A126E31C61FE0A00F2C4A6 /* FHJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHJSON.m; path = Sync/FHJSON.m; sourceTree = "<group>"; };
 		48A126E61C61FFBF00F2C4A6 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Cloud/Response.swift; sourceTree = "<group>"; };
-		48A126E81C61FFD600F2C4A6 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cloud.swift; path = Cloud/Cloud.swift; sourceTree = "<group>"; };
+		48A126E81C61FFD600F2C4A6 /* CloudRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudRequest.swift; path = Cloud/CloudRequest.swift; sourceTree = "<group>"; };
 		48A126EA1C62033B00F2C4A6 /* FeedHenry-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FeedHenry-Swift.h"; sourceTree = "<group>"; };
 		48A126EB1C62195C00F2C4A6 /* FHDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHDefines.h; path = Sync/FHDefines.h; sourceTree = "<group>"; };
 		48A857571C68940700EC00D4 /* CloudPropsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudPropsTests.swift; sourceTree = "<group>"; };
@@ -140,7 +144,9 @@
 		483E82111C5FB9BE00E7F198 /* Cloud */ = {
 			isa = PBXGroup;
 			children = (
-				48A126E81C61FFD600F2C4A6 /* Cloud.swift */,
+				48723C041C86E48B002F8669 /* Request.swift */,
+				48723C061C86E6C6002F8669 /* InitRequest.swift */,
+				48A126E81C61FFD600F2C4A6 /* CloudRequest.swift */,
 				48A126E61C61FFBF00F2C4A6 /* Response.swift */,
 			);
 			name = Cloud;
@@ -191,6 +197,23 @@
 			path = FeedHenryAcceptanceTests;
 			sourceTree = "<group>";
 		};
+		48723C021C86DEC7002F8669 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				48A857571C68940700EC00D4 /* CloudPropsTests.swift */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		48723C031C86DEE5002F8669 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				487708761C6D294E0009487A /* CloudTests.swift */,
+				48A8575D1C68E00D00EC00D4 /* InitCloudTests.swift */,
+			);
+			name = Cloud;
+			sourceTree = "<group>";
+		};
 		4878D5D01B579965004518C4 = {
 			isa = PBXGroup;
 			children = (
@@ -230,10 +253,9 @@
 		4878D5E81B579965004518C4 /* FeedHenryTests */ = {
 			isa = PBXGroup;
 			children = (
+				48723C031C86DEE5002F8669 /* Cloud */,
+				48723C021C86DEC7002F8669 /* Config */,
 				4878D5EB1B579965004518C4 /* Info.plist */,
-				48A857571C68940700EC00D4 /* CloudPropsTests.swift */,
-				48A8575D1C68E00D00EC00D4 /* InitCloudTests.swift */,
-				487708761C6D294E0009487A /* CloudTests.swift */,
 				48A8575F1C69271300EC00D4 /* fhconfig.plist */,
 			);
 			path = FeedHenryTests;
@@ -502,15 +524,17 @@
 			files = (
 				48A857621C69296A00EC00D4 /* FH.swift in Sources */,
 				483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */,
-				48A126E91C61FFD600F2C4A6 /* Cloud.swift in Sources */,
+				48A126E91C61FFD600F2C4A6 /* CloudRequest.swift in Sources */,
 				483E82281C610CED00E7F198 /* FHSyncConfig.m in Sources */,
 				48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */,
 				48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */,
+				48723C071C86E6C6002F8669 /* InitRequest.swift in Sources */,
 				48A8575C1C68A35700EC00D4 /* Config.swift in Sources */,
 				483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */,
 				483E822C1C610CED00E7F198 /* FHSyncDataset.m in Sources */,
 				48A126E51C61FE0A00F2C4A6 /* FHJSON.m in Sources */,
 				483E822F1C610CED00E7F198 /* FHSyncNotificationMessage.m in Sources */,
+				48723C051C86E48B002F8669 /* Request.swift in Sources */,
 				483E82261C610CED00E7F198 /* FHSyncClient.m in Sources */,
 				483E822A1C610CED00E7F198 /* FHSyncDataRecord.m in Sources */,
 			);
@@ -726,6 +750,7 @@
 				484EC2091C847B630070A9A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4878D5D41B579965004518C4 /* Build configuration list for PBXProject "FeedHenry" */ = {
 			isa = XCConfigurationList;

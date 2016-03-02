@@ -1,0 +1,38 @@
+/*
+* JBoss, Home of Professional Open Source.
+* Copyright Red Hat, Inc., and individual contributors
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+import Foundation
+import AeroGearHttp
+
+
+/*
+This class provides the layer to do http request.
+*/
+public class CloudRequest: Request {
+    var props: CloudProps
+    
+    public init(props: CloudProps, path: String, method: HTTPMethod, args: [String:String]?, headers: [String:String]?) {
+        self.props = props
+        super.init(path: path, method: method, args: args, headers: headers)
+    }
+    
+    public override func exec(completionHandler: CompletionBlock) -> Void {
+        guard let httpMethod = HttpMethod(rawValue: self.method.rawValue) else {return}
+        let host = props.cloudHost
+        request(httpMethod, host: host, path: path, args: args, completionHandler: completionHandler)
+    }
+}
