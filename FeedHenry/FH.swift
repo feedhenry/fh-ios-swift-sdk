@@ -36,6 +36,14 @@ instances of all the API request objects.
 public class FH {
     static var props: CloudProps?
     
+    /** 
+     Check if the device is online. The device is online if either WIFI or 3G
+     network is available.
+     
+     - Returns true if the device is online
+     */
+    static var isOnline: Bool = false
+    
     /**
      Initialize the library.
      
@@ -47,13 +55,21 @@ public class FH {
      best way to do is by catching the error that is thrown in case of failure to initialize.
      
      ```swift
-     FH.init {(inner: () throws -> [String: AnyObject]?) -> Void in
-     do {
-     let result = try inner()
-     print("initialized OK \(result)")
-     } catch let error {
-     print("FH init failed. Error = \(error)")
-     }
+     FH.init { (resp:Response, error: NSError?) -> Void in
+       if let error = error {
+         self.statusLabel.text = "FH init in error"
+         print("Error: \(error)")
+         return
+       }
+       self.statusLabel.text = "FH init successful"
+       FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
+         if let error = error {
+           print("Error: \(error)")
+           return
+         }
+         print("Response from Cloud Call: \(response.parsedResponse)")
+       })
+       print("Response: \(resp.parsedResponse)")
      }
      ```
      
@@ -65,7 +81,17 @@ public class FH {
         setup(Config(), completionHandler: completionHandler)
     }
     
-    // todo: remove?
+    // TODO: remove?
+    /**
+    Create a new instance of CloudRequest class and execute it immediately
+    with the completionHandler closure. The request runs asynchronously.
+    
+    - Param path: The path of the cloud API
+    - Param method: The HTTP request method to use for the request. Defaulted to .POST.
+    - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
+    - Param args: The request body data. Can be nil. Defaulted to nil.
+    - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
+    */
     public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, completionHandler: CompletionBlock) -> Void {
         guard let httpMethod = HTTPMethod(rawValue: method) else {return}
         assert(props != nil, "FH init must be done prior th a Cloud call")
@@ -73,11 +99,29 @@ public class FH {
         cloudRequest.exec(completionHandler)
     }
     
+    /** 
+     Create a new instance of CloudRequest class and execute it immediately
+     with the completionHandler closure. The request runs asynchronously.
+     
+     - Param path: The path of the cloud API
+     - Param method: The HTTP request method to use for the request. Defaulted to .POST.
+     - Param args: The request body data. Can be nil. Defaulted to nil.
+     - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
+     - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
+     */
     public class func cloud(path: String, method: HTTPMethod = .POST, args: [String: String]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
         let cloudRequest = CloudRequest(props: self.props!, path: path, method: method, args: args, headers: headers)
         cloudRequest.exec(completionHandler)
     }
     
+    /**
+     Create a new instance of CloudRequest.
+     
+     - Param path: The path of the cloud API
+     - Param method: The HTTP request method to use for the request. Defaulted to .POST.
+     - Param args: The request body data. Can be nil. Defaulted to nil.
+     - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
+     */
     public class func cloudRequest(path: String, method: HTTPMethod = .POST, args:[String: String]? = nil, headers: [String:String]? = nil) -> CloudRequest {
         assert(props != nil, "FH init must be done prior th a Cloud call")
         return CloudRequest(props: self.props!, path: path, method: method, args: args, headers: headers)
