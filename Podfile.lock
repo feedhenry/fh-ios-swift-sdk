@@ -1,5 +1,5 @@
 PODS:
-  - AeroGearHttp (0.4.1)
+  - AeroGearHttp (0.5.1)
   - OHHTTPStubs (4.7.1):
     - OHHTTPStubs/Default (= 4.7.1)
   - OHHTTPStubs/Core (4.7.1)
@@ -15,11 +15,13 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (4.7.1)
   - OHHTTPStubs/Swift (4.7.1):
     - OHHTTPStubs/Core
+  - ReachabilitySwift (2.3.3)
 
 DEPENDENCIES:
   - AeroGearHttp (from `git@github.com:aerogear/aerogear-ios-http.git`)
   - OHHTTPStubs (= 4.7.1)
   - OHHTTPStubs/Swift (= 4.7.1)
+  - ReachabilitySwift (= 2.3.3)
 
 EXTERNAL SOURCES:
   AeroGearHttp:
@@ -27,11 +29,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AeroGearHttp:
-    :commit: a77a1ea257f9a0931b0e786b58a1a3fcee318d9b
+    :commit: 20e954caa168ed8605ae05322fbfaf038fd79366
     :git: git@github.com:aerogear/aerogear-ios-http.git
 
 SPEC CHECKSUMS:
-  AeroGearHttp: 36a4a2b6dd0d8a07c82674f8bcb6ed5b0a2d8a14
+  AeroGearHttp: f3e362a7f9e15abcd914d5c3df68999880b22f18
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
 
 COCOAPODS: 0.39.0

@@ -20,6 +20,7 @@ let FH_SDK_VERSION = "4.0.0-alpha.1"
 
 import Foundation
 import AeroGearHttp
+import ReachabilitySwift
 
 public typealias CompletionBlock = (Response, NSError?) -> Void
 public enum HTTPMethod: String {
@@ -34,15 +35,20 @@ This class provides static methods to initialize the library and create new
 instances of all the API request objects.
 */
 public class FH {
+    /// Private field to be used to know id FH.init was done successfully. it replaces `ready` boolean in ObjC FH SDK
     static var props: CloudProps?
-    
+
     /** 
      Check if the device is online. The device is online if either WIFI or 3G
-     network is available.
+     network is available. Default value is false.
      
      - Returns true if the device is online
      */
-    static var isOnline: Bool = false
+    public static var isOnline: Bool = false
+    
+    /// Private field to know if the reachability registration was done.
+    static var initCalled: Bool = false
+    static var reachability: Reachability?
     
     /**
      Initialize the library.
@@ -130,10 +136,70 @@ public class FH {
     class func setup(config: Config, completionHandler: CompletionBlock) -> Void {
         let initRequest = InitRequest(config: config)
         initRequest.exec { (response: Response, error: NSError?) -> Void in
-            if error == nil {// success
+            if error == nil { // success
                 self.props = initRequest.props
             }
+            // register for reachability and rety init if it fails because of offline mode
+            do {
+                try reachabilityRegistration(initCalled, isOnline: isOnline, reachability: reachability)
+            } catch let error as NSError {
+                let response = Response()
+                response.error = error
+                completionHandler(response, error)
+            }
+            // complet callback for success
             completionHandler(response, error)
+        }
+    }
+    
+    // register for reachability and rety init if it fails because of offline mode
+    class func reachabilityRegistration(var initCalled: Bool, var isOnline: Bool, var reachability: Reachability?) throws -> Void {
+        if initCalled == false {
+            do {
+                if reachability == nil {
+                    reachability = try Reachability.reachabilityForInternetConnection()
+                }
+            } catch {
+                let error = NSError(domain: "FeedHenryInitErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Unable to create Reachability"])
+                throw error
+            }
+            
+            reachability!.whenReachable = { reachability in
+                // this is called on a background thread, but UI updates must
+                // be on the main thread, like this:
+                dispatch_async(dispatch_get_main_queue()) {
+                    if reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN() {
+                        print("Reachable via WiFi or Cell")
+                        isOnline = true
+                    } else {
+                        isOnline = false
+                    }
+                    if props == nil { // retry FH.init
+                        FH.init({ _ -> Void in})
+                    }
+                }
+            }
+            reachability!.whenUnreachable = { reachability in
+                // this is called on a background thread, but UI updates must
+                // be on the main thread, like this:
+                dispatch_async(dispatch_get_main_queue()) {
+                    print("Not reachable")
+                    if reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN() {
+                        print("Reachable via WiFi or Cell")
+                        isOnline = true
+                    } else {
+                        isOnline = false
+                    }
+                }
+            }
+            
+            do {
+                try reachability!.startNotifier()
+                initCalled = true
+            } catch {
+                let error = NSError(domain: "FeedHenryInitErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Unable to start Reachability notifier"])
+                throw error
+            }
         }
     }
 
