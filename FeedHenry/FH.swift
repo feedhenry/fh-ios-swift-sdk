@@ -40,11 +40,11 @@ public class FH {
 
     /** 
      Check if the device is online. The device is online if either WIFI or 3G
-     network is available. Default value is false.
+     network is available. Default value is true.
      
      - Returns true if the device is online
      */
-    public static var isOnline: Bool = false
+    public static var isOnline: Bool = true
     
     /// Private field to know if the reachability registration was done.
     static var initCalled: Bool = false
@@ -141,7 +141,7 @@ public class FH {
             }
             // register for reachability and rety init if it fails because of offline mode
             do {
-                try reachabilityRegistration(initCalled, isOnline: isOnline, reachability: reachability)
+                try reachabilityRegistration()
             } catch let error as NSError {
                 let response = Response()
                 response.error = error
@@ -153,7 +153,7 @@ public class FH {
     }
     
     // register for reachability and rety init if it fails because of offline mode
-    class func reachabilityRegistration(var initCalled: Bool, var isOnline: Bool, var reachability: Reachability?) throws -> Void {
+    class func reachabilityRegistration() throws -> Void {
         if initCalled == false {
             do {
                 if reachability == nil {

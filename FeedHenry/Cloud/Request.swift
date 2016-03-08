@@ -27,7 +27,7 @@ extension Request {
     public func request(method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
         let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
 
-        if FH.initCalled && FH.isOnline == false {
+        if FH.props != nil && FH.isOnline == false {
             let error = NSError(domain: "FHHttpClient", code: FHSDKNetworkOfflineErrorType, userInfo: [NSLocalizedDescriptionKey : "Offline mode", "error":"offline"])
             let response = Response()
             response.error = error
