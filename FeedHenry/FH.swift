@@ -44,7 +44,10 @@ public class FH {
      
      - Returns true if the device is online
      */
-    public static var isOnline: Bool = true
+    public static var isOnline: Bool? {
+        guard let reachability = self.reachability else {return nil}
+        return reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN()
+    }
     
     /// Private field to know if the reachability registration was done.
     static var initCalled: Bool = false
@@ -162,35 +165,6 @@ public class FH {
             } catch {
                 let error = NSError(domain: "FeedHenryInitErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Unable to create Reachability"])
                 throw error
-            }
-            
-            reachability!.whenReachable = { reachability in
-                // this is called on a background thread, but UI updates must
-                // be on the main thread, like this:
-                dispatch_async(dispatch_get_main_queue()) {
-                    if reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN() {
-                        print("Reachable via WiFi or Cell")
-                        isOnline = true
-                    } else {
-                        isOnline = false
-                    }
-                    if props == nil { // retry FH.init
-                        FH.init({ _ -> Void in})
-                    }
-                }
-            }
-            reachability!.whenUnreachable = { reachability in
-                // this is called on a background thread, but UI updates must
-                // be on the main thread, like this:
-                dispatch_async(dispatch_get_main_queue()) {
-                    print("Not reachable")
-                    if reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN() {
-                        print("Reachable via WiFi or Cell")
-                        isOnline = true
-                    } else {
-                        isOnline = false
-                    }
-                }
             }
             
             do {
