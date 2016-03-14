@@ -18,6 +18,7 @@
 import Foundation
 import AeroGearHttp
 
+let FHSDKNetworkOfflineErrorType = 1
 
 public protocol Request {
     func exec(completionHandler: CompletionBlock) -> Void
@@ -25,8 +26,16 @@ public protocol Request {
 extension Request {
     public func request(method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
         let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
-        // TODO register for Reachability
-        // TODO check if online otherwise send error
+        
+        // Early catch of offline mode
+        if FH.props != nil && FH.isOnline == false {
+            let error = NSError(domain: "FHHttpClient", code: FHSDKNetworkOfflineErrorType, userInfo: [NSLocalizedDescriptionKey : "Offline mode", "error":"offline"])
+            let response = Response()
+            response.error = error
+            completionHandler(response, error)
+            return
+        }
+        
         let http = Http(baseURL: host, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(),
             requestSerializer: JsonRequestSerializer(),
             responseSerializer: JsonResponseSerializer(response: { (data: NSData, status: Int) -> AnyObject? in
@@ -69,7 +78,6 @@ extension Request {
                         completionHandler(fhResponse, error)
                     }
                 } else {
-                    // TODO set init/ready or use cloudProps being filled as an indicator the init happen
                     completionHandler(fhResponse, nil)
                 }
             })

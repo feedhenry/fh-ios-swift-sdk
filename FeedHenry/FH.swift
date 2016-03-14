@@ -20,6 +20,7 @@ let FH_SDK_VERSION = "4.0.0-alpha.1"
 
 import Foundation
 import AeroGearHttp
+import ReachabilitySwift
 
 public typealias CompletionBlock = (Response, NSError?) -> Void
 public enum HTTPMethod: String {
@@ -34,7 +35,23 @@ This class provides static methods to initialize the library and create new
 instances of all the API request objects.
 */
 public class FH {
+    /// Private field to be used to know id FH.init was done successfully. it replaces `ready` boolean in ObjC FH SDK
     static var props: CloudProps?
+
+    /** 
+     Check if the device is online. The device is online if either WIFI or 3G
+     network is available. Default value is true.
+     
+     - Returns true if the device is online
+     */
+    public static var isOnline: Bool? {
+        guard let reachability = self.reachability else {return nil}
+        return reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN()
+    }
+    
+    /// Private field to know if the reachability registration was done.
+    static var initCalled: Bool = false
+    static var reachability: Reachability?
     
     /**
      Initialize the library.
@@ -47,13 +64,21 @@ public class FH {
      best way to do is by catching the error that is thrown in case of failure to initialize.
      
      ```swift
-     FH.init {(inner: () throws -> [String: AnyObject]?) -> Void in
-     do {
-     let result = try inner()
-     print("initialized OK \(result)")
-     } catch let error {
-     print("FH init failed. Error = \(error)")
-     }
+     FH.init { (resp:Response, error: NSError?) -> Void in
+       if let error = error {
+         self.statusLabel.text = "FH init in error"
+         print("Error: \(error)")
+         return
+       }
+       self.statusLabel.text = "FH init successful"
+       FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
+         if let error = error {
+           print("Error: \(error)")
+           return
+         }
+         print("Response from Cloud Call: \(response.parsedResponse)")
+       })
+       print("Response: \(resp.parsedResponse)")
      }
      ```
      
@@ -65,7 +90,17 @@ public class FH {
         setup(Config(), completionHandler: completionHandler)
     }
     
-    // todo: remove?
+    // TODO: remove?
+    /**
+    Create a new instance of CloudRequest class and execute it immediately
+    with the completionHandler closure. The request runs asynchronously.
+    
+    - Param path: The path of the cloud API
+    - Param method: The HTTP request method to use for the request. Defaulted to .POST.
+    - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
+    - Param args: The request body data. Can be nil. Defaulted to nil.
+    - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
+    */
     public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, completionHandler: CompletionBlock) -> Void {
         guard let httpMethod = HTTPMethod(rawValue: method) else {return}
         assert(props != nil, "FH init must be done prior th a Cloud call")
@@ -73,11 +108,29 @@ public class FH {
         cloudRequest.exec(completionHandler)
     }
     
+    /** 
+     Create a new instance of CloudRequest class and execute it immediately
+     with the completionHandler closure. The request runs asynchronously.
+     
+     - Param path: The path of the cloud API
+     - Param method: The HTTP request method to use for the request. Defaulted to .POST.
+     - Param args: The request body data. Can be nil. Defaulted to nil.
+     - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
+     - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
+     */
     public class func cloud(path: String, method: HTTPMethod = .POST, args: [String: String]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
         let cloudRequest = CloudRequest(props: self.props!, path: path, method: method, args: args, headers: headers)
         cloudRequest.exec(completionHandler)
     }
     
+    /**
+     Create a new instance of CloudRequest.
+     
+     - Param path: The path of the cloud API
+     - Param method: The HTTP request method to use for the request. Defaulted to .POST.
+     - Param args: The request body data. Can be nil. Defaulted to nil.
+     - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
+     */
     public class func cloudRequest(path: String, method: HTTPMethod = .POST, args:[String: String]? = nil, headers: [String:String]? = nil) -> CloudRequest {
         assert(props != nil, "FH init must be done prior th a Cloud call")
         return CloudRequest(props: self.props!, path: path, method: method, args: args, headers: headers)
@@ -86,10 +139,41 @@ public class FH {
     class func setup(config: Config, completionHandler: CompletionBlock) -> Void {
         let initRequest = InitRequest(config: config)
         initRequest.exec { (response: Response, error: NSError?) -> Void in
-            if error == nil {// success
+            if error == nil { // success
                 self.props = initRequest.props
             }
+            // register for reachability and rety init if it fails because of offline mode
+            do {
+                try reachabilityRegistration()
+            } catch let error as NSError {
+                let response = Response()
+                response.error = error
+                completionHandler(response, error)
+            }
+            // complet callback for success
             completionHandler(response, error)
+        }
+    }
+    
+    // register for reachability and rety init if it fails because of offline mode
+    class func reachabilityRegistration() throws -> Void {
+        if initCalled == false {
+            do {
+                if reachability == nil {
+                    reachability = try Reachability.reachabilityForInternetConnection()
+                }
+            } catch {
+                let error = NSError(domain: "FeedHenryInitErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Unable to create Reachability"])
+                throw error
+            }
+            
+            do {
+                try reachability!.startNotifier()
+                initCalled = true
+            } catch {
+                let error = NSError(domain: "FeedHenryInitErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Unable to start Reachability notifier"])
+                throw error
+            }
         }
     }
 
