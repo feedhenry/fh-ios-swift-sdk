@@ -22,10 +22,6 @@
 		483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */; };
 		483E82321C610CED00E7F198 /* FHSyncUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82231C610CED00E7F198 /* FHSyncUtils.h */; };
 		483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82241C610CED00E7F198 /* FHSyncUtils.m */; };
-		484EC2021C847B630070A9A6 /* FeedHenryAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EC2011C847B630070A9A6 /* FeedHenryAcceptanceTests.swift */; };
-		484EC2041C847B630070A9A6 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
-		484EC20B1C847C5A0070A9A6 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 484EC20A1C847C5A0070A9A6 /* fhconfig.plist */; };
-		484EC20D1C847CA40070A9A6 /* CloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484EC20C1C847CA40070A9A6 /* CloudTests.swift */; };
 		48723C051C86E48B002F8669 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C041C86E48B002F8669 /* Request.swift */; };
 		48723C071C86E6C6002F8669 /* InitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C061C86E6C6002F8669 /* InitRequest.swift */; };
 		48723C0B1C870455002F8669 /* CloudRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C0A1C870455002F8669 /* CloudRequestTests.swift */; };
@@ -48,13 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		484EC2051C847B630070A9A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4878D5D11B579965004518C4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4878D5D91B579965004518C4;
-			remoteInfo = FeedHenry;
-		};
 		4878D5E61B579965004518C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4878D5D11B579965004518C4 /* Project object */;
@@ -81,11 +70,6 @@
 		483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncPendingDataRecord.m; path = Sync/FHSyncPendingDataRecord.m; sourceTree = "<group>"; };
 		483E82231C610CED00E7F198 /* FHSyncUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncUtils.h; path = Sync/FHSyncUtils.h; sourceTree = "<group>"; };
 		483E82241C610CED00E7F198 /* FHSyncUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncUtils.m; path = Sync/FHSyncUtils.m; sourceTree = "<group>"; };
-		484EC1FF1C847B630070A9A6 /* FeedHenryAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedHenryAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		484EC2011C847B630070A9A6 /* FeedHenryAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHenryAcceptanceTests.swift; sourceTree = "<group>"; };
-		484EC2031C847B630070A9A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		484EC20A1C847C5A0070A9A6 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
-		484EC20C1C847CA40070A9A6 /* CloudTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTests.swift; sourceTree = "<group>"; };
 		48723C041C86E48B002F8669 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Cloud/Request.swift; sourceTree = "<group>"; };
 		48723C061C86E6C6002F8669 /* InitRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitRequest.swift; path = Cloud/InitRequest.swift; sourceTree = "<group>"; };
 		48723C0A1C870455002F8669 /* CloudRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudRequestTests.swift; sourceTree = "<group>"; };
@@ -115,14 +99,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		484EC1FC1C847B630070A9A6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				484EC2041C847B630070A9A6 /* FeedHenry.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4878D5D61B579965004518C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,17 +164,6 @@
 			name = Sync;
 			sourceTree = "<group>";
 		};
-		484EC2001C847B630070A9A6 /* FeedHenryAcceptanceTests */ = {
-			isa = PBXGroup;
-			children = (
-				484EC2011C847B630070A9A6 /* FeedHenryAcceptanceTests.swift */,
-				484EC2031C847B630070A9A6 /* Info.plist */,
-				484EC20A1C847C5A0070A9A6 /* fhconfig.plist */,
-				484EC20C1C847CA40070A9A6 /* CloudTests.swift */,
-			);
-			path = FeedHenryAcceptanceTests;
-			sourceTree = "<group>";
-		};
 		48723C021C86DEC7002F8669 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +186,6 @@
 			children = (
 				4878D5DC1B579965004518C4 /* FeedHenry */,
 				4878D5E81B579965004518C4 /* FeedHenryTests */,
-				484EC2001C847B630070A9A6 /* FeedHenryAcceptanceTests */,
 				4878D5DB1B579965004518C4 /* Products */,
 				B597F5F9E090082CCB3EEB90 /* Pods */,
 				EEC5BBC3039641F458F3D3A0 /* Frameworks */,
@@ -233,7 +197,6 @@
 			children = (
 				4878D5DA1B579965004518C4 /* FeedHenry.framework */,
 				4878D5E41B579965004518C4 /* FeedHenryTests.xctest */,
-				484EC1FF1C847B630070A9A6 /* FeedHenryAcceptanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,24 +271,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		484EC1FE1C847B630070A9A6 /* FeedHenryAcceptanceTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 484EC2071C847B630070A9A6 /* Build configuration list for PBXNativeTarget "FeedHenryAcceptanceTests" */;
-			buildPhases = (
-				484EC1FB1C847B630070A9A6 /* Sources */,
-				484EC1FC1C847B630070A9A6 /* Frameworks */,
-				484EC1FD1C847B630070A9A6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				484EC2061C847B630070A9A6 /* PBXTargetDependency */,
-			);
-			name = FeedHenryAcceptanceTests;
-			productName = FeedHenryAcceptanceTests;
-			productReference = 484EC1FF1C847B630070A9A6 /* FeedHenryAcceptanceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		4878D5D91B579965004518C4 /* FeedHenry */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4878D5EE1B579965004518C4 /* Build configuration list for PBXNativeTarget "FeedHenry" */;
@@ -377,9 +322,6 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = FeedHenry;
 				TargetAttributes = {
-					484EC1FE1C847B630070A9A6 = {
-						CreatedOnToolsVersion = 7.2;
-					};
 					4878D5D91B579965004518C4 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -402,20 +344,11 @@
 			targets = (
 				4878D5D91B579965004518C4 /* FeedHenry */,
 				4878D5E31B579965004518C4 /* FeedHenryTests */,
-				484EC1FE1C847B630070A9A6 /* FeedHenryAcceptanceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		484EC1FD1C847B630070A9A6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				484EC20B1C847C5A0070A9A6 /* fhconfig.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4878D5D81B579965004518C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,15 +445,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		484EC1FB1C847B630070A9A6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				484EC2021C847B630070A9A6 /* FeedHenryAcceptanceTests.swift in Sources */,
-				484EC20D1C847CA40070A9A6 /* CloudTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4878D5D51B579965004518C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -557,11 +481,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		484EC2061C847B630070A9A6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4878D5D91B579965004518C4 /* FeedHenry */;
-			targetProxy = 484EC2051C847B630070A9A6 /* PBXContainerItemProxy */;
-		};
 		4878D5E71B579965004518C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4878D5D91B579965004518C4 /* FeedHenry */;
@@ -570,28 +489,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		484EC2081C847B630070A9A6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = FeedHenryAcceptanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.feedhenry.FeedHenryAcceptanceTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		484EC2091C847B630070A9A6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = FeedHenryAcceptanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.feedhenry.FeedHenryAcceptanceTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		4878D5EC1B579965004518C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -747,15 +644,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		484EC2071C847B630070A9A6 /* Build configuration list for PBXNativeTarget "FeedHenryAcceptanceTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				484EC2081C847B630070A9A6 /* Debug */,
-				484EC2091C847B630070A9A6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4878D5D41B579965004518C4 /* Build configuration list for PBXProject "FeedHenry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
