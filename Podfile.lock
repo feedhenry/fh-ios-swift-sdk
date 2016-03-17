@@ -18,19 +18,21 @@ PODS:
   - ReachabilitySwift (2.3.3)
 
 DEPENDENCIES:
-  - AeroGearHttp (from `git@github.com:aerogear/aerogear-ios-http.git`)
+  - AeroGearHttp (from `https://github.com/aerogear/aerogear-ios-http.git`, branch
+    `master`)
   - OHHTTPStubs (= 4.7.1)
   - OHHTTPStubs/Swift (= 4.7.1)
   - ReachabilitySwift (= 2.3.3)
 
 EXTERNAL SOURCES:
   AeroGearHttp:
-    :git: git@github.com:aerogear/aerogear-ios-http.git
+    :branch: master
+    :git: https://github.com/aerogear/aerogear-ios-http.git
 
 CHECKOUT OPTIONS:
   AeroGearHttp:
     :commit: 20e954caa168ed8605ae05322fbfaf038fd79366
-    :git: git@github.com:aerogear/aerogear-ios-http.git
+    :git: https://github.com/aerogear/aerogear-ios-http.git
 
 SPEC CHECKSUMS:
   AeroGearHttp: f3e362a7f9e15abcd914d5c3df68999880b22f18
