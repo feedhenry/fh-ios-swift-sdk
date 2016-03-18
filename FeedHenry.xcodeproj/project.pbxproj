@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		482632C71C901F6A008FEB4A /* FHSyncClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 482632C21C901F6A008FEB4A /* FHSyncClientTest.m */; };
+		482632C81C901F6A008FEB4A /* FHSyncDataRecordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 482632C31C901F6A008FEB4A /* FHSyncDataRecordTest.m */; };
+		482632C91C901F6A008FEB4A /* FHSyncDatasetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 482632C41C901F6A008FEB4A /* FHSyncDatasetTest.m */; };
+		482632CA1C901F6A008FEB4A /* FHSyncPendingDataRecordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 482632C51C901F6A008FEB4A /* FHSyncPendingDataRecordTest.m */; };
+		482632CB1C901F6A008FEB4A /* FHSyncUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 482632C61C901F6A008FEB4A /* FHSyncUtilsTest.m */; };
+		482632CE1C90237C008FEB4A /* FHTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 482632CD1C90237C008FEB4A /* FHTestUtils.m */; };
 		483E82251C610CED00E7F198 /* FHSyncClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82161C610CED00E7F198 /* FHSyncClient.h */; };
 		483E82261C610CED00E7F198 /* FHSyncClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82171C610CED00E7F198 /* FHSyncClient.m */; };
 		483E82271C610CED00E7F198 /* FHSyncConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82181C610CED00E7F198 /* FHSyncConfig.h */; };
@@ -55,6 +61,14 @@
 
 /* Begin PBXFileReference section */
 		2CCDEB4630586564531FFBB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		482632C11C901F69008FEB4A /* FeedHenryTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FeedHenryTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		482632C21C901F6A008FEB4A /* FHSyncClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncClientTest.m; path = Sync/FHSyncClientTest.m; sourceTree = "<group>"; };
+		482632C31C901F6A008FEB4A /* FHSyncDataRecordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncDataRecordTest.m; path = Sync/FHSyncDataRecordTest.m; sourceTree = "<group>"; };
+		482632C41C901F6A008FEB4A /* FHSyncDatasetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncDatasetTest.m; path = Sync/FHSyncDatasetTest.m; sourceTree = "<group>"; };
+		482632C51C901F6A008FEB4A /* FHSyncPendingDataRecordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncPendingDataRecordTest.m; path = Sync/FHSyncPendingDataRecordTest.m; sourceTree = "<group>"; };
+		482632C61C901F6A008FEB4A /* FHSyncUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncUtilsTest.m; path = Sync/FHSyncUtilsTest.m; sourceTree = "<group>"; };
+		482632CC1C90237C008FEB4A /* FHTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHTestUtils.h; path = Sync/FHTestUtils.h; sourceTree = "<group>"; };
+		482632CD1C90237C008FEB4A /* FHTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHTestUtils.m; path = Sync/FHTestUtils.m; sourceTree = "<group>"; };
 		483E82161C610CED00E7F198 /* FHSyncClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncClient.h; path = Sync/FHSyncClient.h; sourceTree = "<group>"; };
 		483E82171C610CED00E7F198 /* FHSyncClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncClient.m; path = Sync/FHSyncClient.m; sourceTree = "<group>"; };
 		483E82181C610CED00E7F198 /* FHSyncConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncConfig.h; path = Sync/FHSyncConfig.h; sourceTree = "<group>"; };
@@ -91,6 +105,7 @@
 		48A8575D1C68E00D00EC00D4 /* InitRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitRequestTests.swift; sourceTree = "<group>"; };
 		48A8575F1C69271300EC00D4 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
 		48A857611C69296A00EC00D4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
+		48F1A9E71C98A120004E7B50 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		5058C5A4C0CE9C1DE925EAB6 /* Pods_FeedHenryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0BCE690717E5D4E64FCE9A /* Pods-FeedHenryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C51772EB394474A944897FA6 /* Pods-FeedHenryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +134,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		482632BE1C901CF6008FEB4A /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				482632C21C901F6A008FEB4A /* FHSyncClientTest.m */,
+				482632C31C901F6A008FEB4A /* FHSyncDataRecordTest.m */,
+				482632C41C901F6A008FEB4A /* FHSyncDatasetTest.m */,
+				482632C51C901F6A008FEB4A /* FHSyncPendingDataRecordTest.m */,
+				482632C61C901F6A008FEB4A /* FHSyncUtilsTest.m */,
+				482632CC1C90237C008FEB4A /* FHTestUtils.h */,
+				482632CD1C90237C008FEB4A /* FHTestUtils.m */,
+				482632C11C901F69008FEB4A /* FeedHenryTests-Bridging-Header.h */,
+			);
+			name = Sync;
+			sourceTree = "<group>";
+		};
 		483E82111C5FB9BE00E7F198 /* Cloud */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +241,7 @@
 				4878D5DD1B579965004518C4 /* FeedHenry.h */,
 				48A857611C69296A00EC00D4 /* FH.swift */,
 				4878D5DF1B579965004518C4 /* Info.plist */,
+				48F1A9E71C98A120004E7B50 /* module.modulemap */,
 			);
 			path = FeedHenry;
 			sourceTree = "<group>";
@@ -221,6 +252,7 @@
 				487708761C6D294E0009487A /* FHTests.swift */,
 				48723C031C86DEE5002F8669 /* Cloud */,
 				48723C021C86DEC7002F8669 /* Config */,
+				482632BE1C901CF6008FEB4A /* Sync */,
 				4878D5EB1B579965004518C4 /* Info.plist */,
 				48A8575F1C69271300EC00D4 /* fhconfig.plist */,
 			);
@@ -281,6 +313,7 @@
 				4878D5D71B579965004518C4 /* Headers */,
 				4878D5D81B579965004518C4 /* Resources */,
 				EF69C127F977187071DAAB75 /* Copy Pods Resources */,
+				48F1A9EB1C98B3FC004E7B50 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -412,6 +445,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		48F1A9EB1C98B3FC004E7B50 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp ${BUILD_ROOT}/Debug-iphonesimulator/FeedHenry.framework/Headers/FeedHenry-Swift.h ${SRCROOT}/FeedHenry/FeedHenry-Swift.h";
+		};
 		EF69C127F977187071DAAB75 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -471,10 +517,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				482632CA1C901F6A008FEB4A /* FHSyncPendingDataRecordTest.m in Sources */,
 				48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */,
 				48723C0B1C870455002F8669 /* CloudRequestTests.swift in Sources */,
+				482632C81C901F6A008FEB4A /* FHSyncDataRecordTest.m in Sources */,
 				487708771C6D294E0009487A /* FHTests.swift in Sources */,
+				482632C71C901F6A008FEB4A /* FHSyncClientTest.m in Sources */,
+				482632CB1C901F6A008FEB4A /* FHSyncUtilsTest.m in Sources */,
 				48A8575E1C68E00D00EC00D4 /* InitRequestTests.swift in Sources */,
+				482632CE1C90237C008FEB4A /* FHTestUtils.m in Sources */,
+				482632C91C901F6A008FEB4A /* FHSyncDatasetTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +562,8 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -558,6 +612,8 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -623,10 +679,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BC0BCE690717E5D4E64FCE9A /* Pods-FeedHenryTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = FeedHenryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feedhenry.FeedHenryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FeedHenryTests/FeedHenryTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -634,10 +693,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C51772EB394474A944897FA6 /* Pods-FeedHenryTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = FeedHenryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feedhenry.FeedHenryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FeedHenryTests/FeedHenryTests-Bridging-Header.h";
 			};
 			name = Release;
 		};

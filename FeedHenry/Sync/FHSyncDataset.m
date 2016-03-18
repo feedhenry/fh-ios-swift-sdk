@@ -278,13 +278,13 @@ static NSString *const kUIDMapping = @"uidMapping";
 - (FHSyncPendingDataRecord *)addPendingObject:(NSString *)uid
                                          data:(NSDictionary *)data
                                     AndAction:(NSString *)action {
-    //if (![FH isOnline]) {
+    if (![FH isOnline]) {
         [FHSyncUtils doNotifyWithDataId:self.datasetId
                                  config:self.syncConfig
                                     uid:uid
                                    code:OFFLINE_UPDATE_MESSAGE
                                 message:action];
-    //}
+    }
     FHSyncPendingDataRecord *pendingObj = [[FHSyncPendingDataRecord alloc] init];
     pendingObj.inFlight = NO;
     pendingObj.action = action;
@@ -330,7 +330,7 @@ static NSString *const kUIDMapping = @"uidMapping";
     FHSyncPendingDataRecord *previousePendingObj = nil;
     NSString *uid = pendingObj.uid;
     NSString *uidToSave = pendingObj.hashValue;
-DLog(@"updating local dataset for uid %@ - action = %@", uid, pendingObj.action);
+    DLog(@"updating local dataset for uid %@ - action = %@", uid, pendingObj.action);
     NSMutableDictionary *metadata = (self.syncMetaData)[uid];
     if (nil == metadata) {
         metadata = [[NSMutableDictionary alloc] init];
@@ -438,9 +438,9 @@ DLog(@"updating local dataset for uid %@ - action = %@", uid, pendingObj.action)
                                 uid:NULL
                                code:SYNC_STARTED_MESSAGE
                             message:NULL];
-    //if (![FH isOnline]) {
+    if (![FH isOnline]) {
         [self syncCompleteWithCode:@"offline"];
-    //} else {
+    } else {
         NSMutableDictionary *syncLoopParams = [NSMutableDictionary dictionary];
         syncLoopParams[@"fn"] = @"sync";
         syncLoopParams[@"dataset_id"] = self.datasetId;
@@ -512,27 +512,21 @@ DLog(@"updating local dataset for uid %@ - action = %@", uid, pendingObj.action)
                                     message:[ex description]];
             [self syncCompleteWithCode:ex.reason];
         }
-    //}
+    }
 }
 
 - (void)doCloudCall:(NSMutableDictionary *)params
          AndSuccess:(void (^)(FHResponse *success))sucornil
          AndFailure:(void (^)(FHResponse *failed))failornil {
-// TODO
-//    if (self.syncConfig.hasCustomSync) {
-//        [FH performActRequest:self.datasetId
-//                     WithArgs:params
-//                   AndSuccess:sucornil
-//                   AndFailure:failornil];
-//    } else {
-//        NSString *path = [NSString stringWithFormat:@"/mbaas/sync/%@", self.datasetId];
-//        [FH performCloudRequest:path
-//                     WithMethod:@"POST"
-//                     AndHeaders:nil
-//                        AndArgs:params
-//                     AndSuccess:sucornil
-//                     AndFailure:failornil];
-//    }
+
+    NSString *path = [NSString stringWithFormat:@"/mbaas/sync/%@", self.datasetId];
+    [FH performCloudRequest:path method:@"POST" headers:nil args:params completionHandler:^(FHResponse* response, NSError* error) {
+        if (error != nil) { // response contains error
+            failornil(response);
+            return;
+        }
+        sucornil(response);
+    }];
 }
 
 - (void)syncRequestSuccess:(NSMutableDictionary *)resData {
