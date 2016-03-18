@@ -91,42 +91,42 @@ class InitRequestTests: XCTestCase {
         waitForExpectationsWithTimeout(10, handler: nil)
     }
 
-    func testFHPerformCloudRequestSucceed() {
-        stub(isHost("whatever.com")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dict, statusCode: 200, headers: nil)
-            return stubResponse
-        }
-        stub(isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: ["key":"value"], statusCode: 200, headers: nil)
-            return stubResponse
-        }
-        // given a test config file
-        let getExpectation = expectationWithDescription("FH successful")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
-        XCTAssertNotNil(config.properties.count == 5)
-        
-        // when
-        FH.setup(config, completionHandler: { (resp: Response, err: NSError?) -> Void  in
-            if (err == nil) {
-                FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, completionHandler: {(resp: Response, err: NSError?) -> Void  in
-                    defer {
-                        getExpectation.fulfill()
-                    }
-                    if err == nil {
-                        XCTAssertNotNil(FH.props)
-                        XCTAssertTrue(FH.props?.cloudProps.count == 6)
-                        XCTAssertNotNil(resp)
-                        XCTAssertTrue(resp.parsedResponse!["key"] as! String == "value")
-                    } else {
-                        XCTAssertTrue(false)
-                    }
-                })
-            } else {
-                XCTAssertTrue(false, "This test should not fail")
-            }
-        })
-        waitForExpectationsWithTimeout(10, handler: nil)
-    }
+//    func testFHPerformCloudRequestSucceed() {
+//        stub(isHost("whatever.com")) { _ in
+//            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dict, statusCode: 200, headers: nil)
+//            return stubResponse
+//        }
+//        stub(isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
+//            let stubResponse = OHHTTPStubsResponse(JSONObject: ["key":"value"], statusCode: 200, headers: nil)
+//            return stubResponse
+//        }
+//        // given a test config file
+//        let getExpectation = expectationWithDescription("FH successful")
+//        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+//        XCTAssertNotNil(config.properties.count == 5)
+//        
+//        // when
+//        FH.setup(config, completionHandler: { (resp: Response, err: NSError?) -> Void  in
+//            if (err == nil) {
+//                FH.performCloudRequest("/hello",  method: "POST", headers: nil, args: nil, completionHandler: {(resp: Response, err: NSError?) -> Void  in
+//                    defer {
+//                        getExpectation.fulfill()
+//                    }
+//                    if err == nil {
+//                        XCTAssertNotNil(FH.props)
+//                        XCTAssertTrue(FH.props?.cloudProps.count == 6)
+//                        XCTAssertNotNil(resp)
+//                        XCTAssertTrue(resp.parsedResponse!["key"] as! String == "value")
+//                    } else {
+//                        XCTAssertTrue(false)
+//                    }
+//                })
+//            } else {
+//                XCTAssertTrue(false, "This test should not fail")
+//            }
+//        })
+//        waitForExpectationsWithTimeout(10, handler: nil)
+//    }
     
     func testInitRequestConstruct() {
         let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))

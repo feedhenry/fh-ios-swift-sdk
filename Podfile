@@ -10,4 +10,5 @@ pod 'ReachabilitySwift', '2.3.3'
 target 'FeedHenryTests' do
     pod 'OHHTTPStubs', '4.7.1'
     pod 'OHHTTPStubs/Swift', '4.7.1'
+    pod 'OCMock', '3.2'
 end

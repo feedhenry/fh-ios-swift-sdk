@@ -36,7 +36,6 @@ public struct CloudProps {
     /// Computed propertie retrieved from ```setup``` cloud init call. 
     /// It represents the Id of the handshake between client/cloud app.
     /// The trackId is stored in local storage.
-    // TODO? replace by DataManager
     public var trackId: String? {
         get {
             return dataManager.stringForKey("init")

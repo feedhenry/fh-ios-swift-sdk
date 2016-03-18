@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-#import <FeedHenry/FeedHenry-Swift.h>
-//#import "FH.h"
-#import "FHSyncConfig.h"
+@class FHResponse;
+@class FH;
 #import "FHSyncNotificationMessage.h"
-#import "FHSyncDelegate.h"
 #import "FHSyncDataset.h"
 /**
  The sync client is part of the FeedHenry data sync framework. It provides a mechanism to manage

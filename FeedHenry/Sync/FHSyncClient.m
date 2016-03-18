@@ -16,6 +16,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 
+#import <FeedHenry/FeedHenry-Swift.h>
 #import "FHSyncClient.h"
 #import "FHSyncUtils.h"
 #import "FHSyncPendingDataRecord.h"
@@ -248,28 +249,33 @@
 - (void)listCollisionWithCallbacksForDataId:(NSString *)dataId
                                  AndSuccess:(void (^)(FHResponse *success))sucornil
                                  AndFailure:(void (^)(FHResponse *failed))failornil {
-// TODO
-//    [FH performActRequest:dataId
-//                 WithArgs:@{
-//                     @"fn" : @"listCollisions"
-//                 }
-//               AndSuccess:sucornil
-//               AndFailure:failornil];
+    NSString *path = [NSString stringWithFormat:@"/mbaas/sync/%@", dataId];
+    NSDictionary* params = @{ @"fn" : @"listCollisions"};
+    [FH performCloudRequest:path method:@"POST" headers:nil args:params completionHandler:^(FHResponse* response, NSError* error) {
+        if (error != nil) { // response contains error
+            failornil(response);
+            return;
+        }
+        sucornil(response);
+    }];
 }
 
 - (void)removeCollisionWithCallbacksForDataId:(NSString *)dataId
                                          hash:(NSString *)collisionHash
                                    AndSuccess:(void (^)(FHResponse *success))sucornil
                                    AndFailure:(void (^)(FHResponse *failed))failornil {
-
-// TODO
-//    [FH performActRequest:dataId
-//                 WithArgs:@{
-//                     @"fn" : @"removeCollisions",
-//                     @"hash" : collisionHash
-//                 }
-//               AndSuccess:sucornil
-//               AndFailure:failornil];
+    NSString *path = [NSString stringWithFormat:@"/mbaas/sync/%@", dataId];
+    NSDictionary* params = @{
+                             @"fn" : @"removeCollisions",
+                             @"hash" : collisionHash
+                             };
+    [FH performCloudRequest:path method:@"POST" headers:nil args:params completionHandler:^(FHResponse* response, NSError* error) {
+        if (error != nil) { // response contains error
+            failornil(response);
+            return;
+        }
+        sucornil(response);
+    }];
 }
 
 - (void)forceSync:(NSString*)dataSetId {

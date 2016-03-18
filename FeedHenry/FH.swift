@@ -34,7 +34,8 @@ public enum HTTPMethod: String {
 This class provides static methods to initialize the library and create new
 instances of all the API request objects.
 */
-public class FH {
+@objc(FH)
+public class FH: NSObject {
     /// Private field to be used to know id FH.init was done successfully. it replaces `ready` boolean in ObjC FH SDK
     static var props: CloudProps?
 
@@ -44,8 +45,8 @@ public class FH {
      
      - Returns true if the device is online
      */
-    public static var isOnline: Bool? {
-        guard let reachability = self.reachability else {return nil}
+    public static var isOnline: Bool {
+        guard let reachability = self.reachability else {return false}
         return reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN()
     }
     
@@ -90,7 +91,6 @@ public class FH {
         setup(Config(), completionHandler: completionHandler)
     }
     
-    // TODO: remove?
     /**
     Create a new instance of CloudRequest class and execute it immediately
     with the completionHandler closure. The request runs asynchronously.
@@ -101,10 +101,11 @@ public class FH {
     - Param args: The request body data. Can be nil. Defaulted to nil.
     - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
     */
-    public class func performCloudRequest(path: String,  method: String, headers: [String:String]?, args: [String: String]?, completionHandler: CompletionBlock) -> Void {
+    @objc
+    public class func performCloudRequest(path: String,  method: String, headers: NSDictionary?, args: NSDictionary?, completionHandler: CompletionBlock) -> Void {
         guard let httpMethod = HTTPMethod(rawValue: method) else {return}
         assert(props != nil, "FH init must be done prior th a Cloud call")
-        let cloudRequest = CloudRequest(props: self.props!, path: path, method: httpMethod, args: args, headers: headers)
+        let cloudRequest = CloudRequest(props: self.props!, path: path, method: httpMethod, args: args as? [String : AnyObject], headers: headers as? [String : String])
         cloudRequest.exec(completionHandler)
     }
     

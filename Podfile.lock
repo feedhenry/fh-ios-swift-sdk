@@ -1,5 +1,6 @@
 PODS:
   - AeroGearHttp (0.5.1)
+  - OCMock (3.2)
   - OHHTTPStubs (4.7.1):
     - OHHTTPStubs/Default (= 4.7.1)
   - OHHTTPStubs/Core (4.7.1)
@@ -20,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - AeroGearHttp (from `https://github.com/aerogear/aerogear-ios-http.git`, branch
     `master`)
+  - OCMock (= 3.2)
   - OHHTTPStubs (= 4.7.1)
   - OHHTTPStubs/Swift (= 4.7.1)
   - ReachabilitySwift (= 2.3.3)
@@ -36,6 +38,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AeroGearHttp: f3e362a7f9e15abcd914d5c3df68999880b22f18
+  OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
 
