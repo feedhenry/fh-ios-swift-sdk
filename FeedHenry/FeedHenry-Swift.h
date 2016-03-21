@@ -87,6 +87,7 @@ typedef int swift_int3  __attribute__((__ext_vector_type__(3)));
 typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #if defined(__has_feature) && __has_feature(modules)
 @import ObjectiveC;
+@import UIKit;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -94,6 +95,8 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 @class FHResponse;
 @class NSError;
 @class NSDictionary;
+@class UIApplication;
+@class NSArray;
 
 SWIFT_CLASS_NAMED("FH")
 @interface FH : NSObject
@@ -141,6 +144,11 @@ SWIFT_CLASS_NAMED("FH")
 ///
 /// <ul><li>Param path: The path of the cloud API</li><li>Param method: The HTTP request method to use for the request. Defaulted to .POST.</li><li>Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.</li><li>Param args: The request body data. Can be nil. Defaulted to nil.</li><li>Param completionHandler: Closure to be executed as a callback of http asynchronous call.</li></ul>
 + (void)performCloudRequest:(NSString * __nonnull)path method:(NSString * __nonnull)method headers:(NSDictionary * __nullable)headers args:(NSDictionary * __nullable)args completionHandler:(void (^ __nonnull)(FHResponse * __nonnull, NSError * __nullable))completionHandler;
++ (void)pushEnabledForRemoteNotification:(UIApplication * __nonnull)aaplication;
++ (void)setPushAlias:(NSString * __nonnull)alias success:(void (^ __nonnull)(FHResponse * __nonnull))success error:(void (^ __nonnull)(FHResponse * __nonnull))error;
++ (void)setPushCategories:(NSArray * __nonnull)categories success:(void (^ __nonnull)(FHResponse * __nonnull))success error:(void (^ __nonnull)(FHResponse * __nonnull))error;
++ (void)sendMetricsWhenAppLaunched:(NSDictionary * __nullable)launchOptions;
++ (void)sendMetricsWhenAppAwoken:(UIApplicationState)applicationState userInfo:(NSDictionary * __nonnull)userInfo;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
