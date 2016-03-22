@@ -19,7 +19,6 @@
 #import "FHJSON.h"
 #import "FHSyncPendingDataRecord.h"
 #import "FHSyncDataRecord.h"
-//#import "FH.h"
 #import "FHDefines.h"
 #import "FHSyncNotificationMessage.h"
 #import <FeedHenry/FeedHenry-Swift.h>
@@ -61,10 +60,10 @@ static NSString *const kUIDMapping = @"uidMapping";
 }
 
 - (id)initFromFileWithDataId:(NSString *)dataId error:(NSError *)error {
-
+    
     NSString *data =
-        [FHSyncUtils loadDataFromFile:[dataId stringByAppendingPathExtension:kStorageFilePath]
-                                error:error];
+    [FHSyncUtils loadDataFromFile:[dataId stringByAppendingPathExtension:kStorageFilePath]
+                            error:error];
     if (nil != data) {
         return [FHSyncDataset objectFromJSONString:data];
     } else {
@@ -89,7 +88,7 @@ static NSString *const kUIDMapping = @"uidMapping";
         dataDict[key] = [obj JSONData];
     }];
     dict[kDataRecords] = dataDict;
-
+    
     if (nil != self.syncLoopStart) {
         dict[kSyncLoopStart] = @([self.syncLoopStart timeIntervalSince1970]);
     }
@@ -98,7 +97,7 @@ static NSString *const kUIDMapping = @"uidMapping";
     }
     dict[kAck] = self.acknowledgements;
     if (self.hashValue != nil) {
-      dict[kHashValue] = self.hashValue;
+        dict[kHashValue] = self.hashValue;
     }
     dict[kUIDMapping] = self.uidMapping;
     return dict;
@@ -112,7 +111,7 @@ static NSString *const kUIDMapping = @"uidMapping";
 
 - (void)saveToFile:(NSError *)error {
     NSString *jsonStr = [self JSONString];
-    DLog(@"content = %@", jsonStr);
+    // DLog(@"content = %@", jsonStr);
     @synchronized(self) {
         [FHSyncUtils saveData:jsonStr
                        toFile:[self.datasetId stringByAppendingPathExtension:kStorageFilePath]
@@ -128,14 +127,15 @@ static NSString *const kUIDMapping = @"uidMapping";
     }
 }
 
-- (void)saveToFileAndNofiyComplete:(NSDictionary *)info {
-    NSError *error = nil;
+- (void)saveToFileAndNofiy:(NSDictionary *)info {
+    NSError* error = nil;
     [self saveToFile:error];
-    NSString *message = info[@"message"];
+    NSString* message = info[@"message"];
+    NSString* notification = info[@"notification"];
     [FHSyncUtils doNotifyWithDataId:self.datasetId
                              config:self.syncConfig
                                 uid:self.hashValue
-                               code:SYNC_COMPLETE_MESSAGE
+                               code:notification
                             message:message];
 }
 
@@ -171,17 +171,17 @@ static NSString *const kUIDMapping = @"uidMapping";
     }
     if (jsonObj[kSyncLoopStart]) {
         instance.syncLoopStart =
-            [NSDate dateWithTimeIntervalSince1970:[jsonObj[kSyncLoopStart] doubleValue]];
+        [NSDate dateWithTimeIntervalSince1970:[jsonObj[kSyncLoopStart] doubleValue]];
     }
     if (jsonObj[kSyncLoopEnd]) {
         instance.syncLoopEnd =
-            [NSDate dateWithTimeIntervalSince1970:[jsonObj[kSyncLoopEnd] doubleValue]];
+        [NSDate dateWithTimeIntervalSince1970:[jsonObj[kSyncLoopEnd] doubleValue]];
     }
     if (jsonObj[kAck]) {
         instance.acknowledgements = jsonObj[kAck];
     }
     if (jsonObj[kUIDMapping]) {
-      instance.uidMapping = [NSMutableDictionary dictionaryWithDictionary:jsonObj[kUIDMapping]];
+        instance.uidMapping = [NSMutableDictionary dictionaryWithDictionary:jsonObj[kUIDMapping]];
     }
     instance.initialised = YES;
     return instance;
@@ -214,8 +214,8 @@ static NSString *const kUIDMapping = @"uidMapping";
 {
     NSString* dataUid = oldOrNewUid;
     if (self.uidMapping[dataUid]) {
-      //incase we are receiving the old temp uid, translate it ot the new one
-      dataUid = self.uidMapping[dataUid];
+        //incase we are receiving the old temp uid, translate it ot the new one
+        dataUid = self.uidMapping[dataUid];
     }
     return dataUid;
 }
@@ -249,7 +249,7 @@ static NSString *const kUIDMapping = @"uidMapping";
 - (NSDictionary *)updateWithUID:(NSString *)uid data:(NSDictionary *)data {
     NSString* dataUid = [self getReadUID:uid];
     [self addPendingObject:dataUid data:data AndAction:@"update"];
-
+    
     FHSyncDataRecord *rec = (self.dataRecords)[dataUid];
     if (rec) {
         NSMutableDictionary *ret = [NSMutableDictionary dictionary];
@@ -288,12 +288,12 @@ static NSString *const kUIDMapping = @"uidMapping";
     FHSyncPendingDataRecord *pendingObj = [[FHSyncPendingDataRecord alloc] init];
     pendingObj.inFlight = NO;
     pendingObj.action = action;
-
+    
     if (data) {
         FHSyncDataRecord *postdata = [[FHSyncDataRecord alloc] initWithData:data];
         pendingObj.postData = postdata;
     }
-
+    
     if ([action isEqualToString:@"create"]) {
         //use the hashvalue of the pending record as the uid here, as the hashvalue will returned later by the cloud code
         //when the data is synced. This way we can link the old uid with the new uid.
@@ -313,7 +313,7 @@ static NSString *const kUIDMapping = @"uidMapping";
 - (void)storePendingObj:(FHSyncPendingDataRecord *)obj {
     (self.pendingDataRecords)[obj.hashValue] = obj;
     [self updateDatasetFromLocal:obj];
-
+    
     if (self.syncConfig.autoSyncLocalUpdates) {
         self.syncLoopPending = YES;
     }
@@ -336,10 +336,10 @@ static NSString *const kUIDMapping = @"uidMapping";
         metadata = [[NSMutableDictionary alloc] init];
         [self.syncMetaData setObject:metadata forKey:uid];
     }
-
+    
     FHSyncDataRecord *existing = (self.dataRecords)[uid];
     id fromPending = metadata[@"fromPending"];
-
+    
     if ([pendingObj.action isEqualToString:@"create"]) {
         if (nil != existing) {
             DLog(@"dataset already exists for uid for create :: %@", existing);
@@ -352,7 +352,7 @@ static NSString *const kUIDMapping = @"uidMapping";
         }
         (self.dataRecords)[uid] = [[FHSyncDataRecord alloc] init];
     }
-
+    
     if ([pendingObj.action isEqualToString:@"update"]) {
         if (nil != existing) {
             if (fromPending && [fromPending boolValue]) {
@@ -362,26 +362,26 @@ static NSString *const kUIDMapping = @"uidMapping";
                 metadata[@"previousPendingUid"] = previousePendingUID;
                 previousePendingObj = (self.pendingDataRecords)[previousePendingUID];
                 if (nil != previousePendingObj) {
-                  if (!previousePendingObj.inFlight) {
-                    DLog(@"existing pre-flight pending record = %@", previousePendingObj);
-                    // We are trying to perform an update on an existing pending record
-                    // modify the original record to have the latest value and delete the pending
-                    // update
-                    previousePendingObj.postData = pendingObj.postData;
-                    [self.pendingDataRecords removeObjectForKey:pendingObj.hashValue];
-                    uidToSave = previousePendingUID;
-                  } else {
-                    //we are performing changes to a pending record which is inFlight. Until the status of this pending record is resolved,
-                    //we should not submit this pending record to the cloud. Mark it as delayed.
-                    pendingObj.delayed = YES;
-                    pendingObj.waitingFor = [previousePendingObj hashValue];
-                  }
-
+                    if (!previousePendingObj.inFlight) {
+                        DLog(@"existing pre-flight pending record = %@", previousePendingObj);
+                        // We are trying to perform an update on an existing pending record
+                        // modify the original record to have the latest value and delete the pending
+                        // update
+                        previousePendingObj.postData = pendingObj.postData;
+                        [self.pendingDataRecords removeObjectForKey:pendingObj.hashValue];
+                        uidToSave = previousePendingUID;
+                    } else {
+                        //we are performing changes to a pending record which is inFlight. Until the status of this pending record is resolved,
+                        //we should not submit this pending record to the cloud. Mark it as delayed.
+                        pendingObj.delayed = YES;
+                        pendingObj.waitingFor = [previousePendingObj hashValue];
+                    }
+                    
                 }
             }
         }
     }
-
+    
     if ([pendingObj.action isEqualToString:@"delete"]) {
         if (nil != existing) {
             if (fromPending && [fromPending boolValue]) {
@@ -439,7 +439,7 @@ static NSString *const kUIDMapping = @"uidMapping";
                                code:SYNC_STARTED_MESSAGE
                             message:NULL];
     if (![FH isOnline]) {
-        [self syncCompleteWithCode:@"offline"];
+        [self syncCompleteWithCode:@"offline" syncNotification:SYNC_FAILED_MESSAGE];
     } else {
         NSMutableDictionary *syncLoopParams = [NSMutableDictionary dictionary];
         syncLoopParams[@"fn"] = @"sync";
@@ -453,12 +453,12 @@ static NSString *const kUIDMapping = @"uidMapping";
             syncLoopParams[@"dataset_hash"] = self.hashValue;
         }
         syncLoopParams[@"acknowledgements"] = self.acknowledgements;
-
+        
         NSMutableArray *pendingArray = [NSMutableArray array];
         [self.pendingDataRecords enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             FHSyncPendingDataRecord *pendingRecord = (FHSyncPendingDataRecord *)obj;
             if (!pendingRecord.inFlight && !pendingRecord.crashed && !pendingRecord.delayed) {
-
+                
                 pendingRecord.inFlight = YES;
                 pendingRecord.inFlightDate = [NSDate date];
                 NSMutableDictionary *pendingJSON = [pendingRecord JSONData];
@@ -466,51 +466,41 @@ static NSString *const kUIDMapping = @"uidMapping";
                 [pendingArray addObject:pendingJSON];
             }
         }];
-
+        
         syncLoopParams[@"pending"] = pendingArray;
         if ([pendingArray count] > 0) {
             DLog(@"Starting sync loop - global hash = %@ :: params = %@", self.hashValue,
-                  syncLoopParams);
+                 syncLoopParams);
         }
-
+        
         @try {
             [self doCloudCall:syncLoopParams
-                AndSuccess:^(FHResponse *response) {
-
-                    NSMutableDictionary *resData = [[response parsedResponse] mutableCopy];
-                    if (resData[@"records"]) {
-                        NSMutableDictionary *recordsCopy = [resData[@"records"] mutableCopy];
-                        resData[@"records"] = recordsCopy;
-                    }
-                    [self syncRequestSuccess:resData];
-
-                }
-                AndFailure:^(FHResponse *response) {
-                    // The AJAX call failed to complete succesfully, so the state of the current
-                    // pending updates is unknown
-                    // Mark them as "crashed". The next time a syncLoop completets successfully, we
-                    // will review the crashed
-                    // records to see if we can determine their current state.
-                    [self markInFlightAsCrashed];
-                    NSString* message = response.error.localizedDescription;
-
-                    DLog(@"syncLoop failed : msg = %@", message);
-                    [FHSyncUtils doNotifyWithDataId:self.datasetId
-                                             config:self.syncConfig
-                                                uid:NULL
-                                               code:SYNC_FAILED_MESSAGE
-                                            message:message];
-                    [self syncCompleteWithCode:message];
-                }];
+                   AndSuccess:^(FHResponse *response) {
+                       
+                       NSMutableDictionary *resData = [[response parsedResponse] mutableCopy];
+                       if (resData[@"records"]) {
+                           NSMutableDictionary *recordsCopy = [resData[@"records"] mutableCopy];
+                           resData[@"records"] = recordsCopy;
+                       }
+                       [self syncRequestSuccess:resData];
+                       
+                   }
+                   AndFailure:^(FHResponse *response) {
+                       // The AJAX call failed to complete succesfully, so the state of the current
+                       // pending updates is unknown
+                       // Mark them as "crashed". The next time a syncLoop completets successfully, we
+                       // will review the crashed
+                       // records to see if we can determine their current state.
+                       [self markInFlightAsCrashed];
+                       NSString* message = response.error.localizedDescription;
+                       
+                       DLog(@"syncLoop failed : msg = %@", message);
+                       [self syncCompleteWithCode:message syncNotification:SYNC_FAILED_MESSAGE];
+                   }];
         }
         @catch (NSException *ex) {
             DLog(@"Error performing sync - %@", ex);
-            [FHSyncUtils doNotifyWithDataId:self.datasetId
-                                     config:self.syncConfig
-                                        uid:NULL
-                                       code:SYNC_FAILED_MESSAGE
-                                    message:[ex description]];
-            [self syncCompleteWithCode:ex.reason];
+            [self syncCompleteWithCode:[ex description] syncNotification:SYNC_FAILED_MESSAGE];
         }
     }
 }
@@ -518,7 +508,7 @@ static NSString *const kUIDMapping = @"uidMapping";
 - (void)doCloudCall:(NSMutableDictionary *)params
          AndSuccess:(void (^)(FHResponse *success))sucornil
          AndFailure:(void (^)(FHResponse *failed))failornil {
-
+    
     NSString *path = [NSString stringWithFormat:@"/mbaas/sync/%@", self.datasetId];
     [FH performCloudRequest:path method:@"POST" headers:nil args:params completionHandler:^(FHResponse* response, NSError* error) {
         if (error != nil) { // response contains error
@@ -530,14 +520,14 @@ static NSString *const kUIDMapping = @"uidMapping";
 }
 
 - (void)syncRequestSuccess:(NSMutableDictionary *)resData {
-
+    
     // Check to see if any previously crashed inflight records can now be resolved
     [self updateCrashedInFlightFromNewData:resData];
     
     [self updateDelayedFromNewData:resData];
     
     [self updateMetaFromNewData:resData];
-
+    
     if (resData[@"updates"]) {
         NSMutableArray *ack = [NSMutableArray array];
         NSDictionary *updates = resData[@"updates"];
@@ -554,53 +544,53 @@ static NSString *const kUIDMapping = @"uidMapping";
             acknowledgements:ack];
         self.acknowledgements = ack;
     }
-
+    
     if (resData[@"hash"] && ![resData[@"hash"] isEqualToString:self.hashValue]) {
         NSString *remoteHash = resData[@"hash"];
         DLog(@"Local dataset stale - syncing records :: local hash= %@ - remoteHash = %@",
-              self.hashValue, remoteHash);
+             self.hashValue, remoteHash);
         // Different hash value returned - Sync individual records
         [self syncRecords];
     } else {
         DLog(@"Local dataset up to date");
-        [self syncCompleteWithCode:@"online"];
+        [self syncCompleteWithCode:@"online" syncNotification:SYNC_COMPLETE_MESSAGE];
     }
 }
 
 - (void) checkUidChanges:(NSDictionary*) appliedUpdates
 {
-  if (appliedUpdates && [appliedUpdates count] > 0) {
-    NSMutableDictionary* newUids = [NSMutableDictionary dictionary];
-    [appliedUpdates enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * stop) {
-      NSString* action = obj[@"action"];
-      if ([action isEqualToString:@"create"]) {
-        //we are receving the results of creations, at this point, we will have the old uid(the hash) and the real uid generated by the cloud
-        NSString* newUid = obj[@"uid"];
-        NSString* oldUid = obj[@"hash"];
-        //remember the mapping
-        self.uidMapping[oldUid] = newUid;
-        newUids[oldUid] = newUid;
-        //we should update the data records to make sure they are now using the new UID
-        FHSyncDataRecord* dataRecord = self.dataRecords[oldUid];
-        if (dataRecord) {
-          self.dataRecords[newUid] = dataRecord;
-          [self.dataRecords removeObjectForKey:oldUid];
-        }
-      }
-    }];
-    if ([newUids count] > 0) {
-        //we need to check all existing pendingRecords and update their UIDs if they are still the old values
-
-        [self.pendingDataRecords enumerateKeysAndObjectsUsingBlock:^(id  key, id  obj, BOOL * stop) {
-            FHSyncPendingDataRecord* pendingRecord = (FHSyncPendingDataRecord*)obj;
-            NSString* pendingRecordUid = pendingRecord.uid;
-            NSString* newUID = newUids[pendingRecordUid];
-            if (newUID) {
-                pendingRecord.uid = newUID;
+    if (appliedUpdates && [appliedUpdates count] > 0) {
+        NSMutableDictionary* newUids = [NSMutableDictionary dictionary];
+        [appliedUpdates enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * stop) {
+            NSString* action = obj[@"action"];
+            if ([action isEqualToString:@"create"]) {
+                //we are receving the results of creations, at this point, we will have the old uid(the hash) and the real uid generated by the cloud
+                NSString* newUid = obj[@"uid"];
+                NSString* oldUid = obj[@"hash"];
+                //remember the mapping
+                self.uidMapping[oldUid] = newUid;
+                newUids[oldUid] = newUid;
+                //we should update the data records to make sure they are now using the new UID
+                FHSyncDataRecord* dataRecord = self.dataRecords[oldUid];
+                if (dataRecord) {
+                    self.dataRecords[newUid] = dataRecord;
+                    [self.dataRecords removeObjectForKey:oldUid];
+                }
             }
         }];
+        if ([newUids count] > 0) {
+            //we need to check all existing pendingRecords and update their UIDs if they are still the old values
+            
+            [self.pendingDataRecords enumerateKeysAndObjectsUsingBlock:^(id  key, id  obj, BOOL * stop) {
+                FHSyncPendingDataRecord* pendingRecord = (FHSyncPendingDataRecord*)obj;
+                NSString* pendingRecordUid = pendingRecord.uid;
+                NSString* newUID = newUids[pendingRecordUid];
+                if (newUID) {
+                    pendingRecord.uid = newUID;
+                }
+            }];
+        }
     }
-  }
 }
 
 - (void) updateDelayedFromNewData:(NSDictionary*) res
@@ -647,7 +637,7 @@ static NSString *const kUIDMapping = @"uidMapping";
         NSString *hash = [(FHSyncDataRecord *)obj hashValue];
         clientRecs[uid] = hash;
     }];
-
+    
     NSMutableDictionary *syncRecsParams = [NSMutableDictionary dictionary];
     syncRecsParams[@"fn"] = @"syncRecords";
     syncRecsParams[@"dataset_id"] = self.datasetId;
@@ -656,23 +646,18 @@ static NSString *const kUIDMapping = @"uidMapping";
         syncRecsParams[@"meta_data"] = self.customMetaData;
     }
     syncRecsParams[@"clientRecs"] = clientRecs;
-
+    
     DLog(@"syncRecParams :: %@", [syncRecsParams JSONString]);
-
+    
     [self doCloudCall:syncRecsParams
-        AndSuccess:^(FHResponse *response) {
-            NSMutableDictionary *resData = (NSMutableDictionary *)CFBridgingRelease(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)[response parsedResponse], kCFPropertyListMutableContainers));
-            [self syncRecordsSuccess:resData];
-        }
-        AndFailure:^(FHResponse *response) {
-            DLog(@"syncRecords failed : %@", [[response parsedResponse] JSONString]);
-            [FHSyncUtils doNotifyWithDataId:self.datasetId
-                                     config:self.syncConfig
-                                        uid:NULL
-                                       code:SYNC_FAILED_MESSAGE
-                                    message:[[response parsedResponse] JSONString]];
-            [self syncCompleteWithCode:[[response parsedResponse] JSONString]];
-        }];
+           AndSuccess:^(FHResponse *response) {
+               NSMutableDictionary *resData = (NSMutableDictionary *)CFBridgingRelease(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)[response parsedResponse], kCFPropertyListMutableContainers));
+               [self syncRecordsSuccess:resData];
+           }
+           AndFailure:^(FHResponse *response) {
+               DLog(@"syncRecords failed : %@", [[response parsedResponse] JSONString]);
+               [self syncCompleteWithCode:[[response parsedResponse] JSONString] syncNotification:SYNC_FAILED_MESSAGE];
+           }];
 }
 
 - (void)syncRecordsSuccess:(NSMutableDictionary *)resData {
@@ -682,53 +667,53 @@ static NSString *const kUIDMapping = @"uidMapping";
     NSDictionary *dataCreated = resData[@"create"];
     if (nil != dataCreated) {
         [dataCreated enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-              FHSyncDataRecord *rec = [[FHSyncDataRecord alloc] initWithData:obj[@"data"]];
-              rec.hashValue = obj[@"hash"];
-              (self.dataRecords)[key] = rec;
-              [FHSyncUtils doNotifyWithDataId:self.datasetId
-                                       config:self.syncConfig
-                                          uid:key
-                                         code:DELTA_RECEIVED_MESSAGE
-                                      message:@"create"];
+            FHSyncDataRecord *rec = [[FHSyncDataRecord alloc] initWithData:obj[@"data"]];
+            rec.hashValue = obj[@"hash"];
+            (self.dataRecords)[key] = rec;
+            [FHSyncUtils doNotifyWithDataId:self.datasetId
+                                     config:self.syncConfig
+                                        uid:key
+                                       code:DELTA_RECEIVED_MESSAGE
+                                    message:@"create"];
         }];
     }
-
+    
     NSDictionary *dataUpdated = resData[@"update"];
     if (nil != dataUpdated) {
         [dataUpdated enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             FHSyncDataRecord *rec = (self.dataRecords)[key];
             if (rec) {
-              rec.data = obj[@"data"];
-              rec.hashValue = obj[@"hash"];
-              (self.dataRecords)[key] = rec;
-              [FHSyncUtils doNotifyWithDataId:self.datasetId
-                                       config:self.syncConfig
-                                          uid:key
-                                         code:DELTA_RECEIVED_MESSAGE
-                                      message:@"update"];
-            }
-        }];
-    }
-
-    NSDictionary *deleted = resData[@"delete"];
-    if (nil != deleted) {
-        [deleted enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                [self.dataRecords removeObjectForKey:key];
+                rec.data = obj[@"data"];
+                rec.hashValue = obj[@"hash"];
+                (self.dataRecords)[key] = rec;
                 [FHSyncUtils doNotifyWithDataId:self.datasetId
                                          config:self.syncConfig
                                             uid:key
                                            code:DELTA_RECEIVED_MESSAGE
-                                        message:@"delete"];
+                                        message:@"update"];
+            }
         }];
     }
-
+    
+    NSDictionary *deleted = resData[@"delete"];
+    if (nil != deleted) {
+        [deleted enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [self.dataRecords removeObjectForKey:key];
+            [FHSyncUtils doNotifyWithDataId:self.datasetId
+                                     config:self.syncConfig
+                                        uid:key
+                                       code:DELTA_RECEIVED_MESSAGE
+                                    message:@"delete"];
+        }];
+    }
+    
     if (resData[@"hash"]) {
         self.hashValue = resData[@"hash"];
     }
-    [self syncCompleteWithCode:@"online"];
+    [self syncCompleteWithCode:@"online" syncNotification:SYNC_COMPLETE_MESSAGE];
 }
 
-/* 
+/*
  If the records returned from syncRecord request contains elements in pendings,
  it means there are local changes that haven't been applied to the cloud yet.
  Remove those records from the response to make sure local data will not be
@@ -790,42 +775,43 @@ static NSString *const kUIDMapping = @"uidMapping";
  However, if the device is offline, this function may get called from the background thread. But the
  background thread could be kill by the os
  as soon as the function finishes, the NSTimer instance will not be executed.
-
+ 
  So, we always put the NSTimer instance on the main thread, which means the startSyncTaskWithTimer
  will be called from the main thread.Then in that
  function we invoke the sync task on a background thread and we always do the data saving on the
  background thread.
  */
-- (void)syncCompleteWithCode:(NSString *)code {
+- (void)syncCompleteWithCode:(NSString *)code syncNotification:(NSString*)notification {
     NSString* message = code?code: @"unknown error";
     self.syncRunning = NO;
     self.syncLoopEnd = [NSDate date];
     BOOL isMainThread = [NSThread isMainThread];
     if (isMainThread) {
-        [self performSelectorInBackground:@selector(saveToFileAndNofiyComplete:)
+        [self performSelectorInBackground:@selector(saveToFileAndNofiy:)
                                withObject:@{
-                                   @"message" : message
-                               }];
+                                            @"message" : message,
+                                            @"notification": notification
+                                            }];
     } else {
-        [self saveToFileAndNofiyComplete:@{ @"message" : message }];
+        [self saveToFileAndNofiy:@{ @"message" : message, @"notification": notification}];
     }
 }
 - (void)updateCrashedInFlightFromNewData:(NSDictionary *)remoteData {
     NSDictionary *updateNotifications = @{
-        @"applied" : REMOTE_UPDATE_APPLIED_MESSAGE,
-        @"failed" : REMOTE_UPDATE_FAILED_MESSAGE,
-        @"collisions" : COLLISION_DETECTED_MESSAGE
-    };
+                                          @"applied" : REMOTE_UPDATE_APPLIED_MESSAGE,
+                                          @"failed" : REMOTE_UPDATE_FAILED_MESSAGE,
+                                          @"collisions" : COLLISION_DETECTED_MESSAGE
+                                          };
     NSMutableDictionary *resolvedCrashed = [NSMutableDictionary dictionary];
     NSMutableArray *keysToRemove = [NSMutableArray array];
-
+    
     [self.pendingDataRecords enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         FHSyncPendingDataRecord *pendingRecord = (FHSyncPendingDataRecord *)obj;
         NSString *pendingHash = (NSString *)key;
         if (pendingRecord.inFlight && pendingRecord.crashed) {
             DLog(@"updateCrashedInFlightFromNewData - Found crashed inFlight pending record uid= "
-                  @"%@ :: hash= %@",
-                  pendingRecord.uid, pendingRecord.hashValue);
+                 @"%@ :: hash= %@",
+                 pendingRecord.uid, pendingRecord.hashValue);
             if (remoteData && remoteData[@"updates"] && remoteData[@"updates"][@"hashes"]) {
                 NSDictionary *hashes = remoteData[@"updates"][@"hashes"];
                 // check if the updates received contain any info about the crashed inflight update
@@ -833,21 +819,21 @@ static NSString *const kUIDMapping = @"uidMapping";
                 if (nil != crashedUpdate) {
                     resolvedCrashed[crashedUpdate[@"uid"]] = crashedUpdate;
                     DLog(@"updateCrashedInFlightFromNewData - Resolving status for crashed "
-                          @"inflight pending record %@",
-                          crashedUpdate);
+                         @"inflight pending record %@",
+                         crashedUpdate);
                     NSString *crashedType = crashedUpdate[@"type"];
                     NSString *crashedAction = crashedUpdate[@"action"];
                     if (nil != crashedType && [crashedType isEqualToString:@"failed"]) {
                         // Crashed updated failed - revert local dataset
                         if (crashedAction && [crashedAction isEqualToString:@"create"]) {
                             DLog(@"updateCrashedInFlightFromNewData - Deleting failed create from "
-                                  @"dataset");
+                                 @"dataset");
                             [self.dataRecords removeObjectForKey:crashedUpdate[@"uid"]];
                         } else if (crashedAction && ([crashedAction isEqualToString:@"update"] ||
                                                      [crashedAction isEqualToString:@"delete"])) {
                             DLog(@"updateCrashedInFlightFromNewData - Reverting failed %@ in "
-                                  @"dataset",
-                                  crashedAction);
+                                 @"dataset",
+                                 crashedAction);
                             (self.dataRecords)[crashedUpdate[@"uid"]] = pendingRecord.preData;
                         }
                     }
@@ -871,45 +857,45 @@ static NSString *const kUIDMapping = @"uidMapping";
             }
         }
     }];
-
+    
     [self.pendingDataRecords removeObjectsForKeys:keysToRemove];
     [keysToRemove removeAllObjects];
-
+    
     [self.pendingDataRecords enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         FHSyncPendingDataRecord *pendingRecord = (FHSyncPendingDataRecord *)obj;
         NSString *pendingHash = (NSString *)key;
-
+        
         if (pendingRecord.inFlight && pendingRecord.crashed) {
             if (pendingRecord.crashedCount > self.syncConfig.crashCountWait) {
                 DLog(@"updateCrashedInFlightFromNewData - Crashed inflight pending record has "
-                      @"reached crashed_count_wait limit : '%@",
-                      pendingRecord);
+                     @"reached crashed_count_wait limit : '%@",
+                     pendingRecord);
                 if (self.syncConfig.resendCrashedUpdates) {
                     DLog(@"updateCrashedInFlightFromNewData - Retryig crashed inflight pending "
-                          @"record");
+                         @"record");
                     pendingRecord.crashed = NO;
                     pendingRecord.inFlight = NO;
                 } else {
                     DLog(@"updateCrashedInFlightFromNewData - Deleting crashed inflight pending "
-                          @"record");
+                         @"record");
                     [keysToRemove addObject:pendingHash];
                 }
             }
         } else if (!pendingRecord.inFlight && pendingRecord.crashed) {
             DLog(@"updateCrashedInFlightFromNewData - Trying to resolve issues with crashed non "
-                  @"in flight record - uid = %@",
-                  pendingRecord.uid);
+                 @"in flight record - uid = %@",
+                 pendingRecord.uid);
             // Stalled pending record because a previous pending update on the same record crashed
             NSDictionary *dict = resolvedCrashed[pendingRecord.uid];
             if (nil != dict) {
                 DLog(@"updateCrashedInFlightFromNewData - Found a stalled pending record backed "
-                      @"up behind a resolved crash uid=%@ :: hash=%@",
-                      pendingRecord.uid, pendingRecord.hashValue);
+                     @"up behind a resolved crash uid=%@ :: hash=%@",
+                     pendingRecord.uid, pendingRecord.hashValue);
                 pendingRecord.crashed = NO;
             }
         }
     }];
-
+    
     [self.pendingDataRecords removeObjectsForKeys:keysToRemove];
 }
 
