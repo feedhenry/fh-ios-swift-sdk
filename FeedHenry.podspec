@@ -12,5 +12,6 @@ Pod::Spec.new do |s|
   s.module_map = 'FeedHenry/module.modulemap'
   s.requires_arc = true
   s.dependency 'AeroGearHttp'
+  s.dependency 'AeroGear-Push-Swift'
   s.dependency 'ReachabilitySwift'
 end

@@ -21,6 +21,7 @@ let FH_SDK_VERSION = "4.0.0-alpha.1"
 import Foundation
 import AeroGearHttp
 import ReachabilitySwift
+import AeroGearPush
 
 public typealias CompletionBlock = (Response, NSError?) -> Void
 public enum HTTPMethod: String {
@@ -176,6 +177,55 @@ public class FH: NSObject {
                 throw error
             }
         }
+    }
+    
+    public class func pushEnabledForRemoteNotification(aaplication: UIApplication) {
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+  
+    public class func pushRegister(deviceToken: NSData?, config: PushConfig? = nil, success: Response -> Void, error: Response -> Void) -> Void {
+        let registration = AGDeviceRegistration(config: "fhconfig")
+        if let host = Config.instance["host"] {
+            let baseURL = "\(host)/api/v2/ag-push"
+            registration.overridePushProperties(["serverURL" : baseURL])
+        }
+        registration.registerWithClientInfo({ (clientInfo: AGClientDeviceInformation!) in
+            guard let deviceToken = deviceToken else {return}
+            clientInfo.deviceToken = deviceToken
+            guard let config = config else {return}
+            clientInfo.alias = config.alias
+            clientInfo.categories = config.categories
+            },
+            success: {
+                success(Response())
+            },
+            failure: {(err: NSError) -> Void in
+                let response = Response()
+                response.error = err
+                error(response)
+        })
+    }
+
+    public class func setPushAlias(alias: String, success: Response -> Void, error: Response -> Void) -> Void {
+        let conf = PushConfig()
+        conf.alias = alias
+        pushRegister(nil, config: conf, success: success, error: error)
+    }
+
+    public class func setPushCategories(categories: NSArray, success: Response -> Void, error: Response -> Void) -> Void {
+        let conf = PushConfig()
+        conf.categories = categories as? [String]
+        pushRegister(nil, config: conf, success: success, error: error)
+    }
+
+    public class func sendMetricsWhenAppLaunched(launchOptions: [NSObject: AnyObject]?) {
+        AGPushAnalytics.sendMetricsWhenAppLaunched(launchOptions)
+    }
+    
+    public class func sendMetricsWhenAppAwoken(applicationState: UIApplicationState, userInfo: [NSObject: AnyObject]) {
+        AGPushAnalytics.sendMetricsWhenAppAwoken(applicationState, userInfo: userInfo)
     }
 
 }

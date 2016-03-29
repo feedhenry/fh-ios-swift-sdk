@@ -45,6 +45,7 @@
 		48A8575E1C68E00D00EC00D4 /* InitRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A8575D1C68E00D00EC00D4 /* InitRequestTests.swift */; };
 		48A857601C69271300EC00D4 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48A8575F1C69271300EC00D4 /* fhconfig.plist */; };
 		48A857621C69296A00EC00D4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857611C69296A00EC00D4 /* FH.swift */; };
+		48F49A6F1CA0410600B7C544 /* PushConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F49A6E1CA0410600B7C544 /* PushConfig.swift */; };
 		99BF08CAFCD06D759104BDD7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E139FE8EB3B6F4E70E5433A6 /* Pods.framework */; };
 		BE9E91ECB1DC8C91D96E9155 /* Pods_FeedHenryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5058C5A4C0CE9C1DE925EAB6 /* Pods_FeedHenryTests.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,7 @@
 		48A8575F1C69271300EC00D4 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
 		48A857611C69296A00EC00D4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
 		48F1A9E71C98A120004E7B50 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		48F49A6E1CA0410600B7C544 /* PushConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushConfig.swift; sourceTree = "<group>"; };
 		5058C5A4C0CE9C1DE925EAB6 /* Pods_FeedHenryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0BCE690717E5D4E64FCE9A /* Pods-FeedHenryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C51772EB394474A944897FA6 /* Pods-FeedHenryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenryTests/Pods-FeedHenryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				48A8575B1C68A35700EC00D4 /* Config.swift */,
 				48A857591C689F0100EC00D4 /* CloudProps.swift */,
+				48F49A6E1CA0410600B7C544 /* PushConfig.swift */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48A857621C69296A00EC00D4 /* FH.swift in Sources */,
+				48F49A6F1CA0410600B7C544 /* PushConfig.swift in Sources */,
 				483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */,
 				48A126E91C61FFD600F2C4A6 /* CloudRequest.swift in Sources */,
 				483E82281C610CED00E7F198 /* FHSyncConfig.m in Sources */,
