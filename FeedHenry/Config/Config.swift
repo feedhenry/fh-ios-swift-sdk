@@ -21,6 +21,7 @@ public class Config {
     var properties: [String: String]
     let propertiesFile: String
     var bundle: NSBundle
+    public static var instance = Config()
     
     init(propertiesFile: String = "fhconfig", bundle:NSBundle) {
         self.propertiesFile = propertiesFile
@@ -40,7 +41,8 @@ public class Config {
     
     public subscript(key: String) -> String? {
         get {
-            return properties[key]
+            guard let property = properties[key] else {return nil}
+            return property == "" ? nil : property
         }
         set {
             self.properties[key] = newValue

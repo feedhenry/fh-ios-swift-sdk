@@ -6,6 +6,7 @@ use_frameworks!
 
 pod 'AeroGearHttp', :git => 'https://github.com/aerogear/aerogear-ios-http.git', :branch => 'master'
 pod 'ReachabilitySwift', '2.3.3'
+pod 'AeroGear-Push-Swift', '1.2.0'
 
 target 'FeedHenryTests' do
     pod 'OHHTTPStubs', '4.7.1'
