@@ -18,16 +18,17 @@
 import Foundation
 
 public class Config {
+    let dataManager: NSUserDefaults
     var properties: [String: String]
     let propertiesFile: String
     var bundle: NSBundle
     public static var instance = Config()
     
-    init(propertiesFile: String = "fhconfig", bundle:NSBundle) {
+    init(propertiesFile: String = "fhconfig", bundle:NSBundle, storage: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
         self.propertiesFile = propertiesFile
         self.bundle = bundle
         let pathBundle = bundle.pathForResource(propertiesFile, ofType: "plist")
-        
+        dataManager = storage
         if let path = pathBundle, properties = NSDictionary(contentsOfFile: path) {
             self.properties = properties as! [String : String]
         } else {
@@ -76,13 +77,15 @@ public class Config {
     }
     
     public var uuid: String {
-        //let UUID_KEY = "FHUUID"
-        var appUuid: String? = nil // read from storage [FHDataManager read:UUID_KEY];
-        if appUuid == nil {
-            appUuid = NSUUID().UUIDString
-            // save uuid
+        get {
+            if let uuid = dataManager.stringForKey("FHUUID") {
+                return uuid
+            }
+            let uuid = NSUUID().UUIDString
+            dataManager.setObject(uuid, forKey: "FHUUID")
+            
+            return uuid
         }
-        return appUuid!
     }
     
     public var vendorId: String? {
