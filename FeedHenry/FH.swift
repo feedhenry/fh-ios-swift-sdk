@@ -228,4 +228,17 @@ public class FH: NSObject {
         AGPushAnalytics.sendMetricsWhenAppAwoken(applicationState, userInfo: userInfo)
     }
 
+    class public func authRequest(policyId: String) -> AuthRequest {
+        return AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, headers: nil)
+    }
+    
+    class public func auth(policyId: String, method: HTTPMethod = .POST, args: [String: String]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
+        let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId)
+        authRequest.exec(completionHandler)
+    }
+    
+    class public func auth(policyId: String, userName:String, password: String, method: HTTPMethod = .POST, args: [String: String]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
+        let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, userName: userName, password: password)
+        authRequest.exec(completionHandler)
+    }
 }

@@ -28,10 +28,14 @@
 		483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */; };
 		483E82321C610CED00E7F198 /* FHSyncUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 483E82231C610CED00E7F198 /* FHSyncUtils.h */; };
 		483E82331C610CED00E7F198 /* FHSyncUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E82241C610CED00E7F198 /* FHSyncUtils.m */; };
+		485D2CD11CA59B2A002C480F /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485D2CCF1CA59B2A002C480F /* OAuthViewController.swift */; };
+		485D2CD31CA59C8A002C480F /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485D2CD21CA59C8A002C480F /* AuthRequest.swift */; };
 		48723C051C86E48B002F8669 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C041C86E48B002F8669 /* Request.swift */; };
 		48723C071C86E6C6002F8669 /* InitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C061C86E6C6002F8669 /* InitRequest.swift */; };
 		48723C0B1C870455002F8669 /* CloudRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48723C0A1C870455002F8669 /* CloudRequestTests.swift */; };
 		487708771C6D294E0009487A /* FHTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487708761C6D294E0009487A /* FHTests.swift */; };
+		487885DB1CB25E9B00FFB3D7 /* AuthRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487885DA1CB25E9B00FFB3D7 /* AuthRequestTests.swift */; };
+		487885DF1CB28E3E00FFB3D7 /* OAuthViewControllerTests.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487885DE1CB28E3E00FFB3D7 /* OAuthViewControllerTests.swift.swift */; };
 		4878D5DE1B579965004518C4 /* FeedHenry.h in Headers */ = {isa = PBXBuildFile; fileRef = 4878D5DD1B579965004518C4 /* FeedHenry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4878D5DA1B579965004518C4 /* FeedHenry.framework */; };
 		48A126E41C61FE0A00F2C4A6 /* FHJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 48A126E21C61FE0A00F2C4A6 /* FHJSON.h */; };
@@ -85,10 +89,14 @@
 		483E82221C610CED00E7F198 /* FHSyncPendingDataRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncPendingDataRecord.m; path = Sync/FHSyncPendingDataRecord.m; sourceTree = "<group>"; };
 		483E82231C610CED00E7F198 /* FHSyncUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FHSyncUtils.h; path = Sync/FHSyncUtils.h; sourceTree = "<group>"; };
 		483E82241C610CED00E7F198 /* FHSyncUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncUtils.m; path = Sync/FHSyncUtils.m; sourceTree = "<group>"; };
+		485D2CCF1CA59B2A002C480F /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthViewController.swift; path = OAuth/OAuthViewController.swift; sourceTree = "<group>"; };
+		485D2CD21CA59C8A002C480F /* AuthRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthRequest.swift; path = Cloud/AuthRequest.swift; sourceTree = "<group>"; };
 		48723C041C86E48B002F8669 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Cloud/Request.swift; sourceTree = "<group>"; };
 		48723C061C86E6C6002F8669 /* InitRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitRequest.swift; path = Cloud/InitRequest.swift; sourceTree = "<group>"; };
 		48723C0A1C870455002F8669 /* CloudRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudRequestTests.swift; sourceTree = "<group>"; };
 		487708761C6D294E0009487A /* FHTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHTests.swift; sourceTree = "<group>"; };
+		487885DA1CB25E9B00FFB3D7 /* AuthRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequestTests.swift; sourceTree = "<group>"; };
+		487885DE1CB28E3E00FFB3D7 /* OAuthViewControllerTests.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewControllerTests.swift.swift; sourceTree = "<group>"; };
 		4878D5DA1B579965004518C4 /* FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4878D5DD1B579965004518C4 /* FeedHenry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHenry.h; sourceTree = "<group>"; };
 		4878D5DF1B579965004518C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +164,7 @@
 			children = (
 				48723C041C86E48B002F8669 /* Request.swift */,
 				48723C061C86E6C6002F8669 /* InitRequest.swift */,
+				485D2CD21CA59C8A002C480F /* AuthRequest.swift */,
 				48A126E81C61FFD600F2C4A6 /* CloudRequest.swift */,
 				48A126E61C61FFBF00F2C4A6 /* Response.swift */,
 			);
@@ -197,6 +206,14 @@
 			name = Sync;
 			sourceTree = "<group>";
 		};
+		485D2CCD1CA59B15002C480F /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				485D2CCF1CA59B2A002C480F /* OAuthViewController.swift */,
+			);
+			name = OAuth;
+			sourceTree = "<group>";
+		};
 		48723C021C86DEC7002F8669 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,8 +227,17 @@
 			children = (
 				48A8575D1C68E00D00EC00D4 /* InitRequestTests.swift */,
 				48723C0A1C870455002F8669 /* CloudRequestTests.swift */,
+				487885DA1CB25E9B00FFB3D7 /* AuthRequestTests.swift */,
 			);
 			name = Cloud;
+			sourceTree = "<group>";
+		};
+		487885DD1CB28E1D00FFB3D7 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				487885DE1CB28E3E00FFB3D7 /* OAuthViewControllerTests.swift.swift */,
+			);
+			name = OAuth;
 			sourceTree = "<group>";
 		};
 		4878D5D01B579965004518C4 = {
@@ -241,6 +267,7 @@
 				483E82151C610CDD00E7F198 /* Sync */,
 				483E82111C5FB9BE00E7F198 /* Cloud */,
 				483E82121C5FB9D500E7F198 /* Config */,
+				485D2CCD1CA59B15002C480F /* OAuth */,
 				4878D5DD1B579965004518C4 /* FeedHenry.h */,
 				48A857611C69296A00EC00D4 /* FH.swift */,
 				4878D5DF1B579965004518C4 /* Info.plist */,
@@ -256,6 +283,7 @@
 				48723C031C86DEE5002F8669 /* Cloud */,
 				48723C021C86DEC7002F8669 /* Config */,
 				482632BE1C901CF6008FEB4A /* Sync */,
+				487885DD1CB28E1D00FFB3D7 /* OAuth */,
 				4878D5EB1B579965004518C4 /* Info.plist */,
 				48A8575F1C69271300EC00D4 /* fhconfig.plist */,
 			);
@@ -498,10 +526,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				485D2CD11CA59B2A002C480F /* OAuthViewController.swift in Sources */,
 				48A857621C69296A00EC00D4 /* FH.swift in Sources */,
 				48F49A6F1CA0410600B7C544 /* PushConfig.swift in Sources */,
 				483E82311C610CED00E7F198 /* FHSyncPendingDataRecord.m in Sources */,
 				48A126E91C61FFD600F2C4A6 /* CloudRequest.swift in Sources */,
+				485D2CD31CA59C8A002C480F /* AuthRequest.swift in Sources */,
 				483E82281C610CED00E7F198 /* FHSyncConfig.m in Sources */,
 				48A8575A1C689F0100EC00D4 /* CloudProps.swift in Sources */,
 				48A126E71C61FFBF00F2C4A6 /* Response.swift in Sources */,
@@ -521,6 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				487885DB1CB25E9B00FFB3D7 /* AuthRequestTests.swift in Sources */,
 				482632CA1C901F6A008FEB4A /* FHSyncPendingDataRecordTest.m in Sources */,
 				48A857581C68940700EC00D4 /* CloudPropsTests.swift in Sources */,
 				48723C0B1C870455002F8669 /* CloudRequestTests.swift in Sources */,
@@ -529,6 +560,7 @@
 				482632C71C901F6A008FEB4A /* FHSyncClientTest.m in Sources */,
 				482632CB1C901F6A008FEB4A /* FHSyncUtilsTest.m in Sources */,
 				48A8575E1C68E00D00EC00D4 /* InitRequestTests.swift in Sources */,
+				487885DF1CB28E3E00FFB3D7 /* OAuthViewControllerTests.swift.swift in Sources */,
 				482632CE1C90237C008FEB4A /* FHTestUtils.m in Sources */,
 				482632C91C901F6A008FEB4A /* FHSyncDatasetTest.m in Sources */,
 			);

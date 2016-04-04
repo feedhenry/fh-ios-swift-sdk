@@ -71,9 +71,19 @@ public class Config {
         
         params["cuidMap"] = cuidArray
 
-        // Read "FH_INIT stored param for other request than init
-        // Read read:SESSION_TOKEN_KEY
+        if let sessionToken = sessionToken {
+            params["sessionToken"] = sessionToken
+        }
         return params
+    }
+    
+    public var sessionToken: String? {
+        get {
+            return dataManager.stringForKey("sessionToken")
+        }
+        set {
+            dataManager.setObject(newValue, forKey: "sessionToken")
+        }
     }
     
     public var uuid: String {
