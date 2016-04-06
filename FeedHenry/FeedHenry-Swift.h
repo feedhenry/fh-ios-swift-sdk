@@ -152,6 +152,23 @@ SWIFT_CLASS_NAMED("FH")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class UIWebView;
+@class NSURLRequest;
+@class NSBundle;
+@class NSCoder;
+
+SWIFT_CLASS("_TtC9FeedHenry19OAuthViewController")
+@interface OAuthViewController : UIViewController <UIWebViewDelegate>
+- (void)viewDidLoad;
+- (void)webView:(UIWebView * __nonnull)webView didFailLoadWithError:(NSError * __nullable)error;
+- (BOOL)webView:(UIWebView * __nonnull)webView shouldStartLoadWithRequest:(NSURLRequest * __nonnull)request navigationType:(UIWebViewNavigationType)navigationType;
+- (void)webViewDidStartLoad:(UIWebView * __nonnull)webView;
+- (void)webViewDidFinishLoad:(UIWebView * __nonnull)webView;
+- (void)closeView;
+- (nonnull instancetype)initWithNibName:(NSString * __nullable)nibNameOrNil bundle:(NSBundle * __nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
 @class NSData;
 
 SWIFT_CLASS_NAMED("Response")

@@ -67,7 +67,7 @@ extension Request {
                     let customData = error.userInfo["CustomData"] as? [String: AnyObject]
                     if let errorData = customData { // Add more info in the error
                         let errorMessage = errorData["msg"] != nil ? errorData["msg"] : errorData["message"]
-                        let errorToRethrow = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: error.code, userInfo: [NSLocalizedDescriptionKey : errorMessage!])
+                        let errorToRethrow = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: error.code, userInfo: [NSLocalizedDescriptionKey : errorMessage ?? ""])
                         fhResponse.error = errorToRethrow;
                         fhResponse.responseStatusCode = error.code
                         if let statusCode = error.userInfo["StatusCode"] as? Int {

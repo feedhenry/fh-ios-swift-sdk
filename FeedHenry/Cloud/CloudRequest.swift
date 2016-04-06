@@ -16,8 +16,6 @@
 */
 
 import Foundation
-import AeroGearHttp
-
 
 /*
 This class provides the layer to do http request.

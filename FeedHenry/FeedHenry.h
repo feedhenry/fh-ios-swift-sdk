@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double FeedHenryVersionNumber;
 FOUNDATION_EXPORT const unsigned char FeedHenryVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <FeedHenry/PublicHeader.h>
-
-
