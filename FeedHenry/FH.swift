@@ -120,7 +120,7 @@ public class FH: NSObject {
      - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
      - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
      */
-    public class func cloud(path: String, method: HTTPMethod = .POST, args: [String: String]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
+    public class func cloud(path: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String: String]? = nil, completionHandler: CompletionBlock) -> Void {
         let cloudRequest = CloudRequest(props: self.props!, path: path, method: method, args: args, headers: headers)
         cloudRequest.exec(completionHandler)
     }
@@ -133,7 +133,7 @@ public class FH: NSObject {
      - Param args: The request body data. Can be nil. Defaulted to nil.
      - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
      */
-    public class func cloudRequest(path: String, method: HTTPMethod = .POST, args:[String: String]? = nil, headers: [String:String]? = nil) -> CloudRequest {
+    public class func cloudRequest(path: String, method: HTTPMethod = .POST, args:[String: AnyObject]? = nil, headers: [String: String]? = nil) -> CloudRequest {
         assert(props != nil, "FH init must be done prior th a Cloud call")
         return CloudRequest(props: self.props!, path: path, method: method, args: args, headers: headers)
     }
@@ -232,12 +232,12 @@ public class FH: NSObject {
         return AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, headers: nil)
     }
     
-    class public func auth(policyId: String, method: HTTPMethod = .POST, args: [String: String]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
+    class public func auth(policyId: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
         let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId)
         authRequest.exec(completionHandler)
     }
     
-    class public func auth(policyId: String, userName:String, password: String, method: HTTPMethod = .POST, args: [String: String]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
+    class public func auth(policyId: String, userName:String, password: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
         let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, userName: userName, password: password)
         authRequest.exec(completionHandler)
     }
