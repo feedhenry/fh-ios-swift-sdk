@@ -90,7 +90,15 @@ public class AuthRequest: Request {
                         guard let url = NSURL(string: urlString) else {return}
                         let controller = OAuthViewController()
                         controller.url = url
-                        controller.completionHandler = completionHandler
+                        controller.completionHandler = {(response: Response, error: NSError?) -> Void in
+                            if let parsed = response.parsedResponse,
+                                let authResponse = parsed["authResponse"] as? [String: AnyObject],
+                                let authToken = authResponse["authToken"] as? String {
+                                print("Auth token: \(authToken)")
+                                self.sessionToken = authToken
+                            }
+                            completionHandler(response, error)
+                        }
                         parent.presentViewController(controller, animated: true, completion: nil)
                     } else {
                         if let sessionTokenKey = result["sessionToken"] as? String {

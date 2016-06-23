@@ -21,8 +21,8 @@ PODS:
 
 DEPENDENCIES:
   - AeroGear-Push-Swift (= 1.2.0)
-  - AeroGearHttp (from `https://github.com/aerogear/aerogear-ios-http.git`, branch
-    `master`)
+  - AeroGearHttp (from `https://github.com/corinnekrych/aerogear-ios-http-1.git`,
+    branch `allow.additional.headers.in.request`)
   - OCMock (= 3.2)
   - OHHTTPStubs (= 4.7.1)
   - OHHTTPStubs/Swift (= 4.7.1)
@@ -30,13 +30,13 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   AeroGearHttp:
-    :branch: master
-    :git: https://github.com/aerogear/aerogear-ios-http.git
+    :branch: allow.additional.headers.in.request
+    :git: https://github.com/corinnekrych/aerogear-ios-http-1.git
 
 CHECKOUT OPTIONS:
   AeroGearHttp:
-    :commit: 20e954caa168ed8605ae05322fbfaf038fd79366
-    :git: https://github.com/aerogear/aerogear-ios-http.git
+    :commit: a89480c412f16ae315e2ed98f07b1983f8f30707
+    :git: https://github.com/corinnekrych/aerogear-ios-http-1.git
 
 SPEC CHECKSUMS:
   AeroGear-Push-Swift: 2b6ada18939e58d003e6a2315c22be22556048b1
