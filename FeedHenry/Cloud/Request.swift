@@ -50,12 +50,7 @@ extension Request {
                                 return nil
                             }
                             
-                        }))
-        
-        // TODO set headers with appkey: is it needed??
-        // FHHttpClient l52
-        // [mutableHeaders setValue:apiKeyVal forKeyPath:@"x-fh-auth-app"];
-        
+                        }))        
         
         http.request(aerogearMethod, path: path, parameters: args, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
             let fhResponse = Response()

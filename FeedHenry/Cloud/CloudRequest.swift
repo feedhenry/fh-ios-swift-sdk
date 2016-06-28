@@ -26,14 +26,16 @@ public class CloudRequest: Request {
     let headers: [String:String]?
     let method: HTTPMethod
     var props: CloudProps
+    var config: Config?
     let dataManager: NSUserDefaults
     
-    public init(props: CloudProps, path: String, method: HTTPMethod = .POST, args: [String:AnyObject]? = nil, headers: [String:String]? = nil, storage: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
+    public init(props: CloudProps, config: Config? = nil, path: String, method: HTTPMethod = .POST, args: [String:AnyObject]? = nil, headers: [String:String]? = nil, storage: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
         self.path = path
         self.args = args
         self.headers = headers
         self.method = method
         self.props = props
+        self.config = config
         self.dataManager = storage
     }
     
@@ -41,7 +43,22 @@ public class CloudRequest: Request {
         let host = props.cloudHost
         var headers: [String: String]?
         if let sessionToken = dataManager.stringForKey("sessionToken") {
-            headers = ["x-fh-sessionToken":sessionToken]
+            headers = ["x-fh-sessionToken": sessionToken]
+        }
+        if let props = config?.params {
+            headers = headers ?? [:]
+            for (key, value) in props {
+                let fhKey = "x-fh-\(key)"
+                if let value = value as? String {
+                    headers![fhKey] = value
+                } else { // apppend JSOnified version
+                    do {
+                        let json = try NSJSONSerialization.dataWithJSONObject(value, options: NSJSONWritingOptions())
+                        let string = NSString(data: json, encoding: NSUTF8StringEncoding)
+                        headers![fhKey] = string as! String
+                    } catch _ {}
+                }
+            }
         }
         request(method, host: host, path: path, args: args, headers: headers, completionHandler: completionHandler)
     }

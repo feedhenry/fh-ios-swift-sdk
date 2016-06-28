@@ -4,7 +4,7 @@ xcodeproj 'FeedHenry.xcodeproj'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'AeroGearHttp', :git => 'https://github.com/corinnekrych/aerogear-ios-http-1.git', :branch => 'allow.additional.headers.in.request'
+pod 'AeroGearHttp', '0.6.0'
 pod 'ReachabilitySwift', '2.3.3'
 pod 'AeroGear-Push-Swift', '1.2.0'
 
