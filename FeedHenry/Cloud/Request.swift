@@ -1,19 +1,19 @@
 /*
-* JBoss, Home of Professional Open Source.
-* Copyright Red Hat, Inc., and individual contributors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * JBoss, Home of Professional Open Source.
+ * Copyright Red Hat, Inc., and individual contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import Foundation
 import AeroGearHttp
@@ -24,7 +24,7 @@ public protocol Request {
     func exec(completionHandler: CompletionBlock) -> Void
 }
 extension Request {
-    public func request(method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, completionHandler: CompletionBlock) {
+    public func request(method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, headers: [String: String]? = nil, completionHandler: CompletionBlock) {
         let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
         
         // Early catch of offline mode
@@ -36,22 +36,21 @@ extension Request {
             return
         }
         
-        let http = Http(baseURL: host, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            requestSerializer: JsonRequestSerializer(),
-            responseSerializer: JsonResponseSerializer(response: { (data: NSData, status: Int) -> AnyObject? in
-                do {
-                    let jsonResponse = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
-                    let finalResponse = ["status": status, "data": jsonResponse]
-                    return finalResponse
-                } catch _ {
-                    return nil
-                }
-                
-            }))
+        let serializer = JsonRequestSerializer()
+        serializer.headers = headers
         
-        // TODO set headers with appkey: is it needed??
-        // FHHttpClient l52
-        // [mutableHeaders setValue:apiKeyVal forKeyPath:@"x-fh-auth-app"];
+        let http = Http(baseURL: host, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(),
+                        requestSerializer: serializer,
+                        responseSerializer: JsonResponseSerializer(response: { (data: NSData, status: Int) -> AnyObject? in
+                            do {
+                                let jsonResponse = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+                                let finalResponse = ["status": status, "data": jsonResponse]
+                                return finalResponse
+                            } catch _ {
+                                return nil
+                            }
+                            
+                        }))        
         
         http.request(aerogearMethod, path: path, parameters: args, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
             let fhResponse = Response()

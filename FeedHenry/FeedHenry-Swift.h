@@ -107,12 +107,9 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 SWIFT_CLASS_NAMED("FH")
 @interface FH : NSObject
 
-/// <code>Check if the device is online. The device is online if either WIFI or 3G
-/// network is available. Default value is true.
-/// 
-/// - Returns true if the device is online
-/// 
-/// </code>
+/// Check if the device is online. The device is online if either WIFI or 3G network is available. Default value is true.
+///
+/// <ul><li>Returns true if the device is online</li></ul>
 + (BOOL)isOnline;
 
 /// Initialize the library.
@@ -125,20 +122,20 @@ SWIFT_CLASS_NAMED("FH")
 /// best way to do is by catching the error that is thrown in case of failure to initialize.
 ///
 /// <code>FH.init { (resp:Response, error: NSError?) -> Void in
-///   if let error = error {
-///     self.statusLabel.text = "FH init in error"
-///     print("Error: \(error)")
-///     return
-///   }
-///   self.statusLabel.text = "FH init successful"
-///   FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
-///     if let error = error {
-///       print("Error: \(error)")
-///       return
-///     }
-///     print("Response from Cloud Call: \(response.parsedResponse)")
-///   })
-///   print("Response: \(resp.parsedResponse)")
+/// if let error = error {
+/// self.statusLabel.text = "FH init in error"
+/// print("Error: \(error)")
+/// return
+/// }
+/// self.statusLabel.text = "FH init successful"
+/// FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
+/// if let error = error {
+/// print("Error: \(error)")
+/// return
+/// }
+/// print("Response from Cloud Call: \(response.parsedResponse)")
+/// })
+/// print("Response: \(resp.parsedResponse)")
 /// }
 /// 
 /// </code>
