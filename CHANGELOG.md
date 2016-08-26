@@ -1,6 +1,6 @@
 # CHANGELOG - FeedHenry iOS SDK
 
-## 4.2.0 - 2016-08-26
+## 4.1.1 - 2016-08-26
 * RHMAP-9821: Podspec with fixed versions
 
 ## 4.1.0 - 2016-06-29
