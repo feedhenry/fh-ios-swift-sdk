@@ -4,9 +4,6 @@ xcode_workspace: FeedHenry.xcworkspace
 xcode_scheme: FeedHenry
 xcode_sdk: iphonesimulator
 
-before_install:
-    - gem install cocoapods obcd slather -N --no-rdoc --no-ri --no-document --quiet
-
 notifications:
   irc: "irc.freenode.org#feedhenry"
 
