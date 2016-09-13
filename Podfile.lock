@@ -1,6 +1,6 @@
 PODS:
   - AeroGear-Push-Swift (1.2.0)
-  - AeroGearHttp (0.7.0)
+  - AeroGearHttp (0.6.0)
   - OCMock (3.2)
   - OHHTTPStubs (4.7.1):
     - OHHTTPStubs/Default (= 4.7.1)
@@ -21,7 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - AeroGear-Push-Swift (= 1.2.0)
-  - AeroGearHttp (= 0.7.0)
+  - AeroGearHttp (= 0.6.0)
   - OCMock (= 3.2)
   - OHHTTPStubs (= 4.7.1)
   - OHHTTPStubs/Swift (= 4.7.1)
@@ -29,11 +29,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AeroGear-Push-Swift: 2b6ada18939e58d003e6a2315c22be22556048b1
-  AeroGearHttp: 4660c8bf5b56cd00a3b75d7c5ecf94774469df5c
+  AeroGearHttp: e958f301cc2d1c7fbfd4b61af187ea3490040a48
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
 
-PODFILE CHECKSUM: 2be4e04a4563b0631fe856156068d2524fa70e25
+PODFILE CHECKSUM: 266be54528c95f84bae6110f76abb71f866aea8f
 
 COCOAPODS: 1.0.1
