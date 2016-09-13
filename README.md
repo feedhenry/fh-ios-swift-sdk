@@ -5,7 +5,7 @@ The iOS Software Development Kit to connect to the [FeedHenry platform.](http://
 
 ## Release Process
 
-The project relies on [Cocoapods](http://cocoapods.org) and it's respective plugins  ['cocoapods-packager'](https://github.com/CocoaPods/cocoapods-packager) and ['cocoapods-appledoc'](https://github.com/CocoaPods/cocoapods-appledoc), so please ensure that are installed in your system. If not, please execute the following:
+The project relies on [CocoaPods](http://cocoapods.org) and it's respective plugins  ['cocoapods-packager'](https://github.com/CocoaPods/cocoapods-packager) and ['cocoapods-appledoc'](https://github.com/CocoaPods/cocoapods-appledoc), so please ensure that are installed in your system. If not, please execute the following:
 
 ```
 [sudo] gem install cocoapods cocoapods-packager cocoapods-appledoc
@@ -15,7 +15,7 @@ The project relies on [Cocoapods](http://cocoapods.org) and it's respective plug
 
 * Update ```CHANGELOG.md`` with the new release and content.
 
-### a) Release on Cocoapods  [Required Step]
+### a) Release on CocoaPods  [Required Step]
 * Update ```FeedHenry.podspec```, ```s.version``` attribute with the new version number.
 * Tag the repository with the new version number:
 
