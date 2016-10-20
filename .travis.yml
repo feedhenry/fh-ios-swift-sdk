@@ -1,8 +1,11 @@
 language: objective-c
 osx_image: xcode7.3
-xcode_workspace: FeedHenry.xcworkspace
-xcode_scheme: FeedHenry
-xcode_sdk: iphonesimulator
+
+before_install:
+  - gem install slather --no-document --quiet
+
+script:
+  - xcodebuild clean build test -workspace FeedHenry.xcworkspace -scheme FeedHenry -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6' GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 
 notifications:
   irc: "irc.freenode.org#feedhenry"
@@ -11,4 +14,5 @@ branches:
   only:
     - master
 
-
+after_success:
+  - slather
