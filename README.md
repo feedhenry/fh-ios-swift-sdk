@@ -1,4 +1,8 @@
-# FeedHenry iOS SDK [![Build Status](https://travis-ci.org/feedhenry/fh-ios-swift-sdk.png)](https://travis-ci.org/feedhenry/fh-ios-swift-sdk)
+# FeedHenry iOS SDK
+
+[![Build Status](https://travis-ci.org/feedhenry/fh-ios-swift-sdk.png)](https://travis-ci.org/feedhenry/fh-ios-swift-sdk)
+[![Coverage Status](https://coveralls.io/repos/github/feedhenry/fh-ios-swift-sdk/badge.svg?branch=master)](https://coveralls.io/github/feedhenry/fh-ios-swift-sdk?branch=master)
+
 The iOS Software Development Kit to connect to the [FeedHenry platform.](http://www.feedhenry.com)
 
 **The Swift version of FeedHenry SDK is a Work In Progress. If you want to use full feature SDK go to [fh-ios-sdk](https://github.com/feedhenry/fh-ios-sdk/).**
