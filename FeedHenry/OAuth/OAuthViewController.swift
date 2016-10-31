@@ -30,7 +30,7 @@ public class OAuthViewController: UIViewController, UIWebViewDelegate {
         self.view.addSubview(webView)
     }
     
-    public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         print("Webview fail with error \(error)");
     }
     

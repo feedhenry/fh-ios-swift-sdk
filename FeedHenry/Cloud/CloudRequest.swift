@@ -55,7 +55,7 @@ public class CloudRequest: Request {
                     do {
                         let json = try NSJSONSerialization.dataWithJSONObject(value, options: NSJSONWritingOptions())
                         let string = NSString(data: json, encoding: NSUTF8StringEncoding)
-                        headers![fhKey] = string as! String
+                        headers![fhKey] = string as? String
                     } catch _ {}
                 }
             }
