@@ -1,39 +1,39 @@
 PODS:
-  - AeroGear-Push-Swift (1.2.0)
-  - AeroGearHttp (0.6.0)
-  - OCMock (3.2)
-  - OHHTTPStubs (4.7.1):
-    - OHHTTPStubs/Default (= 4.7.1)
-  - OHHTTPStubs/Core (4.7.1)
-  - OHHTTPStubs/Default (4.7.1):
+  - AeroGear-Push-Swift (1.3.0)
+  - AeroGearHttp (0.8.0)
+  - OCMock (3.3.1)
+  - OHHTTPStubs (5.2.0):
+    - OHHTTPStubs/Default (= 5.2.0)
+  - OHHTTPStubs/Core (5.2.0)
+  - OHHTTPStubs/Default (5.2.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (4.7.1):
+  - OHHTTPStubs/JSON (5.2.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (4.7.1):
+  - OHHTTPStubs/NSURLSession (5.2.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (4.7.1)
-  - OHHTTPStubs/Swift (4.7.1):
+  - OHHTTPStubs/OHPathHelpers (5.2.0)
+  - OHHTTPStubs/Swift (5.2.0):
     - OHHTTPStubs/Core
-  - ReachabilitySwift (2.3.3)
+  - ReachabilitySwift (2.4)
 
 DEPENDENCIES:
-  - AeroGear-Push-Swift (= 1.2.0)
-  - AeroGearHttp (= 0.6.0)
-  - OCMock (= 3.2)
-  - OHHTTPStubs (= 4.7.1)
-  - OHHTTPStubs/Swift (= 4.7.1)
-  - ReachabilitySwift (= 2.3.3)
+  - AeroGear-Push-Swift (= 1.3.0)
+  - AeroGearHttp (= 0.8.0)
+  - OCMock (= 3.3.1)
+  - OHHTTPStubs (= 5.2.0)
+  - OHHTTPStubs/Swift (= 5.2.0)
+  - ReachabilitySwift (= 2.4)
 
 SPEC CHECKSUMS:
-  AeroGear-Push-Swift: 2b6ada18939e58d003e6a2315c22be22556048b1
-  AeroGearHttp: e958f301cc2d1c7fbfd4b61af187ea3490040a48
-  OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
-  OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
-  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  AeroGear-Push-Swift: c9a50788e105432404c6ccf3995d875fc23170d4
+  AeroGearHttp: 2f9bb955fac911c593fffe0aa0400db6fda79244
+  OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
+  OHHTTPStubs: 29ae105797c3410112d10b217c8b7a55aab616b2
+  ReachabilitySwift: dc7452dab85ff881904215e1a113326ad8d07beb
 
-PODFILE CHECKSUM: 266be54528c95f84bae6110f76abb71f866aea8f
+PODFILE CHECKSUM: 1d953842a9252a04857e21c843736d935c3acafe
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

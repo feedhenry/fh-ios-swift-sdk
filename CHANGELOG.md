@@ -1,6 +1,7 @@
 # CHANGELOG - FeedHenry iOS SDK
 
-### coming 3.2.0
+### 4.2.0
+* RHMAP-10096: Swift 2.3
 * FH-2544: CocoaPods 1.0.1
 
 ## 4.1.1 - 2016-08-26
