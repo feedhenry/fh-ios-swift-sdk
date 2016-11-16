@@ -21,10 +21,10 @@ import AeroGearHttp
 let FHSDKNetworkOfflineErrorType = 1
 
 public protocol Request {
-    func exec(completionHandler: CompletionBlock) -> Void
+    func exec(_ completionHandler: @escaping CompletionBlock) -> Void
 }
 extension Request {
-    public func request(method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, headers: [String: String]? = nil, completionHandler: CompletionBlock) {
+    public func request(_ method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) {
         let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
         
         // Early catch of offline mode
@@ -39,31 +39,31 @@ extension Request {
         let serializer = JsonRequestSerializer()
         serializer.headers = headers
         
-        let http = Http(baseURL: host, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(),
+        let http = Http(baseURL: host, sessionConfig: URLSessionConfiguration.default,
                         requestSerializer: serializer,
-                        responseSerializer: JsonResponseSerializer(response: { (data: NSData, status: Int) -> AnyObject? in
+                        responseSerializer: JsonResponseSerializer(response: { (data: Data, status: Int) -> AnyObject? in
                             do {
-                                let jsonResponse = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
+                                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
                                 let finalResponse = ["status": status, "data": jsonResponse]
-                                return finalResponse
+                                return finalResponse as AnyObject?
                             } catch _ {
                                 return nil
                             }
                             
                         }))        
         
-        http.request(aerogearMethod, path: path, parameters: args, completionHandler: {(response: AnyObject?, error: NSError?) -> Void in
+        http.request(method: aerogearMethod, path: path, parameters: args, completionHandler: {(response: Any?, error: NSError?) -> Void in
             let fhResponse = Response()
             if let resp = response as? [String: AnyObject] {
                 fhResponse.responseStatusCode = resp["status"] as? Int
-                let data = try! NSJSONSerialization.dataWithJSONObject(resp["data"]!, options: .PrettyPrinted)
-                fhResponse.rawResponseAsString = String(data: data, encoding: NSUTF8StringEncoding)
+                let data = try! JSONSerialization.data(withJSONObject: resp["data"]!, options: .prettyPrinted)
+                fhResponse.rawResponseAsString = String(data: data, encoding: String.Encoding.utf8)
                 fhResponse.rawResponse = data
                 fhResponse.parsedResponse = resp["data"] as? NSDictionary
             }
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 if let error = error {
-                    let customData = error.userInfo["CustomData"] as? [String: AnyObject]
+                    let customData = error.userInfo["CustomData"] as? [String: Any]
                     if let errorData = customData { // Add more info in the error
                         let errorMessage = errorData["msg"] != nil ? errorData["msg"] : errorData["message"]
                         let errorToRethrow = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: error.code, userInfo: [NSLocalizedDescriptionKey : errorMessage ?? ""])
