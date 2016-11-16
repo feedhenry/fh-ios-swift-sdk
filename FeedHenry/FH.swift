@@ -36,7 +36,7 @@ public enum HTTPMethod: String {
  instances of all the API request objects.
  */
 @objc(FH)
-public class FH: NSObject {
+open class FH: NSObject {
     /// Private field to be used to know id FH.init was done successfully. it replaces `ready` boolean in ObjC FH SDK
     static var props: CloudProps?
     static var config: Config?
@@ -46,9 +46,9 @@ public class FH: NSObject {
      
      - Returns true if the device is online
      */
-    public static var isOnline: Bool {
+    open static var isOnline: Bool {
         guard let reachability = self.reachability else {return false}
-        return reachability.isReachableViaWiFi() || reachability.isReachableViaWWAN()
+        return reachability.isReachableViaWiFi || reachability.isReachableViaWWAN
     }
     
     /// Private field to know if the reachability registration was done.
@@ -88,7 +88,7 @@ public class FH: NSObject {
      - Throws NSError: Networking issue details.
      - Returns: Void
      */
-    public class func `init`(completionHandler: CompletionBlock) -> Void {
+    open class func `init`(_ completionHandler: @escaping CompletionBlock) -> Void {
         setup(Config(), completionHandler: completionHandler)
     }
     
@@ -103,7 +103,7 @@ public class FH: NSObject {
      - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
      */
     @objc
-    public class func performCloudRequest(path: String,  method: String, headers: NSDictionary?, args: NSDictionary?, completionHandler: CompletionBlock) -> Void {
+    open class func performCloudRequest(_ path: String,  method: String, headers: NSDictionary?, args: NSDictionary?, completionHandler: @escaping CompletionBlock) -> Void {
         guard let httpMethod = HTTPMethod(rawValue: method) else {return}
         assert(props != nil, "FH init must be done prior th a Cloud call")
         let cloudRequest = CloudRequest(props: self.props!, config: self.config, path: path, method: httpMethod, args: args as? [String : AnyObject], headers: headers as? [String : String])
@@ -120,7 +120,7 @@ public class FH: NSObject {
      - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
      - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
      */
-    public class func cloud(path: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String: String]? = nil, completionHandler: CompletionBlock) -> Void {
+    open class func cloud(_ path: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
         let cloudRequest = CloudRequest(props: self.props!, config: self.config, path: path, method: method, args: args, headers: headers)
         cloudRequest.exec(completionHandler)
     }
@@ -133,12 +133,12 @@ public class FH: NSObject {
      - Param args: The request body data. Can be nil. Defaulted to nil.
      - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
      */
-    public class func cloudRequest(path: String, method: HTTPMethod = .POST, args:[String: AnyObject]? = nil, headers: [String: String]? = nil) -> CloudRequest {
+    open class func cloudRequest(_ path: String, method: HTTPMethod = .POST, args:[String: AnyObject]? = nil, headers: [String: String]? = nil) -> CloudRequest {
         assert(props != nil, "FH init must be done prior th a Cloud call")
         return CloudRequest(props: self.props!, config: self.config, path: path, method: method, args: args, headers: headers)
     }
     
-    class func setup(config: Config, completionHandler: CompletionBlock) -> Void {
+    class func setup(_ config: Config, completionHandler: @escaping CompletionBlock) -> Void {
         let initRequest = InitRequest(config: config)
         self.config = config
         initRequest.exec { (response: Response, error: NSError?) -> Void in
@@ -161,15 +161,11 @@ public class FH: NSObject {
     // register for reachability and rety init if it fails because of offline mode
     class func reachabilityRegistration() throws -> Void {
         if initCalled == false {
-            do {
-                if reachability == nil {
-                    reachability = try Reachability.reachabilityForInternetConnection()
-                }
-            } catch {
-                let error = NSError(domain: "FeedHenryInitErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey : "Unable to create Reachability"])
-                throw error
-            }
             
+            if reachability == nil {
+                reachability = Reachability()!
+            }
+
             do {
                 try reachability!.startNotifier()
                 initCalled = true
@@ -180,24 +176,24 @@ public class FH: NSObject {
         }
     }
     
-    public class func pushEnabledForRemoteNotification(aaplication: UIApplication) {
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+    open class func pushEnabledForRemoteNotification(_ aaplication: UIApplication) {
+        let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
-    public class func pushRegister(deviceToken: NSData?, config: PushConfig? = nil, success: Response -> Void, error: Response -> Void) -> Void {
-        let registration = AGDeviceRegistration(config: "fhconfig")
+    open class func pushRegister(_ deviceToken: Data?, config: PushConfig? = nil, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
+        let registration = DeviceRegistration(config: "fhconfig")
         if let host = Config.instance["host"] {
             let baseURL = "\(host)/api/v2/ag-push"
-            registration.overridePushProperties(["serverURL" : baseURL])
+            registration.override(pushProperties: ["serverURL" : baseURL])
         }
-        registration.registerWithClientInfo({ (clientInfo: AGClientDeviceInformation!) in
+        registration.register(clientInfo: { (clientDevice: ClientDeviceInformation!) in
             guard let deviceToken = deviceToken else {return}
-            clientInfo.deviceToken = deviceToken
+            clientDevice.deviceToken = deviceToken
             guard let config = config else {return}
-            clientInfo.alias = config.alias
-            clientInfo.categories = config.categories
+            clientDevice.alias = config.alias
+            clientDevice.categories = config.categories
             },
                                             success: {
                                                 success(Response())
@@ -209,36 +205,36 @@ public class FH: NSObject {
         })
     }
     
-    public class func setPushAlias(alias: String, success: Response -> Void, error: Response -> Void) -> Void {
+    open class func setPushAlias(_ alias: String, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
         let conf = PushConfig()
         conf.alias = alias
         pushRegister(nil, config: conf, success: success, error: error)
     }
     
-    public class func setPushCategories(categories: NSArray, success: Response -> Void, error: Response -> Void) -> Void {
+    open class func setPushCategories(_ categories: NSArray, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
         let conf = PushConfig()
         conf.categories = categories as? [String]
         pushRegister(nil, config: conf, success: success, error: error)
     }
     
-    public class func sendMetricsWhenAppLaunched(launchOptions: [NSObject: AnyObject]?) {
-        AGPushAnalytics.sendMetricsWhenAppLaunched(launchOptions)
+    open class func sendMetricsWhenAppLaunched(_ launchOptions: [AnyHashable: Any]?) {
+        PushAnalytics.sendMetricsWhenAppLaunched(launchOptions: launchOptions)
     }
     
-    public class func sendMetricsWhenAppAwoken(applicationState: UIApplicationState, userInfo: [NSObject: AnyObject]) {
-        AGPushAnalytics.sendMetricsWhenAppAwoken(applicationState, userInfo: userInfo)
+    open class func sendMetricsWhenAppAwoken(_ applicationState: UIApplicationState, userInfo: [AnyHashable: Any]) {
+        PushAnalytics.sendMetricsWhenAppAwoken(applicationState: applicationState, userInfo: userInfo)
     }
     
-    class public func authRequest(policyId: String) -> AuthRequest {
+    class open func authRequest(_ policyId: String) -> AuthRequest {
         return AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, headers: nil)
     }
     
-    class public func auth(policyId: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
+    class open func auth(_ policyId: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
         let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId)
         authRequest.exec(completionHandler)
     }
     
-    class public func auth(policyId: String, userName:String, password: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: CompletionBlock) -> Void {
+    class open func auth(_ policyId: String, userName:String, password: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
         let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, userName: userName, password: password)
         authRequest.exec(completionHandler)
     }

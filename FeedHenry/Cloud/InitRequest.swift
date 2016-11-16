@@ -38,7 +38,7 @@ public class InitRequest: Request {
         self.config = config
     }
     
-    public func exec(completionHandler: CompletionBlock) -> Void {
+    public func exec(_ completionHandler: @escaping CompletionBlock) -> Void {
         assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
         let host = config["host"]!
         

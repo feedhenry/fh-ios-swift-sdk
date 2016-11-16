@@ -14,31 +14,31 @@
 * limitations under the License.
 */
 
-public class OAuthViewController: UIViewController, UIWebViewDelegate {
-    var url: NSURL?
+open class OAuthViewController: UIViewController, UIWebViewDelegate {
+    var url: URL?
     var completionHandler: (Response, NSError?) -> Void = { (respo:Response, err:NSError?) -> Void in
     }
-    private var authInfo: [String: AnyObject]?
-    private var isFinished = false
+    fileprivate var authInfo: [String: AnyObject]?
+    fileprivate var isFinished = false
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
-        let webView:UIWebView = UIWebView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+        let webView:UIWebView = UIWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         guard let url = url else {return}
-        webView.loadRequest(NSURLRequest(URL: url))
+        webView.loadRequest(URLRequest(url: url))
         webView.delegate = self;
         self.view.addSubview(webView)
     }
     
-    public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    open func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("Webview fail with error \(error)");
     }
     
-    public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        print("Start to load url: \(request.URL)")
+    open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        print("Start to load url: \(request.url)")
         authInfo = [:]
         do {
-            authInfo = try processQuery(request.URL?.query)
+            authInfo = try processQuery(request.url?.query)
         } catch {
             print("OAuthViewController: an error occurs reading authResponse from cloud app.")
             return false
@@ -46,21 +46,21 @@ public class OAuthViewController: UIViewController, UIWebViewDelegate {
         return true;
     }
     
-    func processQuery(query: String?) throws -> [String: AnyObject]? {
+    func processQuery(_ query: String?) throws -> [String: AnyObject]? {
         var authInfo: [String: AnyObject]? = [:]
-        if let query = query where query.containsString("status=complete") {
-            let pairs = query.componentsSeparatedByString("&")
-            for (index, element) in pairs.enumerate() {
+        if let query = query, query.contains("status=complete") {
+            let pairs = query.components(separatedBy: "&")
+            for (index, element) in pairs.enumerated() {
                 print("Item \(index): \(element)")
-                let keyValue = element.componentsSeparatedByString("=")
+                let keyValue = element.components(separatedBy: "=")
                 if keyValue[0] == "authResponse" {
-                    if let value = keyValue[1].stringByRemovingPercentEncoding,
-                        let data = value.dataUsingEncoding(NSUTF8StringEncoding) {
-                            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                            authInfo!["authResponse"] = json
+                    if let value = keyValue[1].removingPercentEncoding,
+                        let data = value.data(using: String.Encoding.utf8) {
+                            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                            authInfo!["authResponse"] = json as AnyObject?
                     }
                 } else {
-                    authInfo![keyValue[0]] = keyValue[1]
+                    authInfo![keyValue[0]] = keyValue[1] as AnyObject?
                 }
             }
             isFinished = true
@@ -68,11 +68,11 @@ public class OAuthViewController: UIViewController, UIWebViewDelegate {
         return authInfo
     }
     
-    public func webViewDidStartLoad(webView: UIWebView) {
+    open func webViewDidStartLoad(_ webView: UIWebView) {
         print("Webview started Loading")
     }
     
-    public func webViewDidFinishLoad(webView: UIWebView) {
+    open func webViewDidFinishLoad(_ webView: UIWebView) {
         print("Webview did finish load")
         if isFinished {
             isFinished = false
@@ -80,10 +80,10 @@ public class OAuthViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    public func closeView() {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    open func closeView() {
+        presentingViewController?.dismiss(animated: true, completion: nil)
         let response = Response()
-        response.parsedResponse = authInfo
+        response.parsedResponse = authInfo as NSDictionary?
         completionHandler(response, nil)
     }
 }

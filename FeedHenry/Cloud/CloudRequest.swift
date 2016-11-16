@@ -20,16 +20,17 @@ import Foundation
 /*
  This class provides the layer to do http request.
  */
-public class CloudRequest: Request {
+open class CloudRequest: Request {
+
     let path: String
     let args: [String:AnyObject]?
     let headers: [String:String]?
     let method: HTTPMethod
     var props: CloudProps
     var config: Config?
-    let dataManager: NSUserDefaults
+    let dataManager: UserDefaults
     
-    public init(props: CloudProps, config: Config? = nil, path: String, method: HTTPMethod = .POST, args: [String:AnyObject]? = nil, headers: [String:String]? = nil, storage: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
+    public init(props: CloudProps, config: Config? = nil, path: String, method: HTTPMethod = .POST, args: [String:AnyObject]? = nil, headers: [String:String]? = nil, storage: UserDefaults = UserDefaults.standard) {
         self.path = path
         self.args = args
         self.headers = headers
@@ -39,10 +40,10 @@ public class CloudRequest: Request {
         self.dataManager = storage
     }
     
-    public func exec(completionHandler: CompletionBlock) -> Void {
+    open func exec(_ completionHandler: @escaping CompletionBlock) -> Void {
         let host = props.cloudHost
         var headers: [String: String]?
-        if let sessionToken = dataManager.stringForKey("sessionToken") {
+        if let sessionToken = dataManager.string(forKey: "sessionToken") {
             headers = ["x-fh-sessionToken": sessionToken]
         }
         if let props = config?.params {
@@ -53,8 +54,8 @@ public class CloudRequest: Request {
                     headers![fhKey] = value
                 } else { // apppend JSOnified version
                     do {
-                        let json = try NSJSONSerialization.dataWithJSONObject(value, options: NSJSONWritingOptions())
-                        let string = NSString(data: json, encoding: NSUTF8StringEncoding)
+                        let json = try JSONSerialization.data(withJSONObject: value, options: JSONSerialization.WritingOptions())
+                        let string = NSString(data: json, encoding: String.Encoding.utf8.rawValue)
                         headers![fhKey] = string as? String
                     } catch _ {}
                 }

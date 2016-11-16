@@ -23,18 +23,18 @@ class CloudRequestTests: XCTestCase {
     var dict: [String: AnyObject]!
     
     override func setUp() {
-        dict = ["apptitle": "Native",
-            "domain": "myDomain",
-            "firstTime": 0,
+        dict = ["apptitle": "Native" as AnyObject,
+            "domain": "myDomain" as AnyObject,
+            "firstTime": 0 as AnyObject,
             "hosts": ["debugCloudType": "node",
                 "debugCloudUrl": "ttps://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
                 "releaseCloudType": "node",
                 "releaseCloudUrl": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net",
                 "type": "cloud_nodejs",
                 "url": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
-                "environment": "ENV"],
-            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"],
-            "status": "ok"]
+                "environment": "ENV"] as AnyObject,
+            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"] as AnyObject,
+            "status": "ok" as AnyObject]
         super.setUp()
     }
     

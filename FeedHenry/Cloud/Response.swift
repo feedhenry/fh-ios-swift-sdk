@@ -18,19 +18,19 @@
 import Foundation
 
 @objc(FHResponse)
-public class Response: NSObject {
+open class Response: NSObject {
     /// Get the raw response data
-    public var rawResponse: NSData?
+    open var rawResponse: Data?
     
     /// Get the raw response data as String
-    public var rawResponseAsString: String?
+    open var rawResponseAsString: String?
     
     /// Get the response data as NSDictionary
-    public var parsedResponse: NSDictionary? 
+    open var parsedResponse: NSDictionary? 
     
     /// Get the response's status code
-    public var responseStatusCode: Int?
+    open var responseStatusCode: Int?
     
     /// Get the error of the response
-    public var error: NSError?
+    open var error: NSError?
 }

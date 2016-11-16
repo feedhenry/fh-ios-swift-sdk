@@ -26,22 +26,22 @@ class AuthRequestTests: XCTestCase {
     var url: String!
     override func setUp() {
         url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=873670803862-mhdrf72agp9fv82n32dc7dia541mlu87.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Ftesting.zeta.feedhenry.com%2Fbox%2Fsrv%2F1.1%2Farm%2FauthCallback&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&state=eyJhcHBJZCI6IjV3bGE3bGF2d3h0cjNmaXhzdXllN2lzbSIsImNhY2hla2V5IjoiNWJhYmVhYzg0YTYwYTk3Y2M4NmRhYTNlYzNkNTg1M2QiLCJjbGllbnRUb2tlbiI6IjV3bGE3bGF2d3h0cjNmaXhzdXllN2lzbSIsImRldmljZSI6IjgxMDdGREY2LTBCNDgtNDExOS1CQUQyLTMyQUZENDdCNTE0NyIsImRvbWFpbiI6InRlc3RpbmciLCJlbmRSZWRpcmVjdFVybCI6Imh0dHBzOi8vdGVzdGluZy56ZXRhLmZlZWRoZW5yeS5jb20vYm94L3Nydi8xLjEvYXJtL2F1dGhDYWxsYmFjayIsInBvbGljeSI6IkdPT0dMRSIsInBvbGljeUlkIjoiR29vZ2xlIiwicHJvdG9jb2wiOiJPQVVUSCJ9"
-        dict = ["apptitle": "Native",
-            "domain": "myDomain",
-            "firstTime": 0,
+        dict = ["apptitle": "Native" as AnyObject,
+            "domain": "myDomain" as AnyObject,
+            "firstTime": 0 as AnyObject,
             "hosts": ["debugCloudType": "node",
                 "debugCloudUrl": "ttps://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
                 "releaseCloudType": "node",
                 "releaseCloudUrl": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net",
                 "type": "cloud_nodejs",
                 "url": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
-                "environment": "ENV"],
-            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"],
-            "status": "ok"]
-        dictAuth = ["status": "ok",
-            "url": url,
-            "cachekey": "5babeac84a60a97cc86daa3ec3d5853d"]
-        dictAuthError = ["status": "error"]
+                "environment": "ENV"] as AnyObject,
+            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"] as AnyObject,
+            "status": "ok" as AnyObject]
+        dictAuth = ["status": "ok" as AnyObject,
+            "url": url as AnyObject,
+            "cachekey": "5babeac84a60a97cc86daa3ec3d5853d" as AnyObject]
+        dictAuthError = ["status": "error" as AnyObject]
         
         super.setUp()
     }
@@ -51,7 +51,7 @@ class AuthRequestTests: XCTestCase {
     }
     
     func testAuthRequestConstruct() {
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         let authRequest = AuthRequest(props: CloudProps(props: dict)!, config: config, policyId: "hello")
         XCTAssertEqual(authRequest.method, HTTPMethod.POST)
         XCTAssertTrue(authRequest.props.cloudHost == "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
@@ -64,7 +64,7 @@ class AuthRequestTests: XCTestCase {
     }
     
     func testAuthRequestConstructWithUserIdAndPassword() {
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         let authRequest = AuthRequest(props: CloudProps(props: dict)!, config: config, policyId: "hello", userName: "Henrik", password: "secret")
         XCTAssertEqual(authRequest.method, HTTPMethod.POST)
         XCTAssertTrue(authRequest.props.cloudHost == "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
@@ -80,20 +80,20 @@ class AuthRequestTests: XCTestCase {
     }
     
     func testSucceedInitWithMockedStorage() {
-        class NSUserDefaultsMock: NSUserDefaults {
+        class NSUserDefaultsMock: UserDefaults {
             var internalValue: String?
-            override class func standardUserDefaults() -> NSUserDefaults {
+            override open class var standard: UserDefaults {
                 return NSUserDefaultsMock()
             }
-            override func stringForKey(defaultName: String) -> String? {
+            override func string(forKey defaultName: String) -> String? {
                 return internalValue
             }
             
-            override func setObject(value: AnyObject?, forKey defaultName: String) {
+            override func set(_ value: Any?, forKey defaultName: String) {
                 internalValue = value as? String
             }
         }
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         let authtRequest = AuthRequest(props: CloudProps(props: dict)!, config: config, policyId: "hello", storage: NSUserDefaultsMock())
         authtRequest.sessionToken = "SessionTokenStored"
         XCTAssertTrue(authtRequest.sessionToken == "SessionTokenStored", "sessionToken stored in NSUserDefaults.")
@@ -101,13 +101,13 @@ class AuthRequestTests: XCTestCase {
     
 
     func testFHAuthSucceed() {
-        stub(isHost("whatever.com")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dictAuth, statusCode: 200, headers: nil)
+        stub(condition: isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(jsonObject: self.dictAuth, statusCode: 200, headers: nil)
             return stubResponse
         }
         // given a test config file
-        let getExpectation = expectationWithDescription("FH auth successful")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let getExpectation = expectation(description: "FH auth successful")
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         
         // when
         let authRequest = AuthRequest(props: CloudProps(props: dict)!, config: config, policyId: "hello", userName: "Henrik", password: "secret")
@@ -118,17 +118,17 @@ class AuthRequestTests: XCTestCase {
             XCTAssertTrue(response.parsedResponse!["url"] as! String == self.url)
             XCTAssertTrue(response.parsedResponse!["cachekey"] as! String == "5babeac84a60a97cc86daa3ec3d5853d")
         }
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testFHAuthFailed() {
-        stub(isHost("whatever.com")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dictAuthError, statusCode: 200, headers: nil)
+        stub(condition: isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(jsonObject: self.dictAuthError, statusCode: 200, headers: nil)
             return stubResponse
         }
         // given a test config file
-        let getExpectation = expectationWithDescription("FH successful")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let getExpectation = expectation(description: "FH successful")
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         
         // when
         let authRequest = AuthRequest(props: CloudProps(props: dict)!, config: config, policyId: "hello", userName: "Henrik", password: "secret")
@@ -137,17 +137,17 @@ class AuthRequestTests: XCTestCase {
             defer { getExpectation.fulfill()}
             XCTAssertTrue(response.error!.domain == "FeedHenryAuthError")
         }
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testFHAuthRequestFailed() {
-        stub(isHost("whatever.com")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dictAuthError, statusCode: 500, headers: nil)
+        stub(condition: isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(jsonObject: self.dictAuthError, statusCode: 500, headers: nil)
             return stubResponse
         }
         // given a test config file
-        let getExpectation = expectationWithDescription("FH successful")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let getExpectation = expectation(description: "FH successful")
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         
         // when
         let authRequest = AuthRequest(props: CloudProps(props: dict)!, config: config, policyId: "hello", userName: "Henrik", password: "secret")
@@ -156,7 +156,7 @@ class AuthRequestTests: XCTestCase {
             defer { getExpectation.fulfill()}
             XCTAssertTrue(response.error!.domain == "FeedHenryHTTPRequestErrorDomain")
         }
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
 
