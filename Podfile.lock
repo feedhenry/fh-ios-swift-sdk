@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AeroGear-Push-Swift:
-    :commit: 8d466b2e8293b06fe662863a749cf070cd0ed3fc
+    :commit: e639f08d071f40074b28d36192c4c088bffa99bc
     :git: https://github.com/aerogear/aerogear-ios-push.git
 
 SPEC CHECKSUMS:

@@ -186,14 +186,14 @@ open class FH: NSObject {
         let registration = DeviceRegistration(config: "fhconfig")
         if let host = Config.instance["host"] {
             let baseURL = "\(host)/api/v2/ag-push"
-            registration.overridePushProperties(["serverURL" : baseURL])
+            registration.override(pushProperties: ["serverURL" : baseURL])
         }
-        registration.registerWithClientInfo({ (clientInfo: ClientDeviceInformation!) in
+        registration.register(clientInfo: { (clientDevice: ClientDeviceInformation!) in
             guard let deviceToken = deviceToken else {return}
-            clientInfo.deviceToken = deviceToken
+            clientDevice.deviceToken = deviceToken
             guard let config = config else {return}
-            clientInfo.alias = config.alias
-            clientInfo.categories = config.categories
+            clientDevice.alias = config.alias
+            clientDevice.categories = config.categories
             },
                                             success: {
                                                 success(Response())
@@ -218,11 +218,11 @@ open class FH: NSObject {
     }
     
     open class func sendMetricsWhenAppLaunched(_ launchOptions: [AnyHashable: Any]?) {
-        PushAnalytics.sendMetricsWhenAppLaunched(launchOptions)
+        PushAnalytics.sendMetricsWhenAppLaunched(launchOptions: launchOptions)
     }
     
     open class func sendMetricsWhenAppAwoken(_ applicationState: UIApplicationState, userInfo: [AnyHashable: Any]) {
-        PushAnalytics.sendMetricsWhenAppAwoken(applicationState, userInfo: userInfo)
+        PushAnalytics.sendMetricsWhenAppAwoken(applicationState: applicationState, userInfo: userInfo)
     }
     
     class open func authRequest(_ policyId: String) -> AuthRequest {
