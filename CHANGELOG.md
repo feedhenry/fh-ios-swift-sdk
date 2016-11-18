@@ -1,5 +1,8 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+### 5.0.0 - 2016-11-18
+* RHMAP-10118: Migrate to Swift 3
+
 ### 4.2.0 - 2016-11-04
 * RHMAP-10096: Swift 2.3 and CocoaPods 1.1.1
 * FH-2619: Support for coveralls.io
