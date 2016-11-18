@@ -22,24 +22,24 @@ This class provides the layer to do http request.
 */
 open class AuthRequest: Request {
     let path: String
-    let headers: [String:String]?
+    let headers: [String: String]?
     let method: HTTPMethod
     var props: CloudProps
     var config: Config
-    var args: [String:AnyObject]? {
+    var args: [String: Any]? {
         get {
-            var params: [String:AnyObject]?
+            var params: [String:Any]?
             if let appid = config["appid"] {
-                params = ["policyId": self.policyId as AnyObject,
-                    "device": config.uuid as AnyObject,
-                    "clientToken": appid as AnyObject]
-                var param = [:] as Any?
+                params = ["policyId": self.policyId,
+                    "device": config.uuid,
+                    "clientToken": appid]
+                var param: [String: Any]?
                 if let userName = userName, let password = password {
                     param = ["userId": userName, "password": password]
                 }
-                params!["params"] = param as AnyObject?
+                params!["params"] = param as Any?
                 if let env = props.env {
-                    params!["environment"] = env as AnyObject?
+                    params!["environment"] = env as Any?
                 }
             }
             
@@ -73,10 +73,10 @@ open class AuthRequest: Request {
         self.password = password
     }
     
-    open func exec(_ completionHandler: @escaping CompletionBlock) -> Void {
+    open func exec(completionHandler: @escaping CompletionBlock) -> Void {
         guard let host = config["host"] else {return}
         
-        request(method, host: host, path: path, args: args, completionHandler: {(response: Response, error: NSError?) -> Void in
+        request(method: method, host: host, path: path, args: args, completionHandler: {(response: Response, error: NSError?) -> Void in
             if let error = error {
                 print("AuthRequest::Error \(error)")
                 let response = Response()
@@ -84,7 +84,7 @@ open class AuthRequest: Request {
                 completionHandler(response, error)
                 return
             }
-            if let result = response.parsedResponse as? [String: AnyObject] {
+            if let result = response.parsedResponse as? [String: Any] {
                 if let status = result["status"] as? String, status == "ok" {
                     if let urlString = result["url"] as? String, let parent = self.parentViewController {
                         guard let url = URL(string: urlString) else {return}

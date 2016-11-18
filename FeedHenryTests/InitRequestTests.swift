@@ -56,7 +56,7 @@ class InitRequestTests: XCTestCase {
         let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         config.properties.removeValue(forKey: "appid")
         // when
-        FH.setup(config, completionHandler: {(resp: Response, err: NSError?) -> Void in
+        FH.setup(config: config, completionHandler: {(resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }
@@ -81,7 +81,7 @@ class InitRequestTests: XCTestCase {
         let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         XCTAssertNotNil(config.properties.count == 5)
         // when
-        FH.setup(config, completionHandler: { (resp: Response, err: NSError?) -> Void in
+        FH.setup(config: config, completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer { getExpectation.fulfill()}
             if err == nil {
                 XCTAssertNotNil(FH.props)

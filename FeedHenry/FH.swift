@@ -89,7 +89,7 @@ open class FH: NSObject {
      - Returns: Void
      */
     open class func `init`(_ completionHandler: @escaping CompletionBlock) -> Void {
-        setup(Config(), completionHandler: completionHandler)
+        setup(config: Config(), completionHandler: completionHandler)
     }
     
     /**
@@ -107,7 +107,7 @@ open class FH: NSObject {
         guard let httpMethod = HTTPMethod(rawValue: method) else {return}
         assert(props != nil, "FH init must be done prior th a Cloud call")
         let cloudRequest = CloudRequest(props: self.props!, config: self.config, path: path, method: httpMethod, args: args as? [String : AnyObject], headers: headers as? [String : String])
-        cloudRequest.exec(completionHandler)
+        cloudRequest.exec(completionHandler: completionHandler)
     }
     
     /**
@@ -120,9 +120,9 @@ open class FH: NSObject {
      - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
      - Param completionHandler: Closure to be executed as a callback of http asynchronous call.
      */
-    open class func cloud(_ path: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
+    open class func cloud(path: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
         let cloudRequest = CloudRequest(props: self.props!, config: self.config, path: path, method: method, args: args, headers: headers)
-        cloudRequest.exec(completionHandler)
+        cloudRequest.exec(completionHandler: completionHandler)
     }
     
     /**
@@ -133,12 +133,12 @@ open class FH: NSObject {
      - Param args: The request body data. Can be nil. Defaulted to nil.
      - Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
      */
-    open class func cloudRequest(_ path: String, method: HTTPMethod = .POST, args:[String: AnyObject]? = nil, headers: [String: String]? = nil) -> CloudRequest {
+    open class func cloudRequest(path: String, method: HTTPMethod = .POST, args:[String: AnyObject]? = nil, headers: [String: String]? = nil) -> CloudRequest {
         assert(props != nil, "FH init must be done prior th a Cloud call")
         return CloudRequest(props: self.props!, config: self.config, path: path, method: method, args: args, headers: headers)
     }
     
-    class func setup(_ config: Config, completionHandler: @escaping CompletionBlock) -> Void {
+    class func setup(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
         let initRequest = InitRequest(config: config)
         self.config = config
         initRequest.exec { (response: Response, error: NSError?) -> Void in
@@ -176,13 +176,13 @@ open class FH: NSObject {
         }
     }
     
-    open class func pushEnabledForRemoteNotification(_ aaplication: UIApplication) {
+    open class func pushEnabledForRemoteNotification(application: UIApplication) {
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
         UIApplication.shared.registerForRemoteNotifications()
     }
     
-    open class func pushRegister(_ deviceToken: Data?, config: PushConfig? = nil, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
+    open class func pushRegister(deviceToken: Data?, config: PushConfig? = nil, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
         let registration = DeviceRegistration(config: "fhconfig")
         if let host = Config.instance["host"] {
             let baseURL = "\(host)/api/v2/ag-push"
@@ -205,23 +205,23 @@ open class FH: NSObject {
         })
     }
     
-    open class func setPushAlias(_ alias: String, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
+    open class func setPush(alias: String, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
         let conf = PushConfig()
         conf.alias = alias
-        pushRegister(nil, config: conf, success: success, error: error)
+        pushRegister(deviceToken: nil, config: conf, success: success, error: error)
     }
     
-    open class func setPushCategories(_ categories: NSArray, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
+    open class func setPush(categories: NSArray, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {
         let conf = PushConfig()
         conf.categories = categories as? [String]
-        pushRegister(nil, config: conf, success: success, error: error)
+        pushRegister(deviceToken: nil, config: conf, success: success, error: error)
     }
     
-    open class func sendMetricsWhenAppLaunched(_ launchOptions: [AnyHashable: Any]?) {
+    open class func sendMetricsWhenAppLaunched(launchOptions: [AnyHashable: Any]?) {
         PushAnalytics.sendMetricsWhenAppLaunched(launchOptions: launchOptions)
     }
     
-    open class func sendMetricsWhenAppAwoken(_ applicationState: UIApplicationState, userInfo: [AnyHashable: Any]) {
+    open class func sendMetricsWhenAppAwoken(applicationState: UIApplicationState, userInfo: [AnyHashable: Any]) {
         PushAnalytics.sendMetricsWhenAppAwoken(applicationState: applicationState, userInfo: userInfo)
     }
     
@@ -229,13 +229,13 @@ open class FH: NSObject {
         return AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, headers: nil)
     }
     
-    class open func auth(_ policyId: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
+    class open func auth(policyId: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
         let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId)
-        authRequest.exec(completionHandler)
+        authRequest.exec(completionHandler: completionHandler)
     }
     
-    class open func auth(_ policyId: String, userName:String, password: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
+    class open func auth(policyId: String, userName:String, password: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String:String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
         let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, userName: userName, password: password)
-        authRequest.exec(completionHandler)
+        authRequest.exec(completionHandler: completionHandler)
     }
 }

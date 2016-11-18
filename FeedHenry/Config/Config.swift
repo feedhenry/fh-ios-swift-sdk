@@ -50,16 +50,16 @@ open class Config {
         }
     }
     
-    open var params: [String: AnyObject] {
-        var params: [String: AnyObject] = [:]
-        params["appid"] = self["appid"] as AnyObject?
-        params["appkey"] = self["appkey"] as AnyObject?
-        params["projectid"] = self["projectid"] as AnyObject?
-        params["connectiontag"] = self["connectiontag"] as AnyObject?
-        params["sdk_version"] = self["FH_IOS_SDK/\(FH_SDK_VERSION)"] as AnyObject?
-        params["destination"] = "ios" as AnyObject?
+    open var params: [String: Any] {
+        var params: [String: Any] = [:]
+        params["appid"] = self["appid"]
+        params["appkey"] = self["appkey"]
+        params["projectid"] = self["projectid"]
+        params["connectiontag"] = self["connectiontag"]
+        params["sdk_version"] = self["FH_IOS_SDK/\(FH_SDK_VERSION)"]
+        params["destination"] = "ios"
         let uuidGenerated = uuid
-        params["cuid"] = uuidGenerated as AnyObject?
+        params["cuid"] = uuidGenerated
         
         var cuidArray: [[String: String]] = [["name": "CFUUID",
                                                 "cuid": uuidGenerated]]
@@ -69,10 +69,10 @@ open class Config {
         }
         cuidArray.append(vendorMap)
         
-        params["cuidMap"] = cuidArray as AnyObject?
+        params["cuidMap"] = cuidArray
 
         if let sessionToken = sessionToken {
-            params["sessionToken"] = sessionToken as AnyObject?
+            params["sessionToken"] = sessionToken
         }
         return params
     }

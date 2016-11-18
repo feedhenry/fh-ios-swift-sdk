@@ -21,10 +21,10 @@ import AeroGearHttp
 let FHSDKNetworkOfflineErrorType = 1
 
 public protocol Request {
-    func exec(_ completionHandler: @escaping CompletionBlock) -> Void
+    func exec(completionHandler: @escaping CompletionBlock) -> Void
 }
 extension Request {
-    public func request(_ method: HTTPMethod, host: String, path: String, args: [String: AnyObject]?, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) {
+    public func request(method: HTTPMethod, host: String, path: String, args: [String: Any]?, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) {
         let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
         
         // Early catch of offline mode
