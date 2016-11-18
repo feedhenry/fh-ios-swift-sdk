@@ -23,18 +23,18 @@ class InitRequestTests: XCTestCase {
     var dict: [String: AnyObject]!
     
     override func setUp() {
-        dict = ["apptitle": "Native",
-            "domain": "myDomain",
-            "firstTime": 0,
+        dict = ["apptitle": "Native" as AnyObject,
+            "domain": "myDomain" as AnyObject,
+            "firstTime": 0 as AnyObject,
             "hosts": ["debugCloudType": "node",
                 "debugCloudUrl": "ttps://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
                 "releaseCloudType": "node",
                 "releaseCloudUrl": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net",
                 "type": "cloud_nodejs",
                 "url": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
-                "environment": "ENV"],
-            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"],
-            "status": "ok"]
+                "environment": "ENV"] as AnyObject,
+            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"] as AnyObject,
+            "status": "ok" as AnyObject]
         super.setUp()
     }
     
@@ -44,19 +44,19 @@ class InitRequestTests: XCTestCase {
     
     func testFHInitFailedWithCustomDataError() {
         // stub http to return error
-        stub(isHost("whatever.com")) { _ in
-            let userInfo = ["CustomData": ["msg": "The field 'appid' is not defined in"], "StatusCode":400]
+        stub(condition: isHost("whatever.com")) { _ in
+            let userInfo = ["CustomData": ["msg": "The field 'appid' is not defined in"], "StatusCode":400] as [String : Any]
             let error = NSError(domain: "FeedHenryHTTPRequestErrorDomain", code: 0, userInfo: userInfo)
             let stubResponse = OHHTTPStubsResponse(error: error)
             return stubResponse
         }
 
         // given no config file specified
-        let getExpectation = expectationWithDescription("FH init should fail due to lack of appId")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
-        config.properties.removeValueForKey("appid")
+        let getExpectation = expectation(description: "FH init should fail due to lack of appId")
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
+        config.properties.removeValue(forKey: "appid")
         // when
-        FH.setup(config, completionHandler: {(resp: Response, err: NSError?) -> Void in
+        FH.setup(config: config, completionHandler: {(resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }
@@ -68,27 +68,27 @@ class InitRequestTests: XCTestCase {
                 XCTAssertTrue(false, "This test sgould failed because no valid fhconfig file was provided")
             }
         })
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testFHInitSucceed() {
-        stub(isHost("whatever.com")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dict, statusCode: 200, headers: nil)
+        stub(condition: isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(jsonObject: self.dict, statusCode: 200, headers: nil)
             return stubResponse
         }
         // given a test config file
-        let getExpectation = expectationWithDescription("FH successful")
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let getExpectation = expectation(description: "FH successful")
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         XCTAssertNotNil(config.properties.count == 5)
         // when
-        FH.setup(config, completionHandler: { (resp: Response, err: NSError?) -> Void in
+        FH.setup(config: config, completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer { getExpectation.fulfill()}
             if err == nil {
                 XCTAssertNotNil(FH.props)
                 XCTAssertTrue(FH.props?.cloudProps.count == 6)
             }
         })
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
 
 //    func testFHPerformCloudRequestSucceed() {
@@ -129,7 +129,7 @@ class InitRequestTests: XCTestCase {
 //    }
     
     func testInitRequestConstruct() {
-        let config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         let initRequest = InitRequest(config: config)
         XCTAssertEqual(initRequest.method, HTTPMethod.POST)
         XCTAssertTrue(initRequest.args!.count == 7)

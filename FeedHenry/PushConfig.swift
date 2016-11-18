@@ -17,7 +17,7 @@
 
 import Foundation
 
-public class PushConfig {
-    public var categories: [String]?
-    public var alias: String?
+open class PushConfig {
+    open var categories: [String]?
+    open var alias: String?
 }

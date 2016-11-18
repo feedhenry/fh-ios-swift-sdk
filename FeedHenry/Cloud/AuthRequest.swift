@@ -20,48 +20,48 @@ import Foundation
 /*
 This class provides the layer to do http request.
 */
-public class AuthRequest: Request {
+open class AuthRequest: Request {
     let path: String
-    let headers: [String:String]?
+    let headers: [String: String]?
     let method: HTTPMethod
     var props: CloudProps
     var config: Config
-    var args: [String:AnyObject]? {
+    var args: [String: Any]? {
         get {
-            var params: [String:AnyObject]?
+            var params: [String:Any]?
             if let appid = config["appid"] {
                 params = ["policyId": self.policyId,
                     "device": config.uuid,
                     "clientToken": appid]
-                var param = [:]
+                var param: [String: Any]?
                 if let userName = userName, let password = password {
                     param = ["userId": userName, "password": password]
                 }
-                params!["params"] = param
+                params!["params"] = param as Any?
                 if let env = props.env {
-                    params!["environment"] = env
+                    params!["environment"] = env as Any?
                 }
             }
             
             return params
         }
     }
-    let dataManager: NSUserDefaults
-    private var policyId: String
-    public var userName: String?
-    public var password: String?
-    public var parentViewController: UIViewController?
+    let dataManager: UserDefaults
+    fileprivate var policyId: String
+    open var userName: String?
+    open var password: String?
+    open var parentViewController: UIViewController?
     
-    public var sessionToken: String? {
+    open var sessionToken: String? {
         get {
-            return dataManager.stringForKey("sessionToken")
+            return dataManager.string(forKey: "sessionToken")
         }
         set {
-            dataManager.setObject(newValue, forKey: "sessionToken")
+            dataManager.set(newValue, forKey: "sessionToken")
         }
     }
     
-    public init(props: CloudProps, config: Config, method: HTTPMethod = .POST, policyId: String, userName: String? = nil, password: String? = nil, headers: [String:String]? = nil, storage: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
+    public init(props: CloudProps, config: Config, method: HTTPMethod = .POST, policyId: String, userName: String? = nil, password: String? = nil, headers: [String:String]? = nil, storage: UserDefaults = UserDefaults.standard) {
         self.path = "box/srv/1.1/admin/authpolicy/auth"
         self.headers = headers
         self.method = method
@@ -73,10 +73,10 @@ public class AuthRequest: Request {
         self.password = password
     }
     
-    public func exec(completionHandler: CompletionBlock) -> Void {
+    open func exec(completionHandler: @escaping CompletionBlock) -> Void {
         guard let host = config["host"] else {return}
         
-        request(method, host: host, path: path, args: args, completionHandler: {(response: Response, error: NSError?) -> Void in
+        request(method: method, host: host, path: path, args: args, completionHandler: {(response: Response, error: NSError?) -> Void in
             if let error = error {
                 print("AuthRequest::Error \(error)")
                 let response = Response()
@@ -84,21 +84,21 @@ public class AuthRequest: Request {
                 completionHandler(response, error)
                 return
             }
-            if let result = response.parsedResponse as? [String: AnyObject] {
-                if let status = result["status"] as? String where status == "ok" {
+            if let result = response.parsedResponse as? [String: Any] {
+                if let status = result["status"] as? String, status == "ok" {
                     if let urlString = result["url"] as? String, let parent = self.parentViewController {
-                        guard let url = NSURL(string: urlString) else {return}
+                        guard let url = URL(string: urlString) else {return}
                         let controller = OAuthViewController()
                         controller.url = url
                         controller.completionHandler = completionHandler
-                        parent.presentViewController(controller, animated: true, completion: nil)
+                        parent.present(controller, animated: true, completion: nil)
                     } else {
                         if let sessionTokenKey = result["sessionToken"] as? String {
                             self.sessionToken = sessionTokenKey
                         }
                         completionHandler(response, error)
                     }
-                } else if let status = result["status"] as? String where status == "error" {
+                } else if let status = result["status"] as? String, status == "error" {
                     let message = result["message"] as? String
                     let response = Response()
                     let error = NSError(domain: "FeedHenryAuthError", code: 0, userInfo: [NSLocalizedDescriptionKey : message ?? ""])

@@ -20,7 +20,7 @@ import XCTest
 
 class CloudPropsTest: XCTestCase {
     var cloudProps: CloudProps?
-    var dict: [String: AnyObject]!
+    var dict: [String: Any]!
     
     override func setUp() {
         dict = ["apptitle": "Native",
@@ -44,19 +44,19 @@ class CloudPropsTest: XCTestCase {
     }
     
     func testFailedInitDueToLackOfHostsProps() {
-        dict.removeValueForKey("hosts")
-        cloudProps = CloudProps(props: dict)
+        dict.removeValue(forKey: "hosts")
+        cloudProps = CloudProps(props: dict as [String: AnyObject])
         XCTAssertNil(cloudProps, "CloudProps should be nil. No hosts provided.")
     }
     
     func testFailedInitDueTLackOfInitProps() {
-        dict.removeValueForKey("init")
-        cloudProps = CloudProps(props: dict)
+        dict.removeValue(forKey: "init")
+        cloudProps = CloudProps(props: dict as [String: AnyObject])
         XCTAssertNil(cloudProps, "CloudProps should be nil. No Init/TrackId provided.")
     }
     
     func testSucceedInit() {
-        cloudProps = CloudProps(props: dict)
+        cloudProps = CloudProps(props: dict as [String: AnyObject])
         XCTAssertNotNil(cloudProps, "CloudProps should not be nil")
         XCTAssertEqual(cloudProps?.cloudHost, "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
         XCTAssertEqual(cloudProps?.env, "ENV")
@@ -65,19 +65,21 @@ class CloudPropsTest: XCTestCase {
     }
     
     func testSucceedInitWithMockedStorage() {
-        class NSUserDefaultsMock: NSUserDefaults {
-            override class func standardUserDefaults() -> NSUserDefaults {
+        class NSUserDefaultsMock: UserDefaults {
+            
+            override open class var standard: UserDefaults {
                 return NSUserDefaultsMock()
             }
-            override func stringForKey(defaultName: String) -> String? {
+            
+            override func string(forKey defaultName: String) -> String? {
                 return "TRACK"
             }
             
-            override func setObject(value: AnyObject?, forKey defaultName: String) {
+            override func set(_ value: Any?, forKey defaultName: String) {
             }
         }
         
-        cloudProps = CloudProps(props: dict, storage: NSUserDefaultsMock())
+        cloudProps = CloudProps(props: dict as [String: AnyObject], storage: NSUserDefaultsMock())
         XCTAssertNotNil(cloudProps, "CloudProps should not be nil")
         XCTAssertEqual(cloudProps?.cloudHost, "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
         XCTAssertEqual(cloudProps?.env, "ENV")
@@ -87,18 +89,16 @@ class CloudPropsTest: XCTestCase {
 
     
     func testSuccedInitWithURL() {
-        var hosts = dict["hosts"] as! [String: AnyObject]
+        var hosts = dict["hosts"] as! [String: Any]
         hosts["url"] = "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/"
         dict["hosts"] = hosts
-        cloudProps = CloudProps(props: dict)
+        cloudProps = CloudProps(props: dict as [String: AnyObject])
         XCTAssertNotNil(cloudProps, "CloudProps should not be nil")
         XCTAssertEqual(cloudProps?.cloudHost, "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
     }
     
     func testSucceedWithoutEnvProps() {
-        var hosts = dict["hosts"] as? [String: AnyObject]
-        hosts?.removeValueForKey("environment")
-        cloudProps = CloudProps(props: dict)
+        cloudProps = CloudProps(props: dict as [String : AnyObject])
         XCTAssertNotNil(cloudProps, "CloudProps should be nil. No hosts provided.")
     }
     

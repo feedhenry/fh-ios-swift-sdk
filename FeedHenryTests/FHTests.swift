@@ -24,34 +24,34 @@ class FHTests: XCTestCase {
     var dict: [String: AnyObject]!
     
     override func setUp() {
-        dict = ["apptitle": "Native",
-            "domain": "myDomain",
-            "firstTime": 0,
+        dict = ["apptitle": "Native" as AnyObject,
+            "domain": "myDomain" as AnyObject,
+            "firstTime": 0 as AnyObject,
             "hosts": ["debugCloudType": "node",
                 "debugCloudUrl": "ttps://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
                 "releaseCloudType": "node",
                 "releaseCloudUrl": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net",
                 "type": "cloud_nodejs",
                 "url": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
-                "environment": "ENV"],
-            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"],
-            "status": "ok"]
-        stub(isHost("whatever.com")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: self.dict, statusCode: 200, headers: nil)
+                "environment": "ENV"] as AnyObject,
+            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"] as AnyObject,
+            "status": "ok" as AnyObject]
+        stub(condition: isHost("whatever.com")) { _ in
+            let stubResponse = OHHTTPStubsResponse(jsonObject: self.dict, statusCode: 200, headers: nil)
             return stubResponse
         }
         // given a test config file
-        let getExpectation = expectationWithDescription("FH successful")
-        config = Config(propertiesFile: "fhconfig", bundle: NSBundle(forClass: self.dynamicType))
+        let getExpectation = expectation(description: "FH successful")
+        config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         
         // when
-        FH.setup(config!, completionHandler: { (response:Response, err: NSError?) -> Void in
+        FH.setup(config: config!, completionHandler: { (response:Response, err: NSError?) -> Void in
             defer { getExpectation.fulfill()}
             
             print("initialized OK \(response)")
             
         })
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     override func tearDown() {
@@ -59,14 +59,14 @@ class FHTests: XCTestCase {
     }
     
     func testFHCloudSucceed() {
-        stub(isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: ["key":"value"], statusCode: 200, headers: nil)
+        stub(condition: isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
+            let stubResponse = OHHTTPStubsResponse(jsonObject: ["key":"value"], statusCode: 200, headers: nil)
             return stubResponse
         }
         // given a test config file
-        let getExpectation = expectationWithDescription("FH successful")
+        let getExpectation = expectation(description: "FH successful")
         
-        FH.cloud("/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
+        FH.cloud(path: "/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }
@@ -79,18 +79,18 @@ class FHTests: XCTestCase {
         XCTAssertTrue(FH.props?.cloudProps.count == 6)
         XCTAssertTrue(FH.props?.cloudProps["apptitle"] as! String == "Native")
         
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testFHCloudOfflineError() {
-        stub(isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
-            let stubResponse = OHHTTPStubsResponse(JSONObject: ["key":"value"], statusCode: 200, headers: nil)
+        stub(condition: isHost("myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net")) { _ in
+            let stubResponse = OHHTTPStubsResponse(jsonObject: ["key":"value"], statusCode: 200, headers: nil)
             return stubResponse
         }
         // given a test config file
-        let getExpectation = expectationWithDescription("FH successful")
+        let getExpectation = expectation(description: "FH successful")
         
-        FH.cloud("/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
+        FH.cloud(path: "/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }
@@ -103,6 +103,6 @@ class FHTests: XCTestCase {
         XCTAssertTrue(FH.props?.cloudProps.count == 6)
         XCTAssertTrue(FH.props?.cloudProps["apptitle"] as! String == "Native")
         
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
 }

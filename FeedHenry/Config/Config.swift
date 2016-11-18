@@ -17,19 +17,19 @@
 
 import Foundation
 
-public class Config {
-    let dataManager: NSUserDefaults
+open class Config {
+    let dataManager: UserDefaults
     var properties: [String: String]
     let propertiesFile: String
-    var bundle: NSBundle
-    public static var instance = Config()
+    var bundle: Bundle
+    open static var instance = Config()
     
-    init(propertiesFile: String = "fhconfig", bundle:NSBundle, storage: NSUserDefaults = NSUserDefaults.standardUserDefaults()) {
+    init(propertiesFile: String = "fhconfig", bundle:Bundle, storage: UserDefaults = UserDefaults.standard) {
         self.propertiesFile = propertiesFile
         self.bundle = bundle
-        let pathBundle = bundle.pathForResource(propertiesFile, ofType: "plist")
+        let pathBundle = bundle.path(forResource: propertiesFile, ofType: "plist")
         dataManager = storage
-        if let path = pathBundle, properties = NSDictionary(contentsOfFile: path) {
+        if let path = pathBundle, let properties = NSDictionary(contentsOfFile: path) {
             self.properties = properties as! [String : String]
         } else {
             self.properties = [:]
@@ -37,10 +37,10 @@ public class Config {
     }
     
     public convenience init(propertiesFile: String = "fhconfig") {
-        self.init(propertiesFile: propertiesFile, bundle: NSBundle.mainBundle())
+        self.init(propertiesFile: propertiesFile, bundle: Bundle.main)
     }
     
-    public subscript(key: String) -> String? {
+    open subscript(key: String) -> String? {
         get {
             guard let property = properties[key] else {return nil}
             return property == "" ? nil : property
@@ -50,8 +50,8 @@ public class Config {
         }
     }
     
-    public var params: [String: AnyObject] {
-        var params: [String: AnyObject] = [:]
+    open var params: [String: Any] {
+        var params: [String: Any] = [:]
         params["appid"] = self["appid"]
         params["appkey"] = self["appkey"]
         params["projectid"] = self["projectid"]
@@ -77,30 +77,30 @@ public class Config {
         return params
     }
     
-    public var sessionToken: String? {
+    open var sessionToken: String? {
         get {
-            return dataManager.stringForKey("sessionToken")
+            return dataManager.string(forKey: "sessionToken")
         }
         set {
-            dataManager.setObject(newValue, forKey: "sessionToken")
+            dataManager.set(newValue, forKey: "sessionToken")
         }
     }
     
-    public var uuid: String {
+    open var uuid: String {
         get {
-            if let uuid = dataManager.stringForKey("FHUUID") {
+            if let uuid = dataManager.string(forKey: "FHUUID") {
                 return uuid
             }
-            let uuid = NSUUID().UUIDString
-            dataManager.setObject(uuid, forKey: "FHUUID")
+            let uuid = UUID().uuidString
+            dataManager.set(uuid, forKey: "FHUUID")
             
             return uuid
         }
     }
     
-    public var vendorId: String? {
-        if let vendorId = UIDevice.currentDevice().identifierForVendor {
-            return vendorId.UUIDString
+    open var vendorId: String? {
+        if let vendorId = UIDevice.current.identifierForVendor {
+            return vendorId.uuidString
         }
         return nil
     }
