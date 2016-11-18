@@ -45,7 +45,7 @@ class FHTests: XCTestCase {
         config = Config(propertiesFile: "fhconfig", bundle: Bundle(for: type(of: self)))
         
         // when
-        FH.setup(config!, completionHandler: { (response:Response, err: NSError?) -> Void in
+        FH.setup(config: config!, completionHandler: { (response:Response, err: NSError?) -> Void in
             defer { getExpectation.fulfill()}
             
             print("initialized OK \(response)")
@@ -66,7 +66,7 @@ class FHTests: XCTestCase {
         // given a test config file
         let getExpectation = expectation(description: "FH successful")
         
-        FH.cloud("/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
+        FH.cloud(path: "/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }
@@ -90,7 +90,7 @@ class FHTests: XCTestCase {
         // given a test config file
         let getExpectation = expectation(description: "FH successful")
         
-        FH.cloud("/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
+        FH.cloud(path: "/hello", completionHandler: { (resp: Response, err: NSError?) -> Void in
             defer {
                 getExpectation.fulfill()
             }

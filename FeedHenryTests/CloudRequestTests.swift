@@ -20,21 +20,21 @@ import XCTest
 import OHHTTPStubs
 
 class CloudRequestTests: XCTestCase {
-    var dict: [String: AnyObject]!
+    var dict: [String: Any]!
     
     override func setUp() {
-        dict = ["apptitle": "Native" as AnyObject,
-            "domain": "myDomain" as AnyObject,
-            "firstTime": 0 as AnyObject,
+        dict = ["apptitle": "Native",
+            "domain": "myDomain",
+            "firstTime": 0,
             "hosts": ["debugCloudType": "node",
                 "debugCloudUrl": "ttps://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
                 "releaseCloudType": "node",
                 "releaseCloudUrl": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-live.df.live.e111.feedhenry.net",
                 "type": "cloud_nodejs",
                 "url": "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net",
-                "environment": "ENV"] as AnyObject,
-            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"] as AnyObject,
-            "status": "ok" as AnyObject]
+                "environment": "ENV"],
+            "init": ["trackId": "eVtZFmW5NAbyEIJ8aecE2jJJ"],
+            "status": "ok"]
         super.setUp()
     }
     
@@ -43,7 +43,7 @@ class CloudRequestTests: XCTestCase {
     }
     
     func testCloudRequestConstruct() {
-        let initRequest = CloudRequest(props: CloudProps(props: dict)!, path: "hello")
+        let initRequest = CloudRequest(props: CloudProps(props: dict as [String: AnyObject])!, path: "hello")
         XCTAssertEqual(initRequest.method, HTTPMethod.POST)
         XCTAssertTrue(initRequest.props.cloudHost == "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
         XCTAssertNil(initRequest.headers)

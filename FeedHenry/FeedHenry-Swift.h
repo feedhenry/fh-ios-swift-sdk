@@ -201,11 +201,11 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL isOnline;)
   </ul>
 */
 + (void)performCloudRequest:(NSString * _Nonnull)path method:(NSString * _Nonnull)method headers:(NSDictionary * _Nullable)headers args:(NSDictionary * _Nullable)args completionHandler:(void (^ _Nonnull)(FHResponse * _Nonnull, NSError * _Nullable))completionHandler;
-+ (void)pushEnabledForRemoteNotification:(UIApplication * _Nonnull)aaplication;
-+ (void)setPushAlias:(NSString * _Nonnull)alias success:(void (^ _Nonnull)(FHResponse * _Nonnull))success error:(void (^ _Nonnull)(FHResponse * _Nonnull))error;
-+ (void)setPushCategories:(NSArray * _Nonnull)categories success:(void (^ _Nonnull)(FHResponse * _Nonnull))success error:(void (^ _Nonnull)(FHResponse * _Nonnull))error;
-+ (void)sendMetricsWhenAppLaunched:(NSDictionary * _Nullable)launchOptions;
-+ (void)sendMetricsWhenAppAwoken:(UIApplicationState)applicationState userInfo:(NSDictionary * _Nonnull)userInfo;
++ (void)pushEnabledForRemoteNotificationWithApplication:(UIApplication * _Nonnull)application;
++ (void)setPushWithAlias:(NSString * _Nonnull)alias success:(void (^ _Nonnull)(FHResponse * _Nonnull))success error:(void (^ _Nonnull)(FHResponse * _Nonnull))error;
++ (void)setPushWithCategories:(NSArray * _Nonnull)categories success:(void (^ _Nonnull)(FHResponse * _Nonnull))success error:(void (^ _Nonnull)(FHResponse * _Nonnull))error;
++ (void)sendMetricsWhenAppLaunchedWithLaunchOptions:(NSDictionary * _Nullable)launchOptions;
++ (void)sendMetricsWhenAppAwokenWithApplicationState:(UIApplicationState)applicationState userInfo:(NSDictionary * _Nonnull)userInfo;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
