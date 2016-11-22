@@ -56,7 +56,7 @@ class AuthRequestTests: XCTestCase {
         XCTAssertEqual(authRequest.method, HTTPMethod.POST)
         XCTAssertTrue(authRequest.props.cloudHost == "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
         XCTAssertNil(authRequest.headers)
-        XCTAssertNil(authRequest.args!["params"])
+        XCTAssertTrue((authRequest.args!["params"] as! NSDictionary).count == 0)
         XCTAssertTrue(authRequest.args!["policyId"] as! String == "hello")
         XCTAssertTrue(authRequest.args!["device"] as! String == config.uuid)
         XCTAssertTrue(authRequest.args!["clientToken"] as! String == "fXPFgWSN94DxoFoqgml6WeES")
