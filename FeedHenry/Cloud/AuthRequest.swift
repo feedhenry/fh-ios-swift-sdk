@@ -33,7 +33,7 @@ open class AuthRequest: Request {
                 params = ["policyId": self.policyId,
                     "device": config.uuid,
                     "clientToken": appid]
-                var param: [String: Any]?
+                var param: [String: Any] = [:]
                 if let userName = userName, let password = password {
                     param = ["userId": userName, "password": password]
                 }
