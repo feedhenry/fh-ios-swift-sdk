@@ -1,5 +1,8 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+### 5.0.1 - 2016-11-22
+* RHMAP-11793: Auth Request not working in iOS SDK
+
 ### 5.0.0 - 2016-11-18
 * RHMAP-10118: Migrate to Swift 3
 
