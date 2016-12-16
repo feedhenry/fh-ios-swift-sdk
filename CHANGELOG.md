@@ -1,7 +1,9 @@
 # CHANGELOG - FeedHenry iOS SDK
 
-### coming 3.2.0
+### 4.1.2 - 2016-12-16
 * FH-2544: CocoaPods 1.0.1
+* FH-2619: Added support for coveralls.io
+* RHMAP-12349: fix Push notifications doesn't work with alias
 
 ## 4.1.1 - 2016-08-26
 * RHMAP-9821: Podspec with fixed versions
