@@ -193,7 +193,6 @@ public class FH: NSObject {
             registration.overridePushProperties(["serverURL" : baseURL])
         }
         registration.registerWithClientInfo({ (clientInfo: AGClientDeviceInformation!) in
-            guard let deviceToken = deviceToken else {return}
             clientInfo.deviceToken = deviceToken
             guard let config = config else {return}
             clientInfo.alias = config.alias

@@ -20,4 +20,5 @@ import Foundation
 public class PushConfig {
     public var categories: [String]?
     public var alias: String?
+    public init() { }
 }
