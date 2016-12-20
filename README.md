@@ -43,7 +43,7 @@ git push origin {TAG}
 
 ### c) Generate API Documentation
 
-To generate API documentation and sync with the [GitHub pages placeholder](http://feedhenry.github.io/fh-ios-sdk/FH/docset/Contents/Resources/Documents/index.html), switch to ['gh-pages'](https://github.com/feedhenry/fh-ios-sdk/tree/gh-pages) branch and follow the instructions there.
+To generate API documentation and sync with the [GitHub pages placeholder](http://feedhenry.github.io/fh-ios-swift-sdk/FeedHenry/docset/index.html), switch to ['gh-pages'](https://github.com/feedhenry/fh-ios-swift-sdk/tree/gh-pages) branch and follow the instructions there.
 
 ## Usage
 
