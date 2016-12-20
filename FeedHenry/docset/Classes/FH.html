@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FH Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/FH" class="dashAnchor"></a>
+    <a title="FH Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (23% documented)</p>
+        <p class="header-right"><a href="https://github.com/feedhenry/fh-ios-swift-sdk"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        FH Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AuthRequest.html">AuthRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CloudRequest.html">CloudRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Config.html">Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FH.html">FH</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InitRequest.html">InitRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OAuthViewController.html">OAuthViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PushConfig.html">PushConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Request.html">Request</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CloudProps.html">CloudProps</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>FH</h1>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC9FeedHenry2FH8isOnlineSb"></a>
+                    <a name="//apple_ref/swift/Variable/isOnline" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC9FeedHenry2FH8isOnlineSb">isOnline</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check if the device is online. The device is online if either WIFI or 3G
+network is available. Default value is true.</p>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    Returns true if the device is online
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">isOnline</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH4initFFTCS_8ResponseGSqCSo7NSError__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH4initFFTCS_8ResponseGSqCSo7NSError__T_T_">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize the library.</p>
+
+<p>This must be called before any other API methods can be called. The
+initialization process runs asynchronously so that it won&rsquo;t block the main UI
+thread.</p>
+
+<p>You need to make sure it is successful before calling any other API methods. The
+best way to do is by catching the error that is thrown in case of failure to initialize.</p>
+
+<pre class="highlight swift"><code><span class="kt">FH</span><span class="o">.</span><span class="kd">init</span> <span class="p">{</span> <span class="p">(</span><span class="nv">resp</span><span class="p">:</span><span class="kt">Response</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">error</span> <span class="p">{</span>
+<span class="k">self</span><span class="o">.</span><span class="n">statusLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"FH init in error"</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Error: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="k">return</span>
+<span class="p">}</span>
+<span class="k">self</span><span class="o">.</span><span class="n">statusLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"FH init successful"</span>
+<span class="kt">FH</span><span class="o">.</span><span class="nf">cloud</span><span class="p">(</span><span class="s">"hello"</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="nv">response</span><span class="p">:</span> <span class="kt">Response</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">error</span> <span class="p">{</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Error: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="k">return</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Response from Cloud Call: </span><span class="se">\(</span><span class="n">response</span><span class="o">.</span><span class="n">parsedResponse</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Response: </span><span class="se">\(</span><span class="n">resp</span><span class="o">.</span><span class="n">parsedResponse</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><li>Param completionHandler: InnerCompletionBlock is a closure wrap-up that throws errors in case of init failure. If no error, the inner closure returns a JSON Object containing all the details from the init call.</li>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Throws NSError: Networking issue details.</p>
+
+<p></div>
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    Void</p>
+
+<p></div></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="err">`</span><span class="kd">init</span><span class="err">`</span><span class="p">(</span><span class="n">_</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">CompletionBlock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH19performCloudRequestFTSS6methodSS7headersGSqCSo12NSDictionary_4argsGSqS1__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/performCloudRequest(_:method:headers:args:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH19performCloudRequestFTSS6methodSS7headersGSqCSo12NSDictionary_4argsGSqS1__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_">performCloudRequest(_:method:headers:args:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new instance of CloudRequest class and execute it immediately
+with the completionHandler closure. The request runs asynchronously.</p>
+
+<ul>
+<li>Param path: The path of the cloud API</li>
+<li>Param method: The HTTP request method to use for the request. Defaulted to .POST.</li>
+<li>Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.</li>
+<li>Param args: The request body data. Can be nil. Defaulted to nil.</li>
+<li>Param completionHandler: Closure to be executed as a callback of http asynchronous call.</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">performCloudRequest</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>  <span class="nv">method</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">headers</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">?,</span> <span class="nv">args</span><span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">?,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">CompletionBlock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH5cloudFT4pathSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/cloud(path:method:args:headers:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH5cloudFT4pathSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_">cloud(path:method:args:headers:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new instance of CloudRequest class and execute it immediately
+with the completionHandler closure. The request runs asynchronously.</p>
+
+<ul>
+<li>Param path: The path of the cloud API</li>
+<li>Param method: The HTTP request method to use for the request. Defaulted to .POST.</li>
+<li>Param args: The request body data. Can be nil. Defaulted to nil.</li>
+<li>Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.</li>
+<li>Param completionHandler: Closure to be executed as a callback of http asynchronous call.</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">cloud</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/HTTPMethod.html">HTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="kt">POST</span><span class="p">,</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">CompletionBlock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH12cloudRequestFT4pathSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS___CS_12CloudRequest"></a>
+                    <a name="//apple_ref/swift/Method/cloudRequest(path:method:args:headers:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH12cloudRequestFT4pathSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS___CS_12CloudRequest">cloudRequest(path:method:args:headers:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new instance of CloudRequest.</p>
+
+<ul>
+<li>Param path: The path of the cloud API</li>
+<li>Param method: The HTTP request method to use for the request. Defaulted to .POST.</li>
+<li>Param args: The request body data. Can be nil. Defaulted to nil.</li>
+<li>Param headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">cloudRequest</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/HTTPMethod.html">HTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="kt">POST</span><span class="p">,</span> <span class="nv">args</span><span class="p">:[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CloudRequest.html">CloudRequest</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH32pushEnabledForRemoteNotificationFT11applicationCSo13UIApplication_T_"></a>
+                    <a name="//apple_ref/swift/Method/pushEnabledForRemoteNotification(application:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH32pushEnabledForRemoteNotificationFT11applicationCSo13UIApplication_T_">pushEnabledForRemoteNotification(application:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH12pushRegisterFT11deviceTokenGSqV10Foundation4Data_6configGSqCS_10PushConfig_7successFCS_8ResponseT_5errorFS4_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/pushRegister(deviceToken:config:success:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH12pushRegisterFT11deviceTokenGSqV10Foundation4Data_6configGSqCS_10PushConfig_7successFCS_8ResponseT_5errorFS4_T__T_">pushRegister(deviceToken:config:success:error:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH7setPushFT5aliasSS7successFCS_8ResponseT_5errorFS1_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/setPush(alias:success:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH7setPushFT5aliasSS7successFCS_8ResponseT_5errorFS1_T__T_">setPush(alias:success:error:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH7setPushFT10categoriesCSo7NSArray7successFCS_8ResponseT_5errorFS2_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/setPush(categories:success:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH7setPushFT10categoriesCSo7NSArray7successFCS_8ResponseT_5errorFS2_T__T_">setPush(categories:success:error:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH26sendMetricsWhenAppLaunchedFT13launchOptionsGSqGVs10DictionaryVs11AnyHashableP____T_"></a>
+                    <a name="//apple_ref/swift/Method/sendMetricsWhenAppLaunched(launchOptions:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH26sendMetricsWhenAppLaunchedFT13launchOptionsGSqGVs10DictionaryVs11AnyHashableP____T_">sendMetricsWhenAppLaunched(launchOptions:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH24sendMetricsWhenAppAwokenFT16applicationStateOSC18UIApplicationState8userInfoGVs10DictionaryVs11AnyHashableP___T_"></a>
+                    <a name="//apple_ref/swift/Method/sendMetricsWhenAppAwoken(applicationState:userInfo:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH24sendMetricsWhenAppAwokenFT16applicationStateOSC18UIApplicationState8userInfoGVs10DictionaryVs11AnyHashableP___T_">sendMetricsWhenAppAwoken(applicationState:userInfo:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH11authRequestFSSCS_11AuthRequest"></a>
+                    <a name="//apple_ref/swift/Method/authRequest(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH11authRequestFSSCS_11AuthRequest">authRequest(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH4authFT8policyIdSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/auth(policyId:method:args:headers:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH4authFT8policyIdSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_">auth(policyId:method:args:headers:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9FeedHenry2FH4authFT8policyIdSS8userNameSS8passwordSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/auth(policyId:userName:password:method:args:headers:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9FeedHenry2FH4authFT8policyIdSS8userNameSS8passwordSS6methodOS_10HTTPMethod4argsGSqGVs10DictionarySSPs9AnyObject___7headersGSqGS2_SSSS__17completionHandlerFTCS_8ResponseGSqCSo7NSError__T__T_">auth(policyId:userName:password:method:args:headers:completionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Red Hat, Inc.</a>. All rights reserved. (Last updated: 2016-12-20)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

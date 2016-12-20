@@ -1,55 +1,32 @@
-# FeedHenry iOS SDK
+# GitHub pages for [FeedHenry SDK](http://feedhenry.github.io/fh-ios-swift-sdk/FeedHenry/docset/index.html)
 
-[![Build Status](https://travis-ci.org/feedhenry/fh-ios-swift-sdk.png)](https://travis-ci.org/feedhenry/fh-ios-swift-sdk)
-[![Coverage Status](https://coveralls.io/repos/github/feedhenry/fh-ios-swift-sdk/badge.svg?branch=master)](https://coveralls.io/github/feedhenry/fh-ios-swift-sdk?branch=master)
+> As part of [FHMOBSDK-61](https://issues.jboss.org/browse/FHMOBSDK-61) this branch will be eventually removed .
 
-The iOS Software Development Kit to connect to the [FeedHenry platform.](http://www.feedhenry.com)
+## Prerequisites
 
-**The Swift version of FeedHenry SDK is a Work In Progress. If you want to use full feature SDK go to [fh-ios-sdk](https://github.com/feedhenry/fh-ios-sdk/).**
+1. Install [Jazzy](https://github.com/realm/jazzy) 
+`gem install jazzy`
+2. Install [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+`gem install cocoapods`
 
-## Release Process
 
-The project relies on [CocoaPods](http://cocoapods.org) and it's respective plugins  ['cocoapods-packager'](https://github.com/CocoaPods/cocoapods-packager) and ['cocoapods-appledoc'](https://github.com/CocoaPods/cocoapods-appledoc), so please ensure that are installed in your system. If not, please execute the following:
+## Update Docs
 
-```
-[sudo] gem install cocoapods cocoapods-packager cocoapods-appledoc
-```
+The `gh-pages` branch includes `master` branch as a git submodule in order to generate docs.
 
-### Common Actions
+Steps: 
 
-* Update ```CHANGELOG.md`` with the new release and content.
+1. Init submodule `git submodule init`
+1. Update submodule `git submodule update --remote`
+1. Go to the module directory `cd fh-ios-swift-sdk`
+1. Install CocoaPod dependencies `pod install`
+1. Go back to root folder `cd ..`
+1. Generate the documentation with jazzy `jazzy -o ./FeedHenry/docset --source-directory fh-ios-swift-sdk/  --author "Red Hat, Inc." --github_url https://github.com/feedhenry/fh-ios-swift-sdk`
 
-### a) Release on CocoaPods  [Required Step]
-* Update ```FeedHenry.podspec```, ```s.version``` attribute with the new version number.
-* Tag the repository with the new version number:
-
-```
-git tag -s -a {VERSION} -m 'version {VERSION}'   // e.g. {VERSION} format is  '4.0.0'
-```
-
-* Push the new release tag on GitHub:
+Single line command
 
 ```
-git push origin {TAG}
+git submodule init && git submodule update --remote && cd fh-ios-swift-sdk && pod install && cd .. && jazzy -o ./FeedHenry/docset --source-directory fh-ios-swift-sdk/  --author "Red Hat, Inc." --github_url https://github.com/feedhenry/fh-ios-swift-sdk
 ```
 
-* Publish the ```FeedHenry.podspec``` on the [CocoaPods](http://cocoapods.org) repo with:
-
-```
- 	pod trunk push --allow-warnings
-```
-
->	```--allow-warnings``` is required to skip some deprecation warnings from a underlying dependency library. This will be circumvented in a future release.
-
-### c) Generate API Documentation
-
-To generate API documentation and sync with the [GitHub pages placeholder](http://feedhenry.github.io/fh-ios-sdk/FH/docset/Contents/Resources/Documents/index.html), switch to ['gh-pages'](https://github.com/feedhenry/fh-ios-sdk/tree/gh-pages) branch and follow the instructions there.
-
-## Usage
-
-See [iOS SDK Guide](http://docs.feedhenry.com/v3/api/app_api.html).
-
-### Links
-* [FeedHenry Documentation](http://docs.feedhenry.com)
-* [AeroGear iOS Http](https://github.com/aerogear/aerogear-ios-http)
-* [AeroGear iOS Push](https://github.com/aerogear/aerogear-ios-push)
+Send a Pull Request with the changes and after it's merged, access the  [FeedHenry SDK GitHub page](http://feedhenry.github.io/fh-ios-swift-sdk/FeedHenry/docset/index.html) and ensure any changes have been propagated.

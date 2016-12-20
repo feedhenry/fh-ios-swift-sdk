@@ -1,0 +1,3 @@
+[submodule "fh-ios-swift-sdk"]
+	path = fh-ios-swift-sdk
+	url = https://github.com/feedhenry/fh-ios-swift-sdk.git
