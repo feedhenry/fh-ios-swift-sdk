@@ -6,8 +6,7 @@ before_install:
   - travis_wait pod repo update --silent
 
 script:
-  - xcodebuild clean build test -workspace FeedHenry.xcworkspace -scheme FeedHenry -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'
-
+  - xcodebuild clean build test -workspace FeedHenry.xcworkspace -scheme FeedHenry -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=10.2,id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12'
 notifications:
   irc: "irc.freenode.org#feedhenry"
 
