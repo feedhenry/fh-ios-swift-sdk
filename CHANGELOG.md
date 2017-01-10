@@ -1,5 +1,8 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+### 4.2.1 - 2017-01-10
+* RHMAP-12362: Push notifications doesn't work with alias
+
 ### 4.2.0 - 2016-11-04
 * RHMAP-10096: Swift 2.3 and CocoaPods 1.1.1
 * FH-2619: Support for coveralls.io
