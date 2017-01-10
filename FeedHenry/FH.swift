@@ -189,7 +189,6 @@ open class FH: NSObject {
             registration.override(pushProperties: ["serverURL" : baseURL])
         }
         registration.register(clientInfo: { (clientDevice: ClientDeviceInformation!) in
-            guard let deviceToken = deviceToken else {return}
             clientDevice.deviceToken = deviceToken
             guard let config = config else {return}
             clientDevice.alias = config.alias
