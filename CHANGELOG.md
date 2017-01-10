@@ -1,5 +1,8 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+### 5.0.2 - 2017-01-12
+* RHMAP-12362: Push notifications doesn't work with alias
+
 ### 5.0.1 - 2016-11-22
 * RHMAP-11793: Auth Request not working in iOS SDK
 
