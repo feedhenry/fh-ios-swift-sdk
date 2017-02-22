@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'FeedHenry'
-  s.version      = '5.0.2'
+  s.version      = '5.0.3'
   s.summary      = 'FeedHenry Swift iOS Software Development Kit'
   s.homepage     = 'https://www.feedhenry.com'
   s.social_media_url = 'https://twitter.com/feedhenry'
@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.module_map = 'FeedHenry/module.modulemap'
   s.requires_arc = true
   s.dependency 'AeroGearHttp', '1.0.0'
-  s.dependency 'AeroGear-Push-Swift', '2.0.0'
+  s.dependency 'AeroGear-Push-Swift', '2.0.1'
   s.dependency 'ReachabilitySwift', '3'
 end
