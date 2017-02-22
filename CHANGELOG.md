@@ -1,5 +1,8 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+### 5.0.3 - 2017-02-22
+* RHMAP-13495: PushStarter template crashes on iOS9 if push is not enabled
+
 ### 5.0.2 - 2017-01-10
 * RHMAP-12362: Push notifications doesn't work with alias
 
