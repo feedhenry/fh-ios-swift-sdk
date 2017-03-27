@@ -17,8 +17,14 @@
 
 import Foundation
 
+/**
+ PushConfig is used to define categories or aliases.
+ */
 open class PushConfig {
+    /// List of categories the push notification should be sent to. Optional field.
     open var categories: [String]?
+    /// Define an alias for push notification. Optional field.
     open var alias: String?
+    /// Default initializer.
     public init() { }
 }
