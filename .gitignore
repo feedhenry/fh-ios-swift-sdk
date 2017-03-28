@@ -5,6 +5,9 @@
 # Exclude OS X folder attributes
 .DS_Store
 
+# Exclude generated folder when doing API doc generation
+FeedHenry/docset
+
 # Exclude user-specific XCode files
 *.mode1
 *.mode1v3
