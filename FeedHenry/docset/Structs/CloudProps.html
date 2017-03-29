@@ -94,7 +94,7 @@
                 </div>
               </div>
             <p>Struct used to stored cloud properties after an initial setup.
-Before any call to the cloud is ma</p>
+Before any call to the cloud is done.</p>
 
           </section>
           <section class="section task-group-section">
@@ -223,10 +223,8 @@ The trackId is stored in local storage.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Failable initializer for CloudProps. If the Cloud call returns a JSON missing hosts, environment or init (trackId), the init will fail. 
-For a successful init, the CloudProps conains all properties required for subsequent call to cloud.
-- parameter props: List of properties returned from cloud app
-- parameter dataManager: Identifies where to store the trackId returned by the cloud app. This parameter is used for dependency injection for unit testing. Its default value is NSUserDefaults storage.</p>
+                        <p>Failable initializer for CloudProps. If the Cloud call returns a JSON missing hosts, environment or init (trackId), the init will fail.
+For a successful init, the CloudProps contains all properties required for subsequent call to cloud.</p>
 
                       </div>
                       <div class="declaration">
@@ -262,7 +260,7 @@ For a successful init, the CloudProps conains all properties required for subseq
                               </td>
                               <td>
                                 <div>
-                                  <p>Identifies where to store the trackId returned by the cloud app. This parameter is used for dependency injection for unit testing. Its default value is NSUserDefaults storage.</p>
+                                  <p>Identifies where to store the trackId returned by the cloud app. This parameter is used for dependency injection for unit testing. Its default value is UserDefaults.standard storage.</p>
 
                                 </div>
                               </td>

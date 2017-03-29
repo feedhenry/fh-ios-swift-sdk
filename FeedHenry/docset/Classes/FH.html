@@ -166,7 +166,7 @@ best way to do is by catching the error that is thrown in case of failure to ini
     <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">error</span> <span class="p">{</span>
       <span class="nf">print</span><span class="p">(</span><span class="s">"Error: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
       <span class="k">return</span>
-     <span class="p">}</span>
+    <span class="p">}</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"Response from Cloud Call: </span><span class="se">\(</span><span class="n">response</span><span class="o">.</span><span class="n">parsedResponse</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
   <span class="p">})</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">"Response: </span><span class="se">\(</span><span class="n">resp</span><span class="o">.</span><span class="n">parsedResponse</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
@@ -515,14 +515,12 @@ with the completionHandler closure. The request runs asynchronously.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Register for remote notification in AppDelegate&rsquo;s lifecycle method.
-- parameter application: the application parameter available in AppDelegate class.</p>
+                        <p>Register for remote notifications in AppDelegate&rsquo;s lifecycle method.</p>
 
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
   <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationLaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-
-    <span class="kt">FH</span><span class="o">.</span><span class="nf">pushEnabledForRemoteNotification</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="n">application</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">true</span>
+   <span class="kt">FH</span><span class="o">.</span><span class="nf">pushEnabledForRemoteNotification</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="n">application</span><span class="p">)</span>
+   <span class="k">return</span> <span class="kc">true</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -572,8 +570,7 @@ with the completionHandler closure. The request runs asynchronously.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Register to AeroGear Unified Push Server. To be used in AppDelegate&rsquo;s lifecycle&rsquo;s method. <code>application(_, didRegisterForRemoteNotificationsWithDeviceToken:)</code>.
-- parameter application: the application parameter available in AppDelegate class.</p>
+                        <p>Register to AeroGear Unified Push Server. To be used in AppDelegate&rsquo;s lifecycle&rsquo;s method. <code>application(_, didRegisterForRemoteNotificationsWithDeviceToken:)</code>.</p>
 
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
   <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didRegisterForRemoteNotificationsWithDeviceToken</span> <span class="nv">deviceToken</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="p">{</span>
@@ -631,10 +628,7 @@ with the completionHandler closure. The request runs asynchronously.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Utility method that registers to AeroGear Unified Push Server and configure an alias.
-- parameter alias: is a string to alias the device where to send push notification.
-- parameter success: closure to run upon success of the push registration,
-- parameter error: closure to run unpon failure of push registration.</p>
+                        <p>Utility method that registers to AeroGear Unified Push Server and configure an alias.</p>
 
                       </div>
                       <div class="declaration">
@@ -657,7 +651,7 @@ with the completionHandler closure. The request runs asynchronously.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>is a string to alias the device where to send push notification.</p>
+                                  <p>is a string to alias the device where to send push notifications.</p>
 
                                 </div>
                               </td>
@@ -670,7 +664,7 @@ with the completionHandler closure. The request runs asynchronously.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>closure to run upon success of the push registration,</p>
+                                  <p>closure to run upon success of the push registration.</p>
 
                                 </div>
                               </td>
@@ -707,10 +701,7 @@ with the completionHandler closure. The request runs asynchronously.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Utility method that registers to AeroGear Unified Push Server and configure an array list of categories.
-- parameter categories: NSArray
-- parameter success: (Response) -&gt; ()
-- parameter error: (Response) -&gt; ()</p>
+                        <p>Utility method that registers to AeroGear Unified Push Server and configure an array list of categories.</p>
 
                       </div>
                       <div class="declaration">
