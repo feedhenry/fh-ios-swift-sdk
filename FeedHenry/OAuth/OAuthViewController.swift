@@ -34,7 +34,7 @@ open class OAuthViewController: UIViewController, UIWebViewDelegate {
         self.view.addSubview(webView)
     }
     
-    /// Overrode to deal with error.
+    /// Override to deal with error.
     open func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("Webview fail with error \(error)");
     }

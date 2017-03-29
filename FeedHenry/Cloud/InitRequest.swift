@@ -1,28 +1,28 @@
 /*
-* JBoss, Home of Professional Open Source.
-* Copyright Red Hat, Inc., and individual contributors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * JBoss, Home of Professional Open Source.
+ * Copyright Red Hat, Inc., and individual contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import Foundation
 
 /**
-This class provides the layer to do http request.
-*/
+ This class provides the layer to do http request.
+ */
 public class InitRequest: Request {
     var config: Config
-    /// Properties returned once FH.init succeed. Those properties are persisted on the deivuce.
+    /// Properties returned once FH.init succeeds. Those properties are persisted on the device.
     public var props: CloudProps?
     let path: String
     let args: [String: Any]?
@@ -31,8 +31,8 @@ public class InitRequest: Request {
     
     /**
      Constructor.
-
-     - parameter config: contains the setting avalable in fhconfig.plist, population by customer or by RHMAP platform at project creation.
+     
+     - parameter config: contains the setting available in `fhconfig.plist`, populated by customer or by RHMAP platform at project creation.
      */
     public init(config: Config) {
         self.path = "/box/srv/1.1/app/init"

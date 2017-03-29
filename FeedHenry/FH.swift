@@ -45,7 +45,7 @@ public enum HTTPMethod: String {
 open class FH: NSObject {
     /// Properties is the returned object from a FH.init call when done successfully. It contains information like mbaas host name that are useful for FH.cloud call.
     static var props: CloudProps?
-    /// Configuration object. Read form fhconfig.plist file.
+    /// Configuration object. Read form `fhconfig.plist` file.
     static var config: Config?
     /**
      Check if the device is online. The device is online if either WIFI or 3G
@@ -75,20 +75,20 @@ open class FH: NSObject {
      
      ```swift
      FH.init { (resp:Response, error: NSError?) -> Void in
-       if let error = error {
-         self.statusLabel.text = "FH init in error"
-         print("Error: \(error)")
-         return
-       }
-       self.statusLabel.text = "FH init successful"
-       FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
-         if let error = error {
-           print("Error: \(error)")
-           return
-          }
-         print("Response from Cloud Call: \(response.parsedResponse)")
-       })
-       print("Response: \(resp.parsedResponse)")
+     if let error = error {
+     self.statusLabel.text = "FH init in error"
+     print("Error: \(error)")
+     return
+     }
+     self.statusLabel.text = "FH init successful"
+     FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
+     if let error = error {
+     print("Error: \(error)")
+     return
+     }
+     print("Response from Cloud Call: \(response.parsedResponse)")
+     })
+     print("Response: \(resp.parsedResponse)")
      }
      ```
      
@@ -178,7 +178,7 @@ open class FH: NSObject {
             if reachability == nil {
                 reachability = Reachability()!
             }
-
+            
             do {
                 try reachability!.startNotifier()
                 initCalled = true
@@ -190,15 +190,16 @@ open class FH: NSObject {
     }
     /**
      Register for remote notification in AppDelegate's lifecycle method.
+     
      - parameter application: the application parameter available in AppDelegate class.
      
      ```swift
      class AppDelegate: UIResponder, UIApplicationDelegate {
-       func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
      
-         FH.pushEnabledForRemoteNotification(application: application)
-         return true
-       }
+     FH.pushEnabledForRemoteNotification(application: application)
+     return true
+     }
      }
      ```
      */
@@ -209,17 +210,18 @@ open class FH: NSObject {
     }
     /**
      Register to AeroGear Unified Push Server. To be used in AppDelegate's lifecycle's method. `application(_, didRegisterForRemoteNotificationsWithDeviceToken:)`.
+     
      - parameter application: the application parameter available in AppDelegate class.
      
      ```swift
      class AppDelegate: UIResponder, UIApplicationDelegate {
-       func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-         FH.pushRegister(deviceToken: deviceToken, success: { res in
-           print("Unified Push registration successful")
-         }, error: {failed in
-           print("Unified Push registration Error \(failed.error)")
-         })
-       }
+     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+     FH.pushRegister(deviceToken: deviceToken, success: { res in
+     print("Unified Push registration successful")
+     }, error: {failed in
+     print("Unified Push registration Error \(failed.error)")
+     })
+     }
      }
      ```
      */
@@ -234,20 +236,21 @@ open class FH: NSObject {
             guard let config = config else {return}
             clientDevice.alias = config.alias
             clientDevice.categories = config.categories
-            },
-                                            success: {
-                                                success(Response())
-            },
-                                            failure: {(err: NSError) -> Void in
-                                                let response = Response()
-                                                response.error = err
-                                                error(response)
+        },
+                              success: {
+                                success(Response())
+        },
+                              failure: {(err: NSError) -> Void in
+                                let response = Response()
+                                response.error = err
+                                error(response)
         })
     }
     
     /**
      Utility method that registers to AeroGear Unified Push Server and configure an alias.
-     - parameter alias: is a string to alias the device where to send push notification.
+     
+     - parameter alias: is a string to alias the device where to send push notifications.
      - parameter success: closure to run upon success of the push registration,
      - parameter error: closure to run unpon failure of push registration.
      */
@@ -259,6 +262,7 @@ open class FH: NSObject {
     
     /**
      Utility method that registers to AeroGear Unified Push Server and configure an array list of categories.
+     
      - parameter categories: NSArray
      - parameter success: (Response) -> ()
      - parameter error: (Response) -> ()
