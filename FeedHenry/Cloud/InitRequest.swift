@@ -17,17 +17,23 @@
 
 import Foundation
 
-/*
+/**
 This class provides the layer to do http request.
 */
 public class InitRequest: Request {
     var config: Config
+    /// Properties returned once FH.init succeed. Those properties are persisted on the deivuce.
     public var props: CloudProps?
     let path: String
     let args: [String: Any]?
     let headers: [String: String]?
     let method: HTTPMethod
     
+    /**
+     Constructor.
+
+     - parameter config: contains the setting avalable in fhconfig.plist, population by customer or by RHMAP platform at project creation.
+     */
     public init(config: Config) {
         self.path = "/box/srv/1.1/app/init"
         let defaultParameters: [String: Any]? = config.params
@@ -38,6 +44,11 @@ public class InitRequest: Request {
         self.config = config
     }
     
+    /**
+     Execute method of this command pattern class. It actually does the call to the server.
+     
+     - parameter completionHandler: closure that runs once the call is completed. To check error parameter.
+     */
     public func exec(completionHandler: @escaping CompletionBlock) -> Void {
         assert(config["host"] != nil, "Property file fhconfig.plist must have 'host' defined.")
         let host = config["host"]!

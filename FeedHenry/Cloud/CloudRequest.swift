@@ -17,7 +17,7 @@
 
 import Foundation
 
-/*
+/**
  This class provides the layer to do http request.
  */
 open class CloudRequest: Request {
@@ -30,6 +30,17 @@ open class CloudRequest: Request {
     var config: Config?
     let dataManager: UserDefaults
     
+    /**
+     Constructor.
+     
+     - parameter props: contains the properties retrieved when FH.init is successfully called.
+     - parameter config: contains the setting avalable in fhconfig.plist, population by customer or by RHMAP platform at project creation.
+     - parameter path: endpoint to call.
+     - parameter method: Http method.
+     - parameter args: http headers.
+     - parameter headers: http arguments.
+     - parameter storage: where to store cloud properties. Default to UserDefaults.
+     */
     public init(props: CloudProps, config: Config? = nil, path: String, method: HTTPMethod = .POST, args: [String:Any]? = nil, headers: [String:String]? = nil, storage: UserDefaults = UserDefaults.standard) {
         self.path = path
         self.args = args
@@ -40,6 +51,11 @@ open class CloudRequest: Request {
         self.dataManager = storage
     }
     
+    /**
+     Execute method of this command pattern class. It actually does the call to the server.
+     
+     - parameter completionHandler: closure that runs once the call is completed. To check error parameter.
+     */
     open func exec(completionHandler: @escaping CompletionBlock) -> Void {
         let host = props.cloudHost
         var headers: [String: String]?

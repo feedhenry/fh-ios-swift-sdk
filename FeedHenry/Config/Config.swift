@@ -16,14 +16,24 @@
 */
 
 import Foundation
-
+/**
+ Config contains the setting avalable in fhconfig.plist, populated by customers or by RHMAP platform at project creation.
+ */
 open class Config {
     let dataManager: UserDefaults
     var properties: [String: String]
     let propertiesFile: String
     var bundle: Bundle
+    /// Singleton instance.
     open static var instance = Config()
     
+    /**
+     Constructor.
+     
+     - parameter propertiesFile: the name of the file, defaulted to fhconfig.plist.
+     - parameter bundle: which bunfle to find the file.
+     - parameter storage: where to store the config and the cloud properties info. Defaulted to UserDefaults.standard.
+     */
     init(propertiesFile: String = "fhconfig", bundle:Bundle, storage: UserDefaults = UserDefaults.standard) {
         self.propertiesFile = propertiesFile
         self.bundle = bundle
@@ -36,10 +46,18 @@ open class Config {
         }
     }
     
+    /**
+     Convenience constructor.
+     
+     - parameter propertiesFile: the name of the file, defaulted to fhconfig.plist.
+     */
     public convenience init(propertiesFile: String = "fhconfig") {
         self.init(propertiesFile: propertiesFile, bundle: Bundle.main)
     }
     
+    /**
+     Subscript operator overload to access cloud properties returned after a FH.init call.
+     */
     open subscript(key: String) -> String? {
         get {
             guard let property = properties[key] else {return nil}
@@ -50,6 +68,9 @@ open class Config {
         }
     }
     
+    /**
+     Paramters used for FH.init.
+     */
     open var params: [String: Any] {
         var params: [String: Any] = [:]
         params["appid"] = self["appid"]
@@ -77,6 +98,9 @@ open class Config {
         return params
     }
     
+    /**
+     Store the token used for Auth.
+     */
     open var sessionToken: String? {
         get {
             return dataManager.string(forKey: "sessionToken")
@@ -86,6 +110,9 @@ open class Config {
         }
     }
     
+    /**
+     The unique UUID of the device.
+     */
     open var uuid: String {
         get {
             if let uuid = dataManager.string(forKey: "FHUUID") {
@@ -97,7 +124,9 @@ open class Config {
             return uuid
         }
     }
-    
+    /**
+     An alphanumeric string that uniquely identifies a device to the app’s vendor.
+     */
     open var vendorId: String? {
         if let vendorId = UIDevice.current.identifierForVendor {
             return vendorId.uuidString
