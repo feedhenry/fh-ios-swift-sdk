@@ -43,7 +43,7 @@ public enum HTTPMethod: String {
  */
 @objc(FH)
 open class FH: NSObject {
-    /// Properties is the returned object from a FH.init call when done successfully. It contains information like mbaas host name that are useful for FH.cloud call.
+    /// Properties is the returned object from a `FH.init` call when done successfully. It contains information like mbaas host name that are useful for FH.cloud call.
     static var props: CloudProps?
     /// Configuration object. Read form `fhconfig.plist` file.
     static var config: Config?
@@ -75,20 +75,20 @@ open class FH: NSObject {
      
      ```swift
      FH.init { (resp:Response, error: NSError?) -> Void in
-     if let error = error {
-     self.statusLabel.text = "FH init in error"
-     print("Error: \(error)")
-     return
-     }
-     self.statusLabel.text = "FH init successful"
-     FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
-     if let error = error {
-     print("Error: \(error)")
-     return
-     }
-     print("Response from Cloud Call: \(response.parsedResponse)")
-     })
-     print("Response: \(resp.parsedResponse)")
+       if let error = error {
+         self.statusLabel.text = "FH init in error"
+         print("Error: \(error)")
+         return
+       }
+       self.statusLabel.text = "FH init successful"
+       FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
+         if let error = error {
+           print("Error: \(error)")
+           return
+         }
+         print("Response from Cloud Call: \(response.parsedResponse)")
+       })
+       print("Response: \(resp.parsedResponse)")
      }
      ```
      
@@ -147,7 +147,7 @@ open class FH: NSObject {
     }
     
     /**
-     Private method called by FH.init.
+     Private method called by `FH.init`.
      */
     class func setup(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
         let initRequest = InitRequest(config: config)
@@ -195,11 +195,10 @@ open class FH: NSObject {
      
      ```swift
      class AppDelegate: UIResponder, UIApplicationDelegate {
-     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-     
-     FH.pushEnabledForRemoteNotification(application: application)
-     return true
-     }
+       func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FH.pushEnabledForRemoteNotification(application: application)
+        return true
+       }
      }
      ```
      */
@@ -215,13 +214,13 @@ open class FH: NSObject {
      
      ```swift
      class AppDelegate: UIResponder, UIApplicationDelegate {
-     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-     FH.pushRegister(deviceToken: deviceToken, success: { res in
-     print("Unified Push registration successful")
-     }, error: {failed in
-     print("Unified Push registration Error \(failed.error)")
-     })
-     }
+       func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+         FH.pushRegister(deviceToken: deviceToken, success: { res in
+           print("Unified Push registration successful")
+         }, error: {failed in
+           print("Unified Push registration Error \(failed.error)")
+         })
+       }
      }
      ```
      */

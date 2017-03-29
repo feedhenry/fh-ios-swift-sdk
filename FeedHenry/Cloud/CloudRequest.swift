@@ -34,7 +34,7 @@ open class CloudRequest: Request {
      Constructor.
      
      - parameter props: contains the properties retrieved when FH.init is successfully called.
-     - parameter config: contains the setting avalable in fhconfig.plist, population by customer or by RHMAP platform at project creation.
+     - parameter config: contains the settings available in `fhconfig.plist`, population by customer or by RHMAP platform at project creation.
      - parameter path: endpoint to call.
      - parameter method: Http method.
      - parameter args: http headers.

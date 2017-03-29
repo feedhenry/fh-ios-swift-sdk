@@ -17,7 +17,7 @@
 
 import Foundation
 /**
- Config contains the setting available in fhconfig.plist, populated by customers or by RHMAP platform at project creation.
+ Config contains the setting available in `fhconfig.plist`, populated by customers or by RHMAP platform at project creation.
  */
 open class Config {
     let dataManager: UserDefaults
@@ -56,7 +56,7 @@ open class Config {
     }
     
     /**
-     Subscript operator's overload to access cloud properties returned after a FH.init call.
+     Subscript operator's overload to access cloud properties returned after a `FH.init` call.
      */
     open subscript(key: String) -> String? {
         get {
@@ -69,7 +69,7 @@ open class Config {
     }
     
     /**
-     Parameters used for FH.init call.
+     Parameters used for `FH.init` call.
      */
     open var params: [String: Any] {
         var params: [String: Any] = [:]
