@@ -189,7 +189,7 @@ open class FH: NSObject {
         }
     }
     /**
-     Register for remote notification in AppDelegate's lifecycle method.
+     Register for remote notifications in AppDelegate's lifecycle method.
      
      - parameter application: the application parameter available in AppDelegate class.
      
@@ -250,7 +250,7 @@ open class FH: NSObject {
      Utility method that registers to AeroGear Unified Push Server and configure an alias.
      
      - parameter alias: is a string to alias the device where to send push notifications.
-     - parameter success: closure to run upon success of the push registration,
+     - parameter success: closure to run upon success of the push registration.
      - parameter error: closure to run unpon failure of push registration.
      */
     open class func setPush(alias: String, success: @escaping (Response) -> Void, error: @escaping (Response) -> Void) -> Void {

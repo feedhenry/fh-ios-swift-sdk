@@ -126,7 +126,7 @@ open class Config {
     }
     
     /**
-     An alphanumeric string that uniquely identifies a device to the app’s vendor.
+     An alphanumeric string that uniquely identifies a device to the app's vendor.
      */
     open var vendorId: String? {
         if let vendorId = UIDevice.current.identifierForVendor {
