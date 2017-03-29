@@ -67,10 +67,10 @@ open class AuthRequest: Request {
     /**
      Constructor.
      
-     - parameter props: contains the properties retrieved when FH.init is successfully called.
-     - parameter config: contains the setting avalable in fhconfig.plist, population by customer or by RHMAP platform at project creation.
+     - parameter props: contains the properties retrieved when `FH.init` is successfully called.
+     - parameter config: contains the setting avalable in `fhconfig.plist`, population by customer or by RHMAP platform at project creation.
      - parameter method: Http method.
-     - parameter policyId: could be `MBAss`, `OAUHT1`, `FEEDHENRY` defines the RHMAP auth policy. Used by the cloud app to hook into core platform.
+     - parameter policyId: could be `MBASS`, `OAUHT2`, `FEEDHENRY` defines the RHMAP auth policy. Used by the cloud app to hook into core platform.
      - parameter userName: used for oauth policy.
      - parameter password: used for oauth policy.
      - parameter headers: http headers.
