@@ -20,10 +20,31 @@ import AeroGearHttp
 
 let FHSDKNetworkOfflineErrorType = 1
 
+/**
+ Request is a command design pattern. Its only method is an `exec` that run the command. Different classes implement this command pattern.
+ */
 public protocol Request {
+    /**
+     Execute method of this command pattern class. It actually does the call to the server.
+     
+     - parameter completionHandler: closure that runs once the call is completed. To check error parameter.
+     */
     func exec(completionHandler: @escaping CompletionBlock) -> Void
 }
+/**
+ Default implementation of the Request protocol.
+ */
 extension Request {
+    /**
+     Request method provides the actual body for http call.
+     
+     - parameter method: Http method.
+     - parameter host: to call in the http request.
+     - parameter path: the endpoint to call.
+     - parameter args: http headers. Default to nil.
+     - parameter headers: http arguments. Default to nil.
+     - parameter completionHandler: closure that runs once the call is completed. To check error parameter.
+     */
     public func request(method: HTTPMethod, host: String, path: String, args: [String: Any]?, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) {
         let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
         
@@ -50,7 +71,7 @@ extension Request {
                                 return nil
                             }
                             
-                        }))        
+                        }))
         
         http.request(method: aerogearMethod, path: path, parameters: args, completionHandler: {(response: Any?, error: NSError?) -> Void in
             let fhResponse = Response()

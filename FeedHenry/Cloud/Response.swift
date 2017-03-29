@@ -17,6 +17,9 @@
 
 import Foundation
 
+/**
+ Response Object that contains the Http response information.
+ */
 @objc(FHResponse)
 open class Response: NSObject {
     /// Get the raw response data

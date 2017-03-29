@@ -19,7 +19,7 @@ import Foundation
 
 /**
 Struct used to stored cloud properties after an initial setup.
-Before any call to the cloud is ma
+Before any call to the cloud is done.
 */
 public struct CloudProps {
     let dataManager: UserDefaults
@@ -33,7 +33,7 @@ public struct CloudProps {
     /// Set of all properties returned by cloud app endpoints.
     public let cloudProps: [String: AnyObject]
     
-    /// Computed propertie retrieved from ```setup``` cloud init call. 
+    /// Computed propertie retrieved from `setup` cloud init call. 
     /// It represents the Id of the handshake between client/cloud app.
     /// The trackId is stored in local storage.
     public var trackId: String? {
@@ -45,10 +45,13 @@ public struct CloudProps {
         }
     }
     
-    /// Failable initializer for CloudProps. If the Cloud call returns a JSON missing hosts, environment or init (trackId), the init will fail. 
-    /// For a successful init, the CloudProps conains all properties required for subsequent call to cloud.
-    /// - Param props: List of properties returned from cloud app
-    /// - Param dataManager: Identifies where to store the trackId returned by the cloud app. This parameter is used for dependency injection for unit testing. Its default value is NSUserDefaults storage.
+    /**
+     Failable initializer for CloudProps. If the Cloud call returns a JSON missing hosts, environment or init (trackId), the init will fail.
+     For a successful init, the CloudProps contains all properties required for subsequent call to cloud.
+    
+     - parameter props: List of properties returned from cloud app
+     - parameter dataManager: Identifies where to store the trackId returned by the cloud app. This parameter is used for dependency injection for unit testing. Its default value is UserDefaults.standard storage.
+   */
     public init?(props: [String: AnyObject], storage: UserDefaults = UserDefaults.standard) {
         guard let host = props["hosts"], let url = host["url"] as? String else {return nil}
         guard let initProp = props["init"], let track = initProp["trackId"] as? String else {return nil}

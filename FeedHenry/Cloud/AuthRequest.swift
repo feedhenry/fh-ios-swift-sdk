@@ -17,7 +17,7 @@
 
 import Foundation
 
-/*
+/**
 This class provides the layer to do http request.
 */
 open class AuthRequest: Request {
@@ -48,10 +48,13 @@ open class AuthRequest: Request {
     }
     let dataManager: UserDefaults
     fileprivate var policyId: String
+    /// Username used for authentication. Optional.
     open var userName: String?
+    /// Password used for authentication. Optional.
     open var password: String?
+    /// UIViewController used to display view used for authentication. Optional.
     open var parentViewController: UIViewController?
-    
+    /// String used to store token used for authentication. Optional. Tokens are persisted into the device using UserDefaults.
     open var sessionToken: String? {
         get {
             return dataManager.string(forKey: "sessionToken")
@@ -61,6 +64,18 @@ open class AuthRequest: Request {
         }
     }
     
+    /**
+     Constructor.
+     
+     - parameter props: contains the properties retrieved when `FH.init` is successfully called.
+     - parameter config: contains the setting avalable in `fhconfig.plist`, population by customer or by RHMAP platform at project creation.
+     - parameter method: Http method.
+     - parameter policyId: could be `MBASS`, `OAUHT2`, `FEEDHENRY` defines the RHMAP auth policy. Used by the cloud app to hook into core platform.
+     - parameter userName: used for oauth policy.
+     - parameter password: used for oauth policy.
+     - parameter headers: http headers.
+     - parameter storage: where to store tokens. Default to UserDefaults.
+     */
     public init(props: CloudProps, config: Config, method: HTTPMethod = .POST, policyId: String, userName: String? = nil, password: String? = nil, headers: [String:String]? = nil, storage: UserDefaults = UserDefaults.standard) {
         self.path = "box/srv/1.1/admin/authpolicy/auth"
         self.headers = headers
@@ -73,6 +88,11 @@ open class AuthRequest: Request {
         self.password = password
     }
     
+    /**
+     Execute method of this command pattern class. It actually does the auth call to the server.
+    
+     - parameter completionHandler: closure that runs once the call is completed. To check error parameter.
+     */
     open func exec(completionHandler: @escaping CompletionBlock) -> Void {
         guard let host = config["host"] else {return}
         

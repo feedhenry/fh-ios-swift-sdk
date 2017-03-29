@@ -14,6 +14,9 @@
 * limitations under the License.
 */
 
+/**
+ Present a customized UIWebView to perform OAuth authentication.
+ */
 open class OAuthViewController: UIViewController, UIWebViewDelegate {
     var url: URL?
     var completionHandler: (Response, NSError?) -> Void = { (respo:Response, err:NSError?) -> Void in
@@ -21,6 +24,7 @@ open class OAuthViewController: UIViewController, UIWebViewDelegate {
     fileprivate var authInfo: [String: AnyObject]?
     fileprivate var isFinished = false
     
+    /// Override standard method to make the view full screen.
     override open func viewDidLoad() {
         super.viewDidLoad()
         let webView:UIWebView = UIWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -30,10 +34,12 @@ open class OAuthViewController: UIViewController, UIWebViewDelegate {
         self.view.addSubview(webView)
     }
     
+    /// Override to deal with error.
     open func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("Webview fail with error \(error)");
     }
     
+    /// Override to retrive auth token and store it.
     open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         print("Start to load url: \(request.url)")
         authInfo = [:]
@@ -68,10 +74,12 @@ open class OAuthViewController: UIViewController, UIWebViewDelegate {
         return authInfo
     }
     
+    /// Override for logging purpose.
     open func webViewDidStartLoad(_ webView: UIWebView) {
         print("Webview started Loading")
     }
     
+    /// Override to close the view on success.
     open func webViewDidFinishLoad(_ webView: UIWebView) {
         print("Webview did finish load")
         if isFinished {
@@ -80,6 +88,7 @@ open class OAuthViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    /// Dismiss controller on success.
     open func closeView() {
         presentingViewController?.dismiss(animated: true, completion: nil)
         let response = Response()
