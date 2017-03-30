@@ -144,7 +144,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL isOnline;)
 /**
   Initialize the library.
   This must be called before any other API methods can be called. The
-  initialization process runs asynchronously so that it won’t block the main UI
+  initialization process runs asynchronously so that it won't block the main UI
   thread.
   You need to make sure it is successful before calling any other API methods. The
   best way to do is by catching the error that is thrown in case of failure to initialize.

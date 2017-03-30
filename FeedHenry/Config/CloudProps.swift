@@ -24,7 +24,7 @@ Before any call to the cloud is done.
 public struct CloudProps {
     let dataManager: UserDefaults
     
-    /// String that represents the Cloud URL to teraget for REST call.
+    /// String that represents the Cloud URL to target for REST call.
     public let cloudHost: String
     
     /// Environment is optional.
@@ -33,7 +33,7 @@ public struct CloudProps {
     /// Set of all properties returned by cloud app endpoints.
     public let cloudProps: [String: AnyObject]
     
-    /// Computed propertie retrieved from `setup` cloud init call. 
+    /// Computed property retrieved from `setup` cloud init call.
     /// It represents the Id of the handshake between client/cloud app.
     /// The trackId is stored in local storage.
     public var trackId: String? {

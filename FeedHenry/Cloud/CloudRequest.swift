@@ -68,7 +68,7 @@ open class CloudRequest: Request {
                 let fhKey = "x-fh-\(key)"
                 if let value = value as? String {
                     headers![fhKey] = value
-                } else { // apppend JSOnified version
+                } else { // append JSONified version
                     do {
                         let json = try JSONSerialization.data(withJSONObject: value, options: JSONSerialization.WritingOptions())
                         let string = NSString(data: json, encoding: String.Encoding.utf8.rawValue)
