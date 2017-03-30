@@ -156,7 +156,7 @@ open class FH: NSObject {
             if error == nil { // success
                 self.props = initRequest.props
             }
-            // register for reachability and rety init if it fails because of offline mode
+            // register for reachability and retry init if it fails because of offline mode
             do {
                 try reachabilityRegistration()
             } catch let error as NSError {
@@ -164,7 +164,7 @@ open class FH: NSObject {
                 response.error = error
                 completionHandler(response, error)
             }
-            // complet callback for success
+            // completion callback for success
             completionHandler(response, error)
         }
     }

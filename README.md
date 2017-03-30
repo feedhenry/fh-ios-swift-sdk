@@ -9,18 +9,18 @@ The iOS Software Development Kit to connect to the [FeedHenry platform.](http://
 
 ## Release Process
 
-The project relies on [CocoaPods](http://cocoapods.org) and it's respective plugins  ['cocoapods-packager'](https://github.com/CocoaPods/cocoapods-packager) and ['cocoapods-appledoc'](https://github.com/CocoaPods/cocoapods-appledoc), so please ensure that are installed in your system. If not, please execute the following:
+The project relies on [CocoaPods](http://cocoapods.org) and it's respective plugin  ['cocoapods-packager'](https://github.com/CocoaPods/cocoapods-packager), so please ensure that are installed in your system. If not, please execute the following:
 
 ```
-[sudo] gem install cocoapods cocoapods-packager cocoapods-appledoc
+[sudo] gem install cocoapods cocoapods-packager
 ```
 
 ### Common Actions
 
-* Update ```CHANGELOG.md`` with the new release and content.
+* Update `CHANGELOG.md` with the new release and content.
 
 ### a) Release on CocoaPods  [Required Step]
-* Update ```FeedHenry.podspec```, ```s.version``` attribute with the new version number.
+* Update `FeedHenry.podspec`, `s.version` attribute with the new version number.
 * Tag the repository with the new version number:
 
 ```
@@ -33,13 +33,13 @@ git tag -s -a {VERSION} -m 'version {VERSION}'   // e.g. {VERSION} format is  '4
 git push origin {TAG}
 ```
 
-* Publish the ```FeedHenry.podspec``` on the [CocoaPods](http://cocoapods.org) repo with:
+* Publish the `FeedHenry.podspec` on the [CocoaPods](http://cocoapods.org) repo with:
 
 ```
  	pod trunk push --allow-warnings
 ```
 
->	```--allow-warnings``` is required to skip some deprecation warnings from a underlying dependency library. This will be circumvented in a future release.
+>	`--allow-warnings` is required to skip some deprecation warnings from a underlying dependency library. This will be circumvented in a future release.
 
 ### c) Generate API Documentation
 
@@ -47,9 +47,8 @@ To generate API documentation and sync with the [GitHub pages placeholder](http:
 
 ## Usage
 
-See [iOS SDK Guide](http://docs.feedhenry.com/v3/api/app_api.html).
+See [iOS Swift SDK Guide](https://access.redhat.com/documentation/en-us/red_hat_mobile_application_platform_hosted/3/html/client_sdk/native-ios-swift).
 
 ### Links
-* [FeedHenry Documentation](http://docs.feedhenry.com)
 * [AeroGear iOS Http](https://github.com/aerogear/aerogear-ios-http)
 * [AeroGear iOS Push](https://github.com/aerogear/aerogear-ios-push)
