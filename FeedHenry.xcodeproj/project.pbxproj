@@ -117,7 +117,7 @@
 		48A8575D1C68E00D00EC00D4 /* InitRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitRequestTests.swift; sourceTree = "<group>"; };
 		48A8575F1C69271300EC00D4 /* fhconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fhconfig.plist; sourceTree = "<group>"; };
 		48A857611C69296A00EC00D4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
-		48F1A9E71C98A120004E7B50 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		48F1A9E71C98A120004E7B50 /* FeedHenry.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = FeedHenry.modulemap; sourceTree = "<group>"; };
 		48F49A6E1CA0410600B7C544 /* PushConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushConfig.swift; sourceTree = "<group>"; };
 		77C83D55D64CE176F53CBBC9 /* Pods-FeedHenry-FeedHenryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry-FeedHenryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E161B812AFDCEB8670B4F03C /* Pods-FeedHenry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry/Pods-FeedHenry.debug.xcconfig"; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 				4878D5DD1B579965004518C4 /* FeedHenry.h */,
 				48A857611C69296A00EC00D4 /* FH.swift */,
 				4878D5DF1B579965004518C4 /* Info.plist */,
-				48F1A9E71C98A120004E7B50 /* module.modulemap */,
+				48F1A9E71C98A120004E7B50 /* FeedHenry.modulemap */,
 			);
 			path = FeedHenry;
 			sourceTree = "<group>";
@@ -461,7 +461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		43FC41A72DCCE30C2C396D96 /* [CP] Embed Pods Frameworks */ = {
@@ -519,7 +519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
