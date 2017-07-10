@@ -45,7 +45,7 @@ class CloudRequestTests: XCTestCase {
     func testCloudRequestConstruct() {
         let initRequest = CloudRequest(props: CloudProps(props: dict as [String: AnyObject])!, path: "hello")
         XCTAssertEqual(initRequest.method, HTTPMethod.POST)
-        XCTAssertTrue(initRequest.props.cloudHost == "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
+        XCTAssertTrue(initRequest.props?.cloudHost == "https://myDomain-fxpfgc8zld4erdytbixl3jlh-dev.df.dev.e111.feedhenry.net/")
         XCTAssertNil(initRequest.headers)
     }
 

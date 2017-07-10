@@ -26,7 +26,7 @@ open class CloudRequest: Request {
     let args: [String: Any]?
     let headers: [String: String]?
     let method: HTTPMethod
-    var props: CloudProps
+    var props: CloudProps?
     var config: Config?
     let dataManager: UserDefaults
     
@@ -41,7 +41,7 @@ open class CloudRequest: Request {
      - parameter headers: http arguments.
      - parameter storage: where to store cloud properties. Default to UserDefaults.
      */
-    public init(props: CloudProps, config: Config? = nil, path: String, method: HTTPMethod = .POST, args: [String:Any]? = nil, headers: [String:String]? = nil, storage: UserDefaults = UserDefaults.standard) {
+    public init(props: CloudProps?, config: Config? = nil, path: String, method: HTTPMethod = .POST, args: [String:Any]? = nil, headers: [String:String]? = nil, storage: UserDefaults = UserDefaults.standard) {
         self.path = path
         self.args = args
         self.headers = headers
@@ -57,7 +57,7 @@ open class CloudRequest: Request {
      - parameter completionHandler: closure that runs once the call is completed. To check error parameter.
      */
     open func exec(completionHandler: @escaping CompletionBlock) -> Void {
-        let host = props.cloudHost
+        let host = props?.cloudHost
         var headers: [String: String]?
         if let sessionToken = dataManager.string(forKey: "sessionToken") {
             headers = ["x-fh-sessionToken": sessionToken]
