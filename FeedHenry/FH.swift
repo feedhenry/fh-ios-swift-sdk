@@ -57,11 +57,23 @@ open class FH: NSObject {
         guard let reachability = self.reachability else {return false}
         return reachability.isReachableViaWiFi || reachability.isReachableViaWWAN
     }
-    
+
+    /**
+     If there was an error on FH.init it will be accessible from this method
+     
+     - Returns: the NSError from FH.init method.
+     */
+    open static var getInitError: NSError? {
+        return initError
+    }
+
     /// Boolean field to know if the reachability registration was done.
     static var initCalled: Bool = false
     /// Boolean field to indicate whether the app is online or offline.
     static var reachability: Reachability?
+
+    /// NSError from FH.init method in case it fails
+    static var initError: NSError? = nil
     
     /**
      Initialize the library.
@@ -114,7 +126,7 @@ open class FH: NSObject {
     open class func performCloudRequest(_ path: String,  method: String, headers: NSDictionary?, args: NSDictionary?, completionHandler: @escaping CompletionBlock) -> Void {
         guard let httpMethod = HTTPMethod(rawValue: method) else {return}
         assert(props != nil, "FH init must be done prior th a Cloud call")
-        let cloudRequest = CloudRequest(props: self.props!, config: self.config, path: path, method: httpMethod, args: args as? [String : AnyObject], headers: headers as? [String : String])
+        let cloudRequest = CloudRequest(props: self.props, config: self.config, path: path, method: httpMethod, args: args as? [String : AnyObject], headers: headers as? [String : String])
         cloudRequest.exec(completionHandler: completionHandler)
     }
     
@@ -129,7 +141,7 @@ open class FH: NSObject {
      - parameter completionHandler: Closure to be executed as a callback of http asynchronous call.
      */
     open class func cloud(path: String, method: HTTPMethod = .POST, args: [String: AnyObject]? = nil, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) -> Void {
-        let cloudRequest = CloudRequest(props: self.props!, config: self.config, path: path, method: method, args: args, headers: headers)
+        let cloudRequest = CloudRequest(props: self.props, config: self.config, path: path, method: method, args: args, headers: headers)
         cloudRequest.exec(completionHandler: completionHandler)
     }
     
@@ -143,7 +155,7 @@ open class FH: NSObject {
      */
     open class func cloudRequest(path: String, method: HTTPMethod = .POST, args:[String: AnyObject]? = nil, headers: [String: String]? = nil) -> CloudRequest {
         assert(props != nil, "FH init must be done prior th a Cloud call")
-        return CloudRequest(props: self.props!, config: self.config, path: path, method: method, args: args, headers: headers)
+        return CloudRequest(props: self.props, config: self.config, path: path, method: method, args: args, headers: headers)
     }
     
     /**
@@ -164,6 +176,9 @@ open class FH: NSObject {
                 response.error = error
                 completionHandler(response, error)
             }
+
+            initError = error
+
             // completion callback for success
             completionHandler(response, error)
         }

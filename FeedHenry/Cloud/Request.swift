@@ -45,7 +45,7 @@ extension Request {
      - parameter headers: http arguments. Default to nil.
      - parameter completionHandler: closure that runs once the call is completed. To check error parameter.
      */
-    public func request(method: HTTPMethod, host: String, path: String, args: [String: Any]?, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) {
+    public func request(method: HTTPMethod, host: String?, path: String, args: [String: Any]?, headers: [String: String]? = nil, completionHandler: @escaping CompletionBlock) {
         let aerogearMethod = HttpMethod(rawValue: method.rawValue)!
         
         // Early catch of offline mode
@@ -56,7 +56,14 @@ extension Request {
             completionHandler(response, error)
             return
         }
-        
+
+        if let error = FH.getInitError {
+            let response = Response()
+            response.error = error
+            completionHandler(response, error)
+            return
+        }
+
         let serializer = JsonRequestSerializer()
         serializer.headers = headers
         
