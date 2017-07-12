@@ -1,5 +1,8 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+### 5.0.5 - 2017-07-12
+* RHMAP-16650 Check if connection tag is disabled
+
 ### 5.0.4 - 2017-05-23
 * FH-3525: Swift SDK issue with Xcode 8.3.1
 

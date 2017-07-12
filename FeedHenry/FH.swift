@@ -16,7 +16,7 @@
  */
 
 
-let FH_SDK_VERSION = "4.0.0-alpha.1"
+let FH_SDK_VERSION = "5.0.5"
 
 import Foundation
 import AeroGearHttp
@@ -50,7 +50,7 @@ open class FH: NSObject {
     /**
      Check if the device is online. The device is online if either WIFI or 3G
      network is available. Default value is true.
-     
+
      - Returns: true if the device is online.
      */
     open static var isOnline: Bool {
@@ -60,7 +60,7 @@ open class FH: NSObject {
 
     /**
      If there was an error on FH.init it will be accessible from this method
-     
+
      - Returns: the NSError from FH.init method.
      */
     open static var getInitError: NSError? {
@@ -74,17 +74,17 @@ open class FH: NSObject {
 
     /// NSError from FH.init method in case it fails
     static var initError: NSError? = nil
-    
+
     /**
      Initialize the library.
-     
+
      This must be called before any other API methods can be called. The
      initialization process runs asynchronously so that it won't block the main UI
      thread.
-     
+
      You need to make sure it is successful before calling any other API methods. The
      best way to do is by catching the error that is thrown in case of failure to initialize.
-     
+
      ```swift
      FH.init { (resp:Response, error: NSError?) -> Void in
        if let error = error {
@@ -103,7 +103,7 @@ open class FH: NSObject {
        print("Response: \(resp.parsedResponse)")
      }
      ```
-     
+
      - parameter completionHandler: InnerCompletionBlock is a closure wrap-up that throws errors in case of init failure. If no error, the inner closure returns a JSON Object containing all the details from the init call.
      - throws NSError: Networking issue details.
      - returns: Void
@@ -111,11 +111,11 @@ open class FH: NSObject {
     open class func `init`(_ completionHandler: @escaping CompletionBlock) -> Void {
         setup(config: Config(), completionHandler: completionHandler)
     }
-    
+
     /**
      Create a new instance of CloudRequest class and execute it immediately
      with the completionHandler closure. The request runs asynchronously.
-     
+
      - parameter path: The path of the cloud API
      - parameter method: The HTTP request method to use for the request. Defaulted to .POST.
      - parameter headers: The HTTP headers to use for the request. Can be nil. Defaulted to nil.
@@ -129,11 +129,11 @@ open class FH: NSObject {
         let cloudRequest = CloudRequest(props: self.props, config: self.config, path: path, method: httpMethod, args: args as? [String : AnyObject], headers: headers as? [String : String])
         cloudRequest.exec(completionHandler: completionHandler)
     }
-    
+
     /**
      Create a new instance of CloudRequest class and execute it immediately
      with the completionHandler closure. The request runs asynchronously.
-     
+
      - parameter path: The path of the cloud API
      - parameter method: The HTTP request method to use for the request. Defaulted to .POST.
      - parameter args: The request body data. Can be nil. Defaulted to nil.
@@ -144,10 +144,10 @@ open class FH: NSObject {
         let cloudRequest = CloudRequest(props: self.props, config: self.config, path: path, method: method, args: args, headers: headers)
         cloudRequest.exec(completionHandler: completionHandler)
     }
-    
+
     /**
      Create a new instance of CloudRequest.
-     
+
      - parameter path: The path of the cloud API
      - parameter method: The HTTP request method to use for the request. Defaulted to .POST.
      - parameter args: The request body data. Can be nil. Defaulted to nil.
@@ -157,7 +157,7 @@ open class FH: NSObject {
         assert(props != nil, "FH init must be done prior th a Cloud call")
         return CloudRequest(props: self.props, config: self.config, path: path, method: method, args: args, headers: headers)
     }
-    
+
     /**
      Private method called by `FH.init`.
      */
@@ -183,17 +183,17 @@ open class FH: NSObject {
             completionHandler(response, error)
         }
     }
-    
+
     /**
      Register for reachability and retry init if it fails because of offline mode.
      */
     class func reachabilityRegistration() throws -> Void {
         if initCalled == false {
-            
+
             if reachability == nil {
                 reachability = Reachability()!
             }
-            
+
             do {
                 try reachability!.startNotifier()
                 initCalled = true
@@ -205,9 +205,9 @@ open class FH: NSObject {
     }
     /**
      Register for remote notifications in AppDelegate's lifecycle method.
-     
+
      - parameter application: the application parameter available in AppDelegate class.
-     
+
      ```swift
      class AppDelegate: UIResponder, UIApplicationDelegate {
        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -224,9 +224,9 @@ open class FH: NSObject {
     }
     /**
      Register to AeroGear Unified Push Server. To be used in AppDelegate's lifecycle's method. `application(_, didRegisterForRemoteNotificationsWithDeviceToken:)`.
-     
+
      - parameter application: the application parameter available in AppDelegate class.
-     
+
      ```swift
      class AppDelegate: UIResponder, UIApplicationDelegate {
        func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -260,10 +260,10 @@ open class FH: NSObject {
                                 error(response)
         })
     }
-    
+
     /**
      Utility method that registers to AeroGear Unified Push Server and configure an alias.
-     
+
      - parameter alias: is a string to alias the device where to send push notifications.
      - parameter success: closure to run upon success of the push registration.
      - parameter error: closure to run unpon failure of push registration.
@@ -273,10 +273,10 @@ open class FH: NSObject {
         conf.alias = alias
         pushRegister(deviceToken: nil, config: conf, success: success, error: error)
     }
-    
+
     /**
      Utility method that registers to AeroGear Unified Push Server and configure an array list of categories.
-     
+
      - parameter categories: NSArray
      - parameter success: (Response) -> ()
      - parameter error: (Response) -> ()
@@ -286,10 +286,10 @@ open class FH: NSObject {
         conf.categories = categories as? [String]
         pushRegister(deviceToken: nil, config: conf, success: success, error: error)
     }
-    
+
     /**
      Send metrics to the AeroGear Push server when the app is launched due to a push notification.
-     
+
      - parameter launchOptions: contains the message id used to collect metrics.
      */
     open class func sendMetricsWhenAppLaunched(launchOptions: [AnyHashable: Any]?) {
@@ -298,26 +298,26 @@ open class FH: NSObject {
     /**
      Send metrics to the AeroGear Push server when the app is brought from background to
      foreground due to a push notification.
-     
+
      - parameter applicationState: to make sure the app was in background.
      - parameter userInfo: contains the message id used to collect metrics.
      */
     open class func sendMetricsWhenAppAwoken(applicationState: UIApplicationState, userInfo: [AnyHashable: Any]) {
         PushAnalytics.sendMetricsWhenAppAwoken(applicationState: applicationState, userInfo: userInfo)
     }
-    
+
     /**
      Create a new instance of AuthRequest.
-     
+
      - parameter policyId: The type of policy used in RHMAP platform. The string could be `FEEDHENRY`, `OAUTH2`, `MBAAS`.
      */
     class open func authRequest(_ policyId: String) -> AuthRequest {
         return AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId, headers: nil)
     }
-    
+
     /**
      Call the auth remote service.
-     
+
      - parameter policyId: The type of policy used in RHMAP platform. The string could be `FEEDHENRY`, `OAUTH2`, `MBAAS`.
      - parameter method: the type of http call: post, get...
      - parameter args: Http arguments. Default to nil.
@@ -328,10 +328,10 @@ open class FH: NSObject {
         let authRequest = AuthRequest(props: self.props!, config: Config(), method: .POST, policyId: policyId)
         authRequest.exec(completionHandler: completionHandler)
     }
-    
+
     /**
      Call the auth remote service.
-     
+
      - parameter policyId: The type of policy used in RHMAP platform. The string could be `FEEDHENRY`, `OAUTH2`, `MBAAS`.
      - parameter user: the username used for authentication.
      - parameter password: the password used for authentication.
