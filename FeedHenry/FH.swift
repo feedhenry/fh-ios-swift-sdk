@@ -53,6 +53,7 @@ open class FH: NSObject {
 
      - Returns: true if the device is online.
      */
+    @objc
     open static var isOnline: Bool {
         guard let reachability = self.reachability else {return false}
         return reachability.isReachableViaWiFi || reachability.isReachableViaWWAN

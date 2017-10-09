@@ -23,17 +23,17 @@ import Foundation
 @objc(FHResponse)
 open class Response: NSObject {
     /// Get the raw response data
-    open var rawResponse: Data?
+    @objc open var rawResponse: Data?
     
     /// Get the raw response data as String
-    open var rawResponseAsString: String?
+    @objc open var rawResponseAsString: String?
     
     /// Get the response data as NSDictionary
-    open var parsedResponse: NSDictionary? 
+    @objc open var parsedResponse: NSDictionary?
     
     /// Get the response's status code
     open var responseStatusCode: Int?
     
     /// Get the error of the response
-    open var error: NSError?
+    @objc open var error: NSError?
 }
