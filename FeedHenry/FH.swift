@@ -20,7 +20,7 @@ let FH_SDK_VERSION = "5.0.5"
 
 import Foundation
 import AeroGearHttp
-import ReachabilitySwift
+import Reachability
 import AeroGearPush
 
 public typealias CompletionBlock = (Response, NSError?) -> Void
