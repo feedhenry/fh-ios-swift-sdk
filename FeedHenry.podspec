@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency 'AeroGearHttp', '2.0.0'
   s.dependency 'AeroGearPush-Swift', '3.0.0'
-  s.dependency 'ReachabilitySwift', '3'
+  s.dependency 'ReachabilitySwift', '4.1.0'
 end
