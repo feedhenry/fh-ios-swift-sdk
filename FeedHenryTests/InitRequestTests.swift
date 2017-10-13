@@ -65,7 +65,12 @@ class InitRequestTests: XCTestCase {
                 XCTAssertTrue((err!.userInfo["NSLocalizedDescription"] as! String).hasPrefix("The field 'appid' is not defined in"))
                 XCTAssertTrue(resp.responseStatusCode! == 400)
             } else {
-                XCTAssertTrue(false, "This test sgould failed because no valid fhconfig file was provided")
+                let savedProps = UserDefaults.standard.dictionary(forKey: "hosts")
+                if savedProps != nil {
+                    XCTAssertTrue(true, "This test should have passed because it had a previous connection cached")
+                } else {
+                    XCTAssertTrue(false, "This test should have failed because no valid fhconfig file was provided")
+                }
             }
         })
         waitForExpectations(timeout: 10, handler: nil)
