@@ -55,6 +55,26 @@ public class InitRequest: Request {
         
         request(method: method, host: host, path: path, args: args, completionHandler: { (response: Response, err: NSError?) -> Void in
             if let error = err {
+                var tagDisabled = false
+                if error.code == 400 {
+                    tagDisabled = true
+                }
+                let savedProps = UserDefaults.standard.dictionary(forKey: "hosts")
+                if (!tagDisabled && savedProps != nil) {
+                    
+                    let fhResponse = Response()
+                    fhResponse.responseStatusCode = error.code
+                    let data = try! JSONSerialization.data(withJSONObject: savedProps!, options: .prettyPrinted)
+                    fhResponse.rawResponseAsString = String(data: data, encoding: String.Encoding.utf8)
+                    fhResponse.rawResponse = data
+                    fhResponse.parsedResponse = savedProps as NSDictionary?
+                    
+                    let cachedResponse = savedProps as [String: AnyObject]?
+                    self.props = CloudProps(props: cachedResponse!)
+                    
+                    completionHandler(fhResponse, nil)
+                    return
+                }
                 completionHandler(response, error)
                 return
             }
@@ -64,6 +84,7 @@ public class InitRequest: Request {
                 return
             }
             self.props = CloudProps(props: resp)
+            UserDefaults.standard.set(response.parsedResponse, forKey: "hosts")
             completionHandler(response, err)
         })
     }

@@ -56,7 +56,7 @@ open class FH: NSObject {
     @objc
     open static var isOnline: Bool {
         guard let reachability = self.reachability else {return false}
-        return reachability.isReachableViaWiFi || reachability.isReachableViaWWAN
+        return reachability.connection != .none
     }
 
     /**
@@ -168,6 +168,8 @@ open class FH: NSObject {
         initRequest.exec { (response: Response, error: NSError?) -> Void in
             if error == nil { // success
                 self.props = initRequest.props
+            } else {
+                initError = error
             }
             // register for reachability and retry init if it fails because of offline mode
             do {
@@ -177,8 +179,6 @@ open class FH: NSObject {
                 response.error = error
                 completionHandler(response, error)
             }
-
-            initError = error
 
             // completion callback for success
             completionHandler(response, error)
