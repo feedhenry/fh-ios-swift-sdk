@@ -1,7 +1,12 @@
 # FeedHenry iOS SDK
 
-[![Build Status](https://travis-ci.org/feedhenry/fh-ios-swift-sdk.png)](https://travis-ci.org/feedhenry/fh-ios-swift-sdk)
+![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)
+[![circle-ci](https://img.shields.io/circleci/project/github/feedhenry/fh-ios-swift-sdk/master.svg)](https://circleci.com/gh/feedhenry/fh-ios-swift-sdk)
 [![Coverage Status](https://coveralls.io/repos/github/feedhenry/fh-ios-swift-sdk/badge.svg?branch=master)](https://coveralls.io/github/feedhenry/fh-ios-swift-sdk?branch=master)
+[![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
+[![GitHub release](https://img.shields.io/github/release/feedhenry/fh-ios-swift-sdk.svg)](https://github.com/feedhenry/fh-ios-swift-sdk/releases)
+[![CocoaPods](https://img.shields.io/cocoapods/v/FeedHenry.svg)](https://cocoapods.org/pods/FeedHenry)
+[![Platform](https://img.shields.io/cocoapods/p/FeedHenry.svg)](https://cocoapods.org/pods/FeedHenry)
 
 The iOS Software Development Kit to connect to the [FeedHenry platform.](http://www.feedhenry.com)
 
