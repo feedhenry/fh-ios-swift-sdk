@@ -56,7 +56,7 @@ open class FH: NSObject {
     @objc
     open static var isOnline: Bool {
         guard let reachability = self.reachability else {return false}
-        return reachability.isReachableViaWiFi || reachability.isReachableViaWWAN
+        return reachability.connection != .none
     }
 
     /**
