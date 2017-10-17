@@ -16,7 +16,7 @@
  */
 
 
-let FH_SDK_VERSION = "5.0.5"
+let FH_SDK_VERSION = "6.0.0"
 
 import Foundation
 import AeroGearHttp
