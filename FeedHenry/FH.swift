@@ -20,7 +20,7 @@ let FH_SDK_VERSION = "5.0.5"
 
 import Foundation
 import AeroGearHttp
-import ReachabilitySwift
+import Reachability
 import AeroGearPush
 
 public typealias CompletionBlock = (Response, NSError?) -> Void
@@ -53,9 +53,10 @@ open class FH: NSObject {
 
      - Returns: true if the device is online.
      */
+    @objc
     open static var isOnline: Bool {
         guard let reachability = self.reachability else {return false}
-        return reachability.isReachableViaWiFi || reachability.isReachableViaWWAN
+        return reachability.connection != .none
     }
 
     /**
@@ -167,6 +168,8 @@ open class FH: NSObject {
         initRequest.exec { (response: Response, error: NSError?) -> Void in
             if error == nil { // success
                 self.props = initRequest.props
+            } else {
+                initError = error
             }
             // register for reachability and retry init if it fails because of offline mode
             do {
@@ -176,8 +179,6 @@ open class FH: NSObject {
                 response.error = error
                 completionHandler(response, error)
             }
-
-            initError = error
 
             // completion callback for success
             completionHandler(response, error)

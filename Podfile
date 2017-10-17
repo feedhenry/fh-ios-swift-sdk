@@ -5,9 +5,9 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'FeedHenry' do
-	pod 'AeroGearHttp', '1.0.0'
-	pod 'ReachabilitySwift', '3'
-	pod 'AeroGear-Push-Swift', '2.0.1'
+	pod 'AeroGearHttp', '2.0.0'
+	pod 'AeroGearPush-Swift', '3.0.0'
+	pod 'ReachabilitySwift', '4.1.0'
 
 	target 'FeedHenryTests' do
 		pod 'OHHTTPStubs', '5.2.2'

@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source_files = 'FeedHenry/**/*.{swift}', 'FeedHenry/**/*.{h,m}', 'FeedHenry/*.{h,m}'
   s.module_map = 'FeedHenry/FeedHenry.modulemap'
   s.requires_arc = true
-  s.dependency 'AeroGearHttp', '1.0.0'
-  s.dependency 'AeroGear-Push-Swift', '2.0.1'
-  s.dependency 'ReachabilitySwift', '3'
+  s.dependency 'AeroGearHttp', '2.0.0'
+  s.dependency 'AeroGearPush-Swift', '3.0.0'
+  s.dependency 'ReachabilitySwift', '4.1.0'
 end

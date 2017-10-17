@@ -50,8 +50,8 @@
 		48A857601C69271300EC00D4 /* fhconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48A8575F1C69271300EC00D4 /* fhconfig.plist */; };
 		48A857621C69296A00EC00D4 /* FH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A857611C69296A00EC00D4 /* FH.swift */; };
 		48F49A6F1CA0410600B7C544 /* PushConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F49A6E1CA0410600B7C544 /* PushConfig.swift */; };
-		59165C1A01FCABE3291E4E64 /* Pods_FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46ADADDF6E885B37C57FCDD5 /* Pods_FeedHenry.framework */; };
-		A71885CFEE27FF09D34D4CD1 /* Pods_FeedHenry_FeedHenryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 099F54B332A7EC8E1E21D7F2 /* Pods_FeedHenry_FeedHenryTests.framework */; };
+		77236738E30CF34FB00A64D5 /* Pods_FeedHenry_FeedHenryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E17A6D89BE3797B650C648 /* Pods_FeedHenry_FeedHenryTests.framework */; };
+		F0E710F1E68B938DB3A0DF82 /* Pods_FeedHenry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6568D6C1CA8F8C1AA0F947 /* Pods_FeedHenry.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		099F54B332A7EC8E1E21D7F2 /* Pods_FeedHenry_FeedHenryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenry_FeedHenryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E89683189C3ED0959258EC0 /* Pods-FeedHenry-FeedHenryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry-FeedHenryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests.release.xcconfig"; sourceTree = "<group>"; };
-		299F31FEE249E16032BBFAE6 /* Pods-FeedHenry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry/Pods-FeedHenry.release.xcconfig"; sourceTree = "<group>"; };
-		46ADADDF6E885B37C57FCDD5 /* Pods_FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F6568D6C1CA8F8C1AA0F947 /* Pods_FeedHenry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		482632C11C901F69008FEB4A /* FeedHenryTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FeedHenryTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		482632C21C901F6A008FEB4A /* FHSyncClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncClientTest.m; path = Sync/FHSyncClientTest.m; sourceTree = "<group>"; };
 		482632C31C901F6A008FEB4A /* FHSyncDataRecordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FHSyncDataRecordTest.m; path = Sync/FHSyncDataRecordTest.m; sourceTree = "<group>"; };
@@ -119,8 +116,11 @@
 		48A857611C69296A00EC00D4 /* FH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FH.swift; sourceTree = "<group>"; };
 		48F1A9E71C98A120004E7B50 /* FeedHenry.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = FeedHenry.modulemap; sourceTree = "<group>"; };
 		48F49A6E1CA0410600B7C544 /* PushConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushConfig.swift; sourceTree = "<group>"; };
-		77C83D55D64CE176F53CBBC9 /* Pods-FeedHenry-FeedHenryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry-FeedHenryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E161B812AFDCEB8670B4F03C /* Pods-FeedHenry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry/Pods-FeedHenry.debug.xcconfig"; sourceTree = "<group>"; };
+		875739A444B109CC57CF9FF5 /* Pods-FeedHenry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry/Pods-FeedHenry.debug.xcconfig"; sourceTree = "<group>"; };
+		9661E009C845BDDAF7F7B075 /* Pods-FeedHenry-FeedHenryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry-FeedHenryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E9C3406813699DED446648A /* Pods-FeedHenry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry/Pods-FeedHenry.release.xcconfig"; sourceTree = "<group>"; };
+		A093D59216062400B26BFDA5 /* Pods-FeedHenry-FeedHenryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedHenry-FeedHenryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F9E17A6D89BE3797B650C648 /* Pods_FeedHenry_FeedHenryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeedHenry_FeedHenryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59165C1A01FCABE3291E4E64 /* Pods_FeedHenry.framework in Frameworks */,
+				F0E710F1E68B938DB3A0DF82 /* Pods_FeedHenry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,13 +137,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				4878D5E51B579965004518C4 /* FeedHenry.framework in Frameworks */,
-				A71885CFEE27FF09D34D4CD1 /* Pods_FeedHenry_FeedHenryTests.framework in Frameworks */,
+				77236738E30CF34FB00A64D5 /* Pods_FeedHenry_FeedHenryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36DB3EA829E6C99CA688EF34 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				875739A444B109CC57CF9FF5 /* Pods-FeedHenry.debug.xcconfig */,
+				9E9C3406813699DED446648A /* Pods-FeedHenry.release.xcconfig */,
+				A093D59216062400B26BFDA5 /* Pods-FeedHenry-FeedHenryTests.debug.xcconfig */,
+				9661E009C845BDDAF7F7B075 /* Pods-FeedHenry-FeedHenryTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		482632BE1C901CF6008FEB4A /* Sync */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,8 +257,8 @@
 				4878D5DC1B579965004518C4 /* FeedHenry */,
 				4878D5E81B579965004518C4 /* FeedHenryTests */,
 				4878D5DB1B579965004518C4 /* Products */,
-				B597F5F9E090082CCB3EEB90 /* Pods */,
-				EEC5BBC3039641F458F3D3A0 /* Frameworks */,
+				36DB3EA829E6C99CA688EF34 /* Pods */,
+				B1DC8A60A5DB69B9F88176CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,22 +301,11 @@
 			path = FeedHenryTests;
 			sourceTree = "<group>";
 		};
-		B597F5F9E090082CCB3EEB90 /* Pods */ = {
+		B1DC8A60A5DB69B9F88176CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E161B812AFDCEB8670B4F03C /* Pods-FeedHenry.debug.xcconfig */,
-				299F31FEE249E16032BBFAE6 /* Pods-FeedHenry.release.xcconfig */,
-				77C83D55D64CE176F53CBBC9 /* Pods-FeedHenry-FeedHenryTests.debug.xcconfig */,
-				1E89683189C3ED0959258EC0 /* Pods-FeedHenry-FeedHenryTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		EEC5BBC3039641F458F3D3A0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				46ADADDF6E885B37C57FCDD5 /* Pods_FeedHenry.framework */,
-				099F54B332A7EC8E1E21D7F2 /* Pods_FeedHenry_FeedHenryTests.framework */,
+				3F6568D6C1CA8F8C1AA0F947 /* Pods_FeedHenry.framework */,
+				F9E17A6D89BE3797B650C648 /* Pods_FeedHenry_FeedHenryTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -338,13 +338,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4878D5EE1B579965004518C4 /* Build configuration list for PBXNativeTarget "FeedHenry" */;
 			buildPhases = (
-				2FC963718BD852CE68EC88A4 /* [CP] Check Pods Manifest.lock */,
+				0FE93C3FBB10A1C4FB0106D4 /* [CP] Check Pods Manifest.lock */,
 				4878D5D51B579965004518C4 /* Sources */,
 				4878D5D61B579965004518C4 /* Frameworks */,
 				4878D5D71B579965004518C4 /* Headers */,
 				4878D5D81B579965004518C4 /* Resources */,
-				EF69C127F977187071DAAB75 /* [CP] Copy Pods Resources */,
 				48F1A9EB1C98B3FC004E7B50 /* ShellScript */,
+				C3F35F62CECFF2C4C64C01A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -359,12 +359,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4878D5F11B579965004518C4 /* Build configuration list for PBXNativeTarget "FeedHenryTests" */;
 			buildPhases = (
-				F5A5508682DC17207EA91C02 /* [CP] Check Pods Manifest.lock */,
+				E19AC3B845053E4C8B3F1EEF /* [CP] Check Pods Manifest.lock */,
 				4878D5E01B579965004518C4 /* Sources */,
 				4878D5E11B579965004518C4 /* Frameworks */,
 				4878D5E21B579965004518C4 /* Resources */,
-				43FC41A72DCCE30C2C396D96 /* [CP] Embed Pods Frameworks */,
-				1AFBC7B9CAE3C4529A28D10D /* [CP] Copy Pods Resources */,
+				3826D307AEFB113547488501 /* [CP] Embed Pods Frameworks */,
+				72B1D84DD257A9581435D389 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -383,17 +383,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = FeedHenry;
 				TargetAttributes = {
 					4878D5D91B579965004518C4 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
 					4878D5E31B579965004518C4 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
@@ -434,22 +434,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1AFBC7B9CAE3C4529A28D10D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2FC963718BD852CE68EC88A4 /* [CP] Check Pods Manifest.lock */ = {
+		0FE93C3FBB10A1C4FB0106D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,24 +452,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		43FC41A72DCCE30C2C396D96 /* [CP] Embed Pods Frameworks */ = {
+		3826D307AEFB113547488501 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AeroGear-Push-Swift/AeroGearPush.framework",
 				"${BUILT_PRODUCTS_DIR}/AeroGearHttp/AeroGearHttp.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
+				"${BUILT_PRODUCTS_DIR}/AeroGearPush-Swift/AeroGearPush.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AeroGearPush.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AeroGearHttp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AeroGearPush.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
@@ -506,7 +491,22 @@
 			shellPath = /bin/sh;
 			shellScript = "cp ${BUILD_ROOT}/Debug-iphonesimulator/FeedHenry.framework/Headers/FeedHenry-Swift.h ${SRCROOT}/FeedHenry/FeedHenry-Swift.h";
 		};
-		EF69C127F977187071DAAB75 /* [CP] Copy Pods Resources */ = {
+		72B1D84DD257A9581435D389 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3F35F62CECFF2C4C64C01A2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -521,7 +521,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenry/Pods-FeedHenry-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F5A5508682DC17207EA91C02 /* [CP] Check Pods Manifest.lock */ = {
+		E19AC3B845053E4C8B3F1EEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -606,14 +606,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -658,14 +664,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -697,7 +709,7 @@
 		};
 		4878D5EF1B579965004518C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E161B812AFDCEB8670B4F03C /* Pods-FeedHenry.debug.xcconfig */;
+			baseConfigurationReference = 875739A444B109CC57CF9FF5 /* Pods-FeedHenry.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -716,13 +728,14 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		4878D5F01B579965004518C4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 299F31FEE249E16032BBFAE6 /* Pods-FeedHenry.release.xcconfig */;
+			baseConfigurationReference = 9E9C3406813699DED446648A /* Pods-FeedHenry.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -740,13 +753,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		4878D5F21B579965004518C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77C83D55D64CE176F53CBBC9 /* Pods-FeedHenry-FeedHenryTests.debug.xcconfig */;
+			baseConfigurationReference = A093D59216062400B26BFDA5 /* Pods-FeedHenry-FeedHenryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -756,13 +770,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FeedHenryTests/FeedHenryTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		4878D5F31B579965004518C4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E89683189C3ED0959258EC0 /* Pods-FeedHenry-FeedHenryTests.release.xcconfig */;
+			baseConfigurationReference = 9661E009C845BDDAF7F7B075 /* Pods-FeedHenry-FeedHenryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -771,7 +786,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.feedhenry.FeedHenryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FeedHenryTests/FeedHenryTests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
