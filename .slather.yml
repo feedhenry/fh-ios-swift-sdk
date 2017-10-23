@@ -3,6 +3,5 @@ workspace: FeedHenry.xcworkspace
 xcodeproj: FeedHenry.xcodeproj
 scheme: FeedHenry
 source_directory: FeedHenry
-build_directory: /Users/travis/Library/Developer/Xcode/DerivedData/
 binary_basename: FeedHenry
 ignore: ../*
