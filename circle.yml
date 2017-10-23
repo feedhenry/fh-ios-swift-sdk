@@ -5,12 +5,16 @@ machine:
     XCODE_WORKSPACE: "FeedHenry.xcworkspace"
     XCODE_SCHEME: "FeedHenry"
     SIMULATOR: "iPhone 7"
-    OS: "11.0"
+    OS: "11.0.1"
 
 general:
   branches:
     ignore:
       - /FH-v.*/ # Ignore release branches
+
+dependencies:
+  pre:
+    - gem install slather
 
 test:
   override:
@@ -26,3 +30,5 @@ test:
         clean build test |
       tee $CIRCLE_ARTIFACTS/xcode_raw.log |
       xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
+  post:
+    - slather
