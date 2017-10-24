@@ -2,7 +2,7 @@
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)
 [![circle-ci](https://img.shields.io/circleci/project/github/feedhenry/fh-ios-swift-sdk/master.svg)](https://circleci.com/gh/feedhenry/fh-ios-swift-sdk)
-[![Codecov](https://img.shields.io/codecov/c/github/codecov/fh-ios-swift-sdk/master.svg)](https://codecov.io/gh/feedhenry/fh-ios-swift-sdk)
+[![codecov](https://codecov.io/gh/feedhenry/fh-ios-swift-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/feedhenry/fh-ios-swift-sdk)
 [![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
 [![GitHub release](https://img.shields.io/github/release/feedhenry/fh-ios-swift-sdk.svg)](https://github.com/feedhenry/fh-ios-swift-sdk/releases)
 [![CocoaPods](https://img.shields.io/cocoapods/v/FeedHenry.svg)](https://cocoapods.org/pods/FeedHenry)
