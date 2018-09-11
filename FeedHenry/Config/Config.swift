@@ -33,6 +33,7 @@ open class Config {
      - parameter propertiesFile: the name of the file, defaulted to `fhconfig.plist`.
      - parameter bundle: which bundle to find the file.
      - parameter storage: where to store the config and the cloud properties info. Defaulted to UserDefaults.standard.
+     - parameter customProperties: properties to override config in code
      */
     init(propertiesFile: String = "fhconfig", bundle:Bundle, storage: UserDefaults = UserDefaults.standard, customProperties: [String : String] = [:]) {
         self.propertiesFile = propertiesFile
