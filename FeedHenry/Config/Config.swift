@@ -44,7 +44,7 @@ open class Config {
         } else {
             self.properties = [:]
         }
-        self.properties.merge(customProperties);
+        self.properties.merge(customProperties) { (current, _) in current };
     }
     
     /**
