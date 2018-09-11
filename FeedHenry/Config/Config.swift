@@ -34,7 +34,7 @@ open class Config {
      - parameter bundle: which bundle to find the file.
      - parameter storage: where to store the config and the cloud properties info. Defaulted to UserDefaults.standard.
      */
-    init(propertiesFile: String = "fhconfig", bundle:Bundle, storage: UserDefaults = UserDefaults.standard) {
+    init(propertiesFile: String = "fhconfig", bundle:Bundle, storage: UserDefaults = UserDefaults.standard, customProperties: [String : String] = [:]) {
         self.propertiesFile = propertiesFile
         self.bundle = bundle
         let pathBundle = bundle.path(forResource: propertiesFile, ofType: "plist")
@@ -44,6 +44,7 @@ open class Config {
         } else {
             self.properties = [:]
         }
+        self.properties.merge(customProperties);
     }
     
     /**
