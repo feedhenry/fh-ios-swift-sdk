@@ -75,6 +75,44 @@ open class FH: NSObject {
 
     /// NSError from FH.init method in case it fails
     static var initError: NSError? = nil
+    /**
+     Initialize the library with custom fhconfig.
+
+     This must be called before any other API methods can be called. The
+     initialization process runs asynchronously so that it won't block the main UI
+     thread.
+
+     You need to make sure it is successful before calling any other API methods. The
+     best way to do is by catching the error that is thrown in case of failure to initialize.
+
+     ```swift
+     config = FeedHenry.Config.init(propertiesFile: "fhconfigdev")
+     FH.initEnv(config: config!, completionHandler: {(resp: Response, error: NSError?) -> Void in
+       if let error = error {
+         self.statusLabel.text = "FH init in error"
+         print("Error: \(error)")
+         return
+       }
+       self.statusLabel.text = "FH init successful"
+       FH.cloud("hello", completionHandler: { (response: Response, error: NSError?) -> Void in
+         if let error = error {
+           print("Error: \(error)")
+           return
+         }
+         print("Response from Cloud Call: \(response.parsedResponse)")
+       })
+       print("Response: \(resp.parsedResponse)")
+     }
+     ```
+     - parameter config: Instance of Feedhenry.Config class
+     - parameter completionHandler: InnerCompletionBlock is a closure wrap-up that throws errors in case of init failure. If no error, the inner closure returns a JSON Object containing all the details from the init call.
+     - throws NSError: Networking issue details.
+     - returns: Void
+     */
+    open class func `initEnv`(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
+        setup(config: config, completionHandler: completionHandler)
+        
+    }
 
     /**
      Initialize the library.
