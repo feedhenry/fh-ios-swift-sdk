@@ -141,29 +141,31 @@
 - (void)checkDatasets {
     if (nil != _dataSets) {
         [_dataSets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            FHSyncDataset *dataset = (FHSyncDataset *)obj;
-            BOOL syncRunning = dataset.syncRunning;
-            if (!syncRunning && !dataset.stopSync) {
-                // sync isn't running for dataId at the moment, check if
-                // needs to start it
-                NSDate *lastSyncStart = dataset.syncLoopStart;
-                NSDate *lastSyncCmp = dataset.syncLoopEnd;
-                if (nil == lastSyncStart) {
-                    // sync never started
-                    dataset.syncLoopPending = YES;
-                } else if (nil != lastSyncCmp) {
-                    // otherwise check how long since the last sync has
-                    // finished
-                    NSTimeInterval timeSinceLastSync =
-                        [[NSDate date] timeIntervalSinceDate:lastSyncCmp];
-                    FHSyncConfig *dataSyncConfig = dataset.syncConfig;
-                    if (timeSinceLastSync > dataSyncConfig.syncFrequency) {
+            @autoreleasepool {
+                FHSyncDataset *dataset = (FHSyncDataset *)obj;
+                BOOL syncRunning = dataset.syncRunning;
+                if (!syncRunning && !dataset.stopSync) {
+                    // sync isn't running for dataId at the moment, check if
+                    // needs to start it
+                    NSDate *lastSyncStart = dataset.syncLoopStart;
+                    NSDate *lastSyncCmp = dataset.syncLoopEnd;
+                    if (nil == lastSyncStart) {
+                        // sync never started
                         dataset.syncLoopPending = YES;
+                    } else if (nil != lastSyncCmp) {
+                        // otherwise check how long since the last sync has
+                        // finished
+                        NSTimeInterval timeSinceLastSync =
+                        [[NSDate date] timeIntervalSinceDate:lastSyncCmp];
+                        FHSyncConfig *dataSyncConfig = dataset.syncConfig;
+                        if (timeSinceLastSync > dataSyncConfig.syncFrequency) {
+                            dataset.syncLoopPending = YES;
+                        }
                     }
-                }
-                if (dataset.syncLoopPending) {
-                    DLog(@"start to run syncLoopWithDataId %@", key);
-                    [dataset startSyncLoop];
+                    if (dataset.syncLoopPending) {
+                        DLog(@"start to run syncLoopWithDataId %@", key);
+                        [dataset startSyncLoop];
+                    }
                 }
             }
         }];

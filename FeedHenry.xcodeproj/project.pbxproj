@@ -344,7 +344,6 @@
 				4878D5D71B579965004518C4 /* Headers */,
 				4878D5D81B579965004518C4 /* Resources */,
 				48F1A9EB1C98B3FC004E7B50 /* ShellScript */,
-				C3F35F62CECFF2C4C64C01A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,7 +363,6 @@
 				4878D5E11B579965004518C4 /* Frameworks */,
 				4878D5E21B579965004518C4 /* Resources */,
 				3826D307AEFB113547488501 /* [CP] Embed Pods Frameworks */,
-				72B1D84DD257A9581435D389 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -490,36 +488,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cp ${BUILD_ROOT}/Debug-iphonesimulator/FeedHenry.framework/Headers/FeedHenry-Swift.h ${SRCROOT}/FeedHenry/FeedHenry-Swift.h";
-		};
-		72B1D84DD257A9581435D389 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3F35F62CECFF2C4C64C01A2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenry/Pods-FeedHenry-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		E19AC3B845053E4C8B3F1EEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
