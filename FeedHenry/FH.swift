@@ -88,7 +88,7 @@ open class FH: NSObject {
 
      ```swift
      config = FeedHenry.Config.init(propertiesFile: "fhconfigdev")
-     FH.initChangeConfigFileName(config: config!, completionHandler: {(resp: Response, error: NSError?) -> Void in
+     FH.initWithCustomConfigName(config: config!, completionHandler: {(resp: Response, error: NSError?) -> Void in
        if let error = error {
          self.statusLabel.text = "FH init in error"
          print("Error: \(error)")
@@ -110,7 +110,7 @@ open class FH: NSObject {
      - throws NSError: Networking issue details.
      - returns: Void
      */
-    open class func `initChangeConfigFileName`(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
+    open class func `initWithCustomConfigName`(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
         setup(config: config, completionHandler: completionHandler)
         
     }
