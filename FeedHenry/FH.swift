@@ -76,18 +76,19 @@ open class FH: NSObject {
     /// NSError from FH.init method in case it fails
     static var initError: NSError? = nil
     /**
-     Initialize the library with custom fhconfig.
+     Initialize the library with custom fhconfig name.
 
      This must be called before any other API methods can be called. The
      initialization process runs asynchronously so that it won't block the main UI
-     thread.
+     thread. All the same constraints that apply to init method apply to this method. 
+     It is advised that this method is only called once.
 
      You need to make sure it is successful before calling any other API methods. The
      best way to do is by catching the error that is thrown in case of failure to initialize.
 
      ```swift
      config = FeedHenry.Config.init(propertiesFile: "fhconfigdev")
-     FH.initEnv(config: config!, completionHandler: {(resp: Response, error: NSError?) -> Void in
+     FH.initChangeConfigFileName(config: config!, completionHandler: {(resp: Response, error: NSError?) -> Void in
        if let error = error {
          self.statusLabel.text = "FH init in error"
          print("Error: \(error)")
@@ -109,7 +110,7 @@ open class FH: NSObject {
      - throws NSError: Networking issue details.
      - returns: Void
      */
-    open class func `initEnv`(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
+    open class func `initChangeConfigFileName`(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
         setup(config: config, completionHandler: completionHandler)
         
     }
