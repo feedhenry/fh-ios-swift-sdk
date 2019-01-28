@@ -1,5 +1,9 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+## 6.1.0 - 2019-01-28
+* RHMAP-22042: Swift Sync client uses excessive memory when adding/updating records in offline mode
+* RHMAP-22053: Adding ability to call init with custom fhconfig file name
+
 ## [6.0.0](https://issues.jboss.org/issues/?jql=project%20%3D%20FH%20AND%20fixVersion%20%3D%20ios-swift-6.0.0) - 2017-10-17
 
 * [FH-4247](https://issues.jboss.org/browse/FH-4247) - Update ReachabilitySwift dependency on fh-ios-swift-sdk 
