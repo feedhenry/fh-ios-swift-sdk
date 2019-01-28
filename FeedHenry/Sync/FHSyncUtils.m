@@ -91,7 +91,9 @@
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
 
     for (int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) {
-        [output appendFormat:@"%02x", digest[i]];
+        @autoreleasepool {
+            [output appendFormat:@"%02x", digest[i]];
+        }
     }
 
     return output;
@@ -109,20 +111,24 @@
         NSArray *sortedKeys =
             [keys sortedArrayUsingSelector:@selector(compare:)];
         for (int i = 0; i < sortedKeys.count; i++) {
-            NSString *key = sortedKeys[i];
-            id value = data[key];
-            NSMutableDictionary *record = [NSMutableDictionary dictionary];
-            record[@"key"] = key;
-            record[@"value"] = [FHSyncUtils sortData:value];
-            [results addObject:record];
+            @autoreleasepool {
+                NSString *key = sortedKeys[i];
+                id value = data[key];
+                NSMutableDictionary *record = [NSMutableDictionary dictionary];
+                record[@"key"] = key;
+                record[@"value"] = [FHSyncUtils sortData:value];
+                [results addObject:record];
+            }
         }
 
     } else if ([data isKindOfClass:[NSArray class]]) {
         for (int i = 0; i < [data count]; i++) {
-            NSMutableDictionary *record = [NSMutableDictionary dictionary];
-            record[@"key"] = [NSString stringWithFormat:@"%d", i];
-            record[@"value"] = [FHSyncUtils sortData:data[i]];
-            [results addObject:record];
+            @autoreleasepool {
+                NSMutableDictionary *record = [NSMutableDictionary dictionary];
+                record[@"key"] = [NSString stringWithFormat:@"%d", i];
+                record[@"value"] = [FHSyncUtils sortData:data[i]];
+                [results addObject:record];
+            }
         }
     }
     return results;
