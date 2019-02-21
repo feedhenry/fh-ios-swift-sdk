@@ -21,7 +21,7 @@
 #import "FHSyncDataRecord.h"
 #import "FHDefines.h"
 #import "FHSyncNotificationMessage.h"
-#import <FeedHenry/FeedHenry-Swift.h>
+#import <FeedHenry/FeedHenry-Sw.h>
 
 static NSString *const kStorageFilePath = @"sync.json";
 
