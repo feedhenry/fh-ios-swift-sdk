@@ -1,16 +1,19 @@
 # CHANGELOG - FeedHenry iOS SDK
 
+## 6.2.0 - 2019-02-28
+* RHMAP-22020: Allow SDK to work with new default Xcode 10 build system
+
 ## 6.1.0 - 2019-01-28
 * RHMAP-22042: Swift Sync client uses excessive memory when adding/updating records in offline mode
 * RHMAP-22053: Adding ability to call init with custom fhconfig file name
 
 ## [6.0.0](https://issues.jboss.org/issues/?jql=project%20%3D%20FH%20AND%20fixVersion%20%3D%20ios-swift-6.0.0) - 2017-10-17
 
-* [FH-4247](https://issues.jboss.org/browse/FH-4247) - Update ReachabilitySwift dependency on fh-ios-swift-sdk 
+* [FH-4247](https://issues.jboss.org/browse/FH-4247) - Update ReachabilitySwift dependency on fh-ios-swift-sdk
 * [FH-4054](https://issues.jboss.org/browse/FH-4054) - the FeedHenry Swift SDK don't use the cache cloud app url if the init request is failed
 * [FH-3792](https://issues.jboss.org/browse/FH-3792) - [Swift 4] update fh-ios-swift-sdk
 * [FH-3794](https://issues.jboss.org/browse/FH-3794) - Set deployment target to iOS 9 on fh-ios-swift-sdk
-* [FH-3974](https://issues.jboss.org/browse/FH-3974) - Move fh-ios-swift-sdk from Travis CI to CircleCI 
+* [FH-3974](https://issues.jboss.org/browse/FH-3974) - Move fh-ios-swift-sdk from Travis CI to CircleCI
 
 ## 5.0.5 - 2017-07-12
 * RHMAP-16650 Check if connection tag is disabled
