@@ -16,7 +16,7 @@
  */
 
 
-let FH_SDK_VERSION = "6.1.0"
+let FH_SDK_VERSION = "6.2.0"
 
 import Foundation
 import AeroGearHttp
@@ -80,7 +80,7 @@ open class FH: NSObject {
 
      This must be called before any other API methods can be called. The
      initialization process runs asynchronously so that it won't block the main UI
-     thread. All the same constraints that apply to init method apply to this method. 
+     thread. All the same constraints that apply to init method apply to this method.
      It is advised that this method is only called once.
 
      You need to make sure it is successful before calling any other API methods. The
@@ -112,7 +112,7 @@ open class FH: NSObject {
      */
     open class func `initWithCustomConfigName`(config: Config, completionHandler: @escaping CompletionBlock) -> Void {
         setup(config: config, completionHandler: completionHandler)
-        
+
     }
 
     /**
