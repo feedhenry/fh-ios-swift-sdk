@@ -10,6 +10,8 @@
 
 The iOS Software Development Kit to connect to the [FeedHenry platform.](http://www.feedhenry.com)
 
+> NOTE: This is an experimental branch to enable  Swift 4.2 builds to work with the new build system. The Swift4.2 branch is not a supported configuration.
+
 **The Swift version of FeedHenry SDK is a Work In Progress. If you want to use full feature SDK go to [fh-ios-sdk](https://github.com/feedhenry/fh-ios-sdk/).**
 
 ## Release Process
