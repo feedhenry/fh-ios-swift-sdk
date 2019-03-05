@@ -458,7 +458,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FeedHenry-FeedHenryTests/Pods-FeedHenry-FeedHenryTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AeroGearHttp/AeroGearHttp.framework",
-				"${BUILT_PRODUCTS_DIR}/AeroGearPush-Swift/AeroGearPush.framework",
+				"${BUILT_PRODUCTS_DIR}/AeroGearPush-Sw/AeroGearPush.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
@@ -697,7 +697,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -722,7 +722,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -739,7 +739,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "FeedHenryTests/FeedHenryTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -755,7 +755,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FeedHenryTests/FeedHenryTests-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

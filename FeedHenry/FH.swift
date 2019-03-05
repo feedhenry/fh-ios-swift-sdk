@@ -342,7 +342,7 @@ open class FH: NSObject {
      - parameter applicationState: to make sure the app was in background.
      - parameter userInfo: contains the message id used to collect metrics.
      */
-    open class func sendMetricsWhenAppAwoken(applicationState: UIApplicationState, userInfo: [AnyHashable: Any]) {
+    open class func sendMetricsWhenAppAwoken(applicationState: UIApplication.State, userInfo: [AnyHashable: Any]) {
         PushAnalytics.sendMetricsWhenAppAwoken(applicationState: applicationState, userInfo: userInfo)
     }
 
