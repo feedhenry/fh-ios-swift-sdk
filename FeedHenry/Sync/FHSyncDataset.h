@@ -78,3 +78,11 @@ A class representing a sync dataset managed by the sync service
 - (NSDictionary *)deleteWithUID:(NSString *)uid;
 
 @end
+// Header
+@protocol MutableDeepCopying <NSObject>
+-(id) mutableDeepCopy;
+@end
+@interface NSDictionary (MutableDeepCopy) <MutableDeepCopying>
+@end
+@interface NSArray (MutableDeepCopy) <MutableDeepCopying>
+@end

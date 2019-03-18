@@ -78,7 +78,7 @@
          raise:@"FHSyncClient isn't initialized"
          format:@"FHSyncClient hasn't been initialized. Have you " @"called the init function?"];
     }
-    
+
     // first, check if the dataset for dataId is already loaded
     FHSyncDataset *dataSet = _dataSets[dataId];
     // allow to set sync config options for each dataset
@@ -129,13 +129,17 @@
 }
 
 - (void)datasetMonitor:(NSDictionary *)info {
-    DLog(@"start to run checkDatasets");
+//    DLog(@"start to run checkDatasets");
     [self checkDatasets];
-    [NSTimer scheduledTimerWithTimeInterval:1
-                                     target:self
-                                   selector:@selector(datasetMonitor:)
-                                   userInfo:nil
-                                    repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:1
+//                                     target:self
+//                                   selector:@selector(datasetMonitor:)
+//                                   userInfo:nil
+//                                    repeats:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        [self datasetMonitor:nil];
+    });
+    
 }
 
 - (void)checkDatasets {

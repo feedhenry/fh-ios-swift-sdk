@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+#import <Foundation/Foundation.h>
 #import "FHSyncDataset.h"
 #import "FHSyncUtils.h"
 #import "FHJSON.h"
@@ -148,8 +149,7 @@ static NSString *const kUIDMapping = @"uidMapping";
     if (jsonObj[@"syncMetaData"] == nil) {
         instance.syncMetaData = [NSMutableDictionary dictionary];
     } else {
-        NSMutableDictionary *mutableCopy = (NSMutableDictionary *)CFBridgingRelease(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)jsonObj[@"syncMetaData"], kCFPropertyListMutableContainers));
-        instance.syncMetaData = mutableCopy;
+        instance.syncMetaData = [jsonObj[@"syncMetaData"] mutableDeepCopy];
     }
     
     NSDictionary *pendingJson = jsonObj[kPendingRecords];
@@ -511,11 +511,14 @@ static NSString *const kUIDMapping = @"uidMapping";
     
     NSString *path = [NSString stringWithFormat:@"/mbaas/sync/%@", self.datasetId];
     [FH performCloudRequest:path method:@"POST" headers:nil args:params completionHandler:^(FHResponse* response, NSError* error) {
-        if (error != nil) { // response contains error
-            failornil(response);
-            return;
-        }
-        sucornil(response);
+        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            if (error != nil) { // response contains error
+                failornil(response);
+                return;
+            }
+            sucornil(response);
+        });
     }];
 }
 
@@ -651,8 +654,7 @@ static NSString *const kUIDMapping = @"uidMapping";
     
     [self doCloudCall:syncRecsParams
            AndSuccess:^(FHResponse *response) {
-               NSMutableDictionary *resData = (NSMutableDictionary *)CFBridgingRelease(CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)[response parsedResponse], kCFPropertyListMutableContainers));
-               [self syncRecordsSuccess:resData];
+               [self syncRecordsSuccess:[[response parsedResponse] mutableDeepCopy]];
            }
            AndFailure:^(FHResponse *response) {
                DLog(@"syncRecords failed : %@", [[response parsedResponse] JSONString]);
@@ -912,4 +914,49 @@ static NSString *const kUIDMapping = @"uidMapping";
     }];
 }
 
+@end
+
+
+
+// Implementation
+@implementation NSDictionary (MutableDeepCopy)
+- (NSMutableDictionary *) mutableDeepCopy {
+    NSMutableDictionary * returnDict = [[NSMutableDictionary alloc] initWithCapacity:self.count];
+    NSArray * keys = [self allKeys];
+    for(id key in keys) {
+        id aValue = [self objectForKey:key];
+        id theCopy = nil;
+        if([aValue conformsToProtocol:@protocol(MutableDeepCopying)]) {
+            theCopy = [aValue mutableDeepCopy];
+        } else if([aValue conformsToProtocol:@protocol(NSMutableCopying)]) {
+            theCopy = [aValue mutableCopy];
+        } else if([aValue conformsToProtocol:@protocol(NSCopying)]){
+            theCopy = [aValue copy];
+        } else {
+            theCopy = aValue;
+        }
+        [returnDict setValue:theCopy forKey:key];
+    }
+    return returnDict;
+}
+@end
+
+@implementation NSArray (MutableDeepCopy)
+-(NSMutableArray *)mutableDeepCopy {
+    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:self.count];
+    for(id aValue in self) {
+        id theCopy = nil;
+        if([aValue conformsToProtocol:@protocol(MutableDeepCopying)]) {
+            theCopy = [aValue mutableDeepCopy];
+        } else if([aValue conformsToProtocol:@protocol(NSMutableCopying)]) {
+            theCopy = [aValue mutableCopy];
+        } else if([aValue conformsToProtocol:@protocol(NSCopying)]){
+            theCopy = [aValue copy];
+        } else {
+            theCopy = aValue;
+        }
+        [returnArray addObject:theCopy];
+    }
+    return returnArray;
+}
 @end

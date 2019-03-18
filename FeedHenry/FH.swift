@@ -54,7 +54,7 @@ open class FH: NSObject {
      - Returns: true if the device is online.
      */
     @objc
-    open static var isOnline: Bool {
+    public static var isOnline: Bool {
         guard let reachability = self.reachability else {return false}
         return reachability.connection != .none
     }
@@ -64,7 +64,7 @@ open class FH: NSObject {
 
      - Returns: the NSError from FH.init method.
      */
-    open static var getInitError: NSError? {
+    public static var getInitError: NSError? {
         return initError
     }
 
@@ -303,7 +303,7 @@ open class FH: NSObject {
      - parameter applicationState: to make sure the app was in background.
      - parameter userInfo: contains the message id used to collect metrics.
      */
-    open class func sendMetricsWhenAppAwoken(applicationState: UIApplicationState, userInfo: [AnyHashable: Any]) {
+    open class func sendMetricsWhenAppAwoken(applicationState: UIApplication.State, userInfo: [AnyHashable: Any]) {
         PushAnalytics.sendMetricsWhenAppAwoken(applicationState: applicationState, userInfo: userInfo)
     }
 
