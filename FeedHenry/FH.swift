@@ -54,7 +54,7 @@ open class FH: NSObject {
      - Returns: true if the device is online.
      */
     @objc
-    open static var isOnline: Bool {
+    public static var isOnline: Bool {
         guard let reachability = self.reachability else {return false}
         return reachability.connection != .none
     }
@@ -64,7 +64,7 @@ open class FH: NSObject {
 
      - Returns: the NSError from FH.init method.
      */
-    open static var getInitError: NSError? {
+    public static var getInitError: NSError? {
         return initError
     }
 
