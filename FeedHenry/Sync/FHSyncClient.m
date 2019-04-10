@@ -16,7 +16,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 
-#import <FeedHenry/FeedHenry-Sw.h>
+#import "../FeedHenry-Sw.h"
 #import "FHSyncClient.h"
 #import "FHSyncUtils.h"
 #import "FHSyncPendingDataRecord.h"
