@@ -25,6 +25,8 @@ docset-installed.txt
 # Exclude cocoapods folder
 Pods/
 *.xcworkspace
+Podfile.lock
+Pods/
 
 # Exclude the build directory
 build/*

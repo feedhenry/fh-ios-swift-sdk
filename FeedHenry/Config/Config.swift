@@ -25,7 +25,7 @@ open class Config {
     let propertiesFile: String
     var bundle: Bundle
     /// Singleton instance.
-    open static var instance = Config()
+    public static var instance = Config()
     
     /**
      Constructor.

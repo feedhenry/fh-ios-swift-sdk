@@ -40,7 +40,7 @@ open class OAuthViewController: UIViewController, UIWebViewDelegate {
     }
     
     /// Override to retrieve auth token and store it.
-    open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         print("Start to load url: \(String(describing: request.url))")
         authInfo = [:]
         do {
